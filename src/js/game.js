@@ -1,12 +1,24 @@
 
 
 import Sprite from './sprite.js';
+import Scenes from './scenes.js';
 
 class Game{
 	constructor(game){
 		this.canvas =  document.getElementsByTagName("canvas")[0];
         this.ctx    = this.canvas.getContext('2d');
-
+        this.handleClick.bind(this);
+        this.clickAbleSprites = [];
+        this.lastClickX = null;
+        this.lastclickY = null;
+        /*
+        type {
+        	x.pos
+        	x.width
+        	y.pos
+        	y.width
+        }
+        */
         /* Refactor into array of sprites */
 		
 		//this.batter = new Batter(this);
@@ -19,8 +31,14 @@ class Game{
 		this.backgroundColor = "#000000";
 
 		/* Timer */
+		this.playSound = true;
 		this.timer = null;
         this.tickTime = 100;
+
+        // Which Scene is showing
+		this.showScene = false;
+		this.currentScene = null;
+		this.scenes = Scenes;
 
         this.roundTime = -1;
  		// Round has begun
@@ -34,22 +52,43 @@ class Game{
         /* array of images */
         this.backgroundImage = null;
 
+
         this.showPlayAgain = false;
 	    /* Call Methods */
         /* stretch canvas */
         this.initCanvas();
-		
+		this.playButton = true;
 		this.firstload = true;      
       
+      	this.canvas.addEventListener('click', (e) => {
+		 const pos = {
+		    x: e.clientX,
+		    y: e.clientY
+		  };
+		  this.handleClick(pos.x,pos.y);
+		});
         // Start Game Rendering  - Last Method
         this.animateGame();
 	}
+	handleClick(x,y){
+			this.lastClickX = x;
+			this.lastClickY = y;
+			if(this.playButton){
+				if((x>= 350) & (x <= 550) & (y>= 200) & (y <= 400))  {
+					console.log("clicked Play");
+					this.firstload = false;
+				}
+			}
+	}
 	initCanvas(){ 
-		this.canvas.width = 960;
-		this.canvas.height = 540;
+		this.canvas.width = 1440;
+		this.canvas.height = 800;
 		this.backgroundImages = [];
 		this.Images = [];
 		let drawing = new Image();
+
+
+
 
 		drawing.src = "./dist/images/title.png"; // can also be a remote URL e.g. http:// // 0
 		this.Images.push(drawing);
@@ -93,6 +132,8 @@ class Game{
 
             // Clear the Canvas
             this.clearCanvas();
+
+       
              // Draw the platform
           //  this.platform.draw(this.ctx);
             // Draw the pitcher
@@ -142,6 +183,9 @@ class Game{
 			
 		}
 	}*/
+	loadScene(scene){
+		console.log("load scene" + scene);
+	}
 	drawPlayAgain(){
 		this.ctx.drawImage(this.backgroundImages[4],375,110);
 	}
@@ -159,7 +203,7 @@ class Game{
 			this.ctx.fillStyle = "red";
 			this.ctx.font = "bold 24px Arial";
 			this.ctx.color = "red";
-			this.ctx.fillText("Press Space or Touch to Start", 305, 450 );
+			this.ctx.fillText("Touch to Start", 365, 450 );
 				/*
 			this.ctx.font = "24px Georgia";
 			this.ctx.color = "white";
