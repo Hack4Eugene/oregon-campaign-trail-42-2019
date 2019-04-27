@@ -1,7 +1,6 @@
-[
+let Scenes =  [
 	{
 		"name": "start",
-		"mainImage" : "./images/example.jpg",
 		"choices" : [
 				{
 					"description" : "go left",
@@ -16,7 +15,6 @@
 	},
 	{
 		"name": "left",
-		"mainImage" : "./images/left.jpg",
 		"choices" : [
 				{
 					"description" : "go back to example",
@@ -26,7 +24,6 @@
 	},
 	{
 		"name": "right",
-		"mainImage" : "./images/example.jpg",
 		"choices" : [
 				{
 					"description" : "go back to example",
@@ -35,3 +32,4 @@
 		]
 	},
 ];
+export default Scenes;

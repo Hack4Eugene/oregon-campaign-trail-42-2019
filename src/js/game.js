@@ -2,6 +2,7 @@
 
 import Sprite from './sprite.js';
 import Scenes from './scenes.js';
+import Scene from './scene.js';
 
 class Game{
 	constructor(game){
@@ -75,16 +76,42 @@ class Game{
 			this.lastClickY = y;
 			if(this.playButton){
 				if((x>= 350) & (x <= 550) & (y>= 200) & (y <= 400))  {
-					console.log("clicked Play");
+					// Stop drawing the menu
 					this.firstload = false;
+					this.playButton = false;
+					this.showScene = true;
+					// Start drawing the first scene
+					this.currentScene = new Scene(this,this.getSceneByName("start"));
+					
 				}
 			}
+			// If we want to do something special outside of scenes we can set the currentScene to nothing
+			else if(this.showScene){
+				
+					this.currentScene.click(x,y);
+			}
+			
+	}
+	getSceneByName(name){
+		let selectedScene = null;
+		this.scenes.forEach( (scene) => {
+				if(scene.name == name){
+						selectedScene = scene;
+				}
+		});
+		if(selectedScene == null ){
+			return "start";
+		}
+		else{
+			return selectedScene;
+		}
 	}
 	initCanvas(){ 
 		this.canvas.width = 1440;
 		this.canvas.height = 800;
 		this.backgroundImages = [];
 		this.Images = [];
+
 		let drawing = new Image();
 
 
@@ -144,7 +171,9 @@ class Game{
             //this.ball.draw(this.ctx);
               // Draw the Batter
            // this.batter.draw(this.ctx);
-
+           	if(this.currentScene != null){
+           		this.currentScene.render();
+           	}
             // draw play again
           /*  if(this.showPlayAgain){
          		this.drawPlayAgain();
