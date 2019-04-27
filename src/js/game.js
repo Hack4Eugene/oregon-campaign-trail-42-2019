@@ -48,15 +48,16 @@ class Game{
 		this.canvas.width = 960;
 		this.canvas.height = 540;
 		this.backgroundImages = [];
+		this.Images = [];
 		let drawing = new Image();
 
-		//drawing.src = "./dist/images/background.png"; // can also be a remote URL e.g. http:// // 0
-		//this.backgroundImages.push(drawing);
+		drawing.src = "./dist/images/title.png"; // can also be a remote URL e.g. http:// // 0
+		this.Images.push(drawing);
 		
-/*		drawing = new Image();
-		drawing.src = "./dist/images/background-stars.png"; // 1
-		this.backgroundImages.push(drawing);
-
+		drawing = new Image();
+		drawing.src = "./dist/images/play.png"; // 1
+		this.Images.push(drawing);
+/*
 		drawing = new Image();
 		drawing.src = "./dist/images/background-stars2.png"; // 2
 		this.backgroundImages.push(drawing);
@@ -109,9 +110,9 @@ class Game{
             }*/
 
             /* show menu */
-		//	if(this.firstload == true){
-			//	this.drawMenu();
-		//	}
+			if(this.firstload == true){
+				this.drawMenu();
+			}
             
             // Round Timer Update
           //  this.roundTimerTick();
@@ -146,16 +147,20 @@ class Game{
 	}
 	drawMenu(){
 			this.ctx.beginPath();
-			this.ctx.rect(0, 0, 960, 540);
+			this.ctx.rect(0, 0, this.canvas.width, this.canvas.height);
 			this.ctx.fillStyle = "black";
 			this.ctx.fill();
-			/*this.ctx.drawImage(this.backgroundImages[5],375,110);
+			// Title Image
+			this.ctx.drawImage(this.Images[0],55,0);
+			// Play Button
+			this.ctx.drawImage(this.Images[1],350,200);
+
 			this.ctx.strokecolor = "red";
 			this.ctx.fillStyle = "red";
-			this.ctx.font = "bold 24px Georgia";
+			this.ctx.font = "bold 24px Arial";
 			this.ctx.color = "red";
-			this.ctx.fillText("Press Space or Touch to Start", 375, 400);
-
+			this.ctx.fillText("Press Space or Touch to Start", 305, 450 );
+				/*
 			this.ctx.font = "24px Georgia";
 			this.ctx.color = "white";
 			this.ctx.fillStyle = "white";
@@ -183,7 +188,7 @@ class Game{
 		this.ctx.strokeStyle = "#ffffff";
 		//  context.fillRect(10,10, 100,100);
 		this.ctx.fillRect(0, 0, this.canvas.width, this.canvas.height);
-		console.log("0, 0, " + this.canvas.width + "," + this.canvas.height);
+		
 		/*  stars alt */
 		/*if(this.roundTime%2 == 0){
 			this.ctx.drawImage(this.backgroundImages[1],0,0);
