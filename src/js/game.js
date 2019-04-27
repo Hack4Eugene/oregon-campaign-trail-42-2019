@@ -123,13 +123,22 @@ class Game{
 		drawing = new Image();
 		drawing.src = "./dist/images/play.png"; // 1
 		this.Images.push(drawing);
-/*
+
 		drawing = new Image();
-		drawing.src = "./dist/images/background-stars2.png"; // 2
+		drawing.src = "./dist/images/frame.png"; // 2
 		this.backgroundImages.push(drawing);
-		
+
 		drawing = new Image();
-		drawing.src = "./dist/images/keys.png"; // 3
+		drawing.src = "./dist/images/campaign.png"; // 3
+		this.backgroundImages.push(drawing);
+
+		drawing = new Image();
+		drawing.src = "./dist/images/credits.png"; // 4
+		this.backgroundImages.push(drawing);
+
+/*		
+		drawing = new Image();
+		drawing.src = "./dist/images/keys.png"; // 4
 		this.backgroundImages.push(drawing);
 
 		drawing = new Image();
@@ -224,10 +233,11 @@ class Game{
 			this.ctx.fillStyle = "black";
 			this.ctx.fill();
 			// Title Image
-			this.ctx.drawImage(this.Images[0],55,0);
+			this.ctx.drawImage(this.Images[0],125,40);
 			// Play Button
 			this.ctx.drawImage(this.Images[1],350,200);
-
+			// Draw the frame
+			this.ctx.drawImage(this.Images[2],0,0);
 			this.ctx.strokecolor = "red";
 			this.ctx.fillStyle = "red";
 			this.ctx.font = "bold 24px Arial";

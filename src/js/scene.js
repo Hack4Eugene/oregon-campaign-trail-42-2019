@@ -9,7 +9,7 @@ export default class Scene extends Sprite{
 		this.positionX = 0;
 		this.positionY = 0;
 		//this.scoreboardImages = null;
-		this.startY = 350;
+		this.startY = 375;
 		this.font = "30px Arial";
 		this.fontColor = "red";
 		
@@ -23,7 +23,7 @@ export default class Scene extends Sprite{
 			// Draw main image
 		this.game.ctx.drawImage(this.sceneImage,0,0);
 		// Draw choices
-		startY = this.startY;
+		let startY = this.startY;
 		for(let i=0; i < this.options.choices.length; i++){
 
 			this.game.ctx.strokecolor = "white";
@@ -41,31 +41,43 @@ export default class Scene extends Sprite{
 		console.log(this.options);
 	}
 	click(x,y){
-			if(y > 350 & y < 600){
-				if(this.options.choices.length < 4){
-						
-				}
-				else if(this.options.choices.length > 1){
-						if(y > 400) & (y < 450){
-							// load option 1
-							console.log("load option 2");
-						}
-				}
-				else if(this.options.choices.length > 2){
-						 if(y > 450) & (y < 500){
-							// load option 1
-							console.log("load option 3");
-						}
-				}
-				else if(this.options.choices.length > 3){
+		/*
+		opt 1 : 350 - 400
+		opt 2 : 400 - 450
+		opt 3: 450 - 500
+		opt 4: 500 - 550
+		opt 5: 550 - 600*/
 
-				}
-				else if(this.options.choices.length > 4){
-
-				}
-				let selection = y
-				console.log("I was clicked x:" +x+ "y:" + y);
+			if(this.options.choices.length >= 5){
+					if((y > 550) && (y < 600)){
+						this.game.currentScene = new Scene(this.game,this.game.getSceneByName(this.options.choices[4].sceneDestination));
+					}
+					
 			}
+			 if(this.options.choices.length >= 4){
+					if((y > 500) && (y < 550)){
+						this.game.currentScene = new Scene(this.game,this.game.getSceneByName(this.options.choices[3].sceneDestination));
+					}
+			}
+			if(this.options.choices.length >= 3){
+					 if((y > 450) && (y < 500)){
+						this.game.currentScene = new Scene(this.game,this.game.getSceneByName(this.options.choices[2].sceneDestination));
+					}
+			}
+			if(this.options.choices.length >= 2){
+					 if((y > 400) && (y < 450)){
+						this.game.currentScene = new Scene(this.game,this.game.getSceneByName(this.options.choices[1].sceneDestination));
+					}
+			}
+			 if(this.options.choices.length >= 1){
+					 if((y > 350) && (y < 400)){
+						this.game.currentScene = new Scene(this.game,this.game.getSceneByName(this.options.choices[0].sceneDestination));
+					}
+			}			
+
+			let selection = y
+			console.log("I was clicked x:" +x+ "y:" + y);
+		    console.log("options:" + this.options.choices.length);
 	}
 	
 	
