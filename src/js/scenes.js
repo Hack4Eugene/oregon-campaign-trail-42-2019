@@ -492,7 +492,7 @@ let Scenes =  [
 	},
 	{ 
 		"name": "screen_15_wrong",
-		"question" : `Heather responds with “That isn't what I'd do. But I guess you could try it and see what happens."`,
+		"question" : `Heather responds with “You either need to pay $10 or collect 25 signatures."`,
 		"current_date" : "November 2020", // Date for Month
 		"campaign_month_count" : 7, // Counter for Budget
 		"choices" : [
@@ -505,7 +505,7 @@ let Scenes =  [
 	},
 	{ 
 		"name": "screen_15_right",
-		"question" : `Heather responds with, “Yes! This is exactly what I would suggest!”`,
+		"question" : `Heather responds with, “Looks like you've done your research!”`,
 		"current_date" : "November 2020", // Date for Month
 		"campaign_month_count" : 7, // Counter for Budget
 		"choices" : [
@@ -596,7 +596,7 @@ let Scenes =  [
 	},
 	{ 
 		"name": "screen_17_right",
-		"question" : `Heather responds with, “Yes! This is exactly what I would suggest!”`,
+		"question" : `Heather responds with, “You sure know your voter base!”`,
 		"current_date" : "January 2021", // Date for Month
 		"campaign_month_count" : 9, // Counter for Budget
 		"choices" : [
@@ -610,7 +610,7 @@ let Scenes =  [
 
 	{ 
 		"name": "screen_17_wrong",
-		"question" : `Heather responds with “That isn't what I'd do. But I guess you could try it and see what happens."`,
+		"question" : `Heather responds with “Springfield School District 19 has 51650 registered voters."`,
 		"current_date" : "January 2021", // Date for Month
 		"campaign_month_count" : 9, // Counter for Budget
 		"choices" : [
@@ -648,7 +648,7 @@ let Scenes =  [
 	},
 	{ 
 		"name": "screen_18_right",
-		"question" : `Heather responds with, “Yes! This is exactly what I would suggest!”`,
+		"question" : `Heather responds with, “Candidates can only place their ads in mailboxes through the US Postal Service.”`,
 		"current_date" : "February 2021", // Date for Month
 		"campaign_month_count" : 10, // Counter for Budget
 		"choices" : [
@@ -662,7 +662,7 @@ let Scenes =  [
 
 	{ 
 		"name": "screen_18_wrong",
-		"question" : `Heather responds with “That isn't what I'd do. But I guess you could try it and see what happens."`,
+		"question" : `Heather responds with “Candidates can only place their ads in mailboxes through the US Postal Service."`,
 		"current_date" : "February 2021", // Date for Month
 		"campaign_month_count" : 10, // Counter for Budget
 		"choices" : [
@@ -701,7 +701,7 @@ let Scenes =  [
 
 	{ 
 		"name": "screen_19_right",
-		"question" : `Heather responds with, “Yes! This is exactly what I would suggest!”`,
+		"question" : `Heather responds with, “Great job!”`,
 		"current_date" : "March 2021", // Date for Month
 		"campaign_month_count" : 11, // Counter for Budget
 		"choices" : [
@@ -715,7 +715,7 @@ let Scenes =  [
 
 	{ 
 		"name": "screen_19_wrong",
-		"question" : `Heather responds with “That isn't what I'd do. But I guess you could try it and see what happens."`,
+		"question" : `Heather responds with “Community organizations are responsible for hosting and organizing debates and forums for candidates."`,
 		"current_date" : "March 2021", // Date for Month
 		"campaign_month_count" : 11, // Counter for Budget
 		"choices" : [
