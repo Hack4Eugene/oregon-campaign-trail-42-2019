@@ -35,11 +35,12 @@ export default class Scene extends Sprite{
 
 		// Draw main image
 		if(this.image != null){
+			console.log("try and load the image");
 				try{
 					let sceneImage = new Image();
 					sceneImage.src = this.image;
-					//this.game.ctx.drawImage(this.image,0,0);
-					console.log(this.image);
+					this.game.ctx.drawImage(sceneImage,50,200);
+					
 				}
 				catch(error){
 					null;
@@ -56,7 +57,7 @@ export default class Scene extends Sprite{
 			this.game.ctx.fillText(this.options.choices[i].description, 400, startY );
 			// Spacing of question
 			startY+= 50;
-			console.log(" x: 400, y:" + startY);
+			
 		}
 		// wrapText(context, text, x, y, line_width, line_height)
 		// Lets work on drawing the final questions
@@ -64,7 +65,7 @@ export default class Scene extends Sprite{
 		this.game.ctx.fillStyle = "white";
 		this.game.ctx.font = " 20px BlueSky8x8Monospaced";
 		this.game.ctx.color = "white";
-		this.wrapText(this.game.ctx,this.question,400,300, 700, 22);
+		this.wrapText(this.game.ctx,this.question,500,300, 700, 22);
 
 		
 				
