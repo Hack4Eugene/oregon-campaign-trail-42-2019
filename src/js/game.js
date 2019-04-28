@@ -22,13 +22,7 @@ class Game{
 			y.width
 		}
 		*/
-		/* Refactor into array of sprites */
 		
-		//this.batter = new Batter(this);
-		//this.pitcher = new Pitcher(this);
-		//this.ball = new Ball(this);
-		//this.platform = new Platform(this);
-		//this.scoreboard = new Scoreboard(this);
  
 		/* Some Defaults */
 		this.backgroundColor = "#000000";
@@ -43,19 +37,19 @@ class Game{
 		this.currentScene = null;
 		this.scenes = Scenes;
 
-		// budget
+		// Budget
 		this.budgetMenu = new BudgetMenu(this);
 		this.showBudgetMenu = false; // budget menu or menu access button is visible
 		this.money = 10000; // starting budget
 
-		// Round has begun
-		this.roundTime = -1;
-		this.roundStarted = true;
-		
-		// Current Number of Runs
-		this.roundScore = 0;
+		// Scoring
+		this.polling = 0.3251243124; // TODO calculate this somewhere
+		this.month = 0; // TODO update this with navigation
+
+		// Background
 		this.backgroundImage = null;
 
+		// Audio
 		this.audio = new Audio("dist/sound/loop.mp3");
 		//this.audio.play();
 		this.audio.loop = true;
@@ -83,20 +77,30 @@ class Game{
 		
 	}
 	calculateBudget(selectedIDs, month) {
+		return; // TODO fix this function
 		for (var i = 0; i < selectedIDs.length; i++){
-			if (budget_ledger["BudgetItems"][i].ID = selectedIDs[i])
-			budget_ledger.LedgerItems.push(
-		   {    "EntryName": budget_ledger["BudgetItems"][i]["NAME"], 
-				"Value": (budget_ledger["BudgetItems"][i]["MOCOST"] == 0) ? budget_ledger["BudgetItems"][i]["INITCOST"]:budget_ledger["BudgetItems"][i]["MOCOST"], 
-				"MONTH":month, 
-				"MOD": budget_ledger["BudgetItems"][i]["MOD"] 
-			}) 
+			if (budget_ledger["BudgetItems"][i].ID = selectedIDs[i]) {
+				budget_ledger.LedgerItems.push({
+					"EntryName": budget_ledger["BudgetItems"][i]["NAME"], 
+					"Value": (budget_ledger["BudgetItems"][i]["MOCOST"] == 0) ? budget_ledger["BudgetItems"][i]["INITCOST"]:budget_ledger["BudgetItems"][i]["MOCOST"], 
+					"MONTH":month, 
+					"MOD": budget_ledger["BudgetItems"][i]["MOD"] 
+				});
 			}
+		}
 		var CashFlow = budget_ledger.LedgerItems;
 		this.money = 0;
 		
 		for (i = 0; i < CashFlow.length; i++) {  
 		this.money += CashFlow[i].Value  } 
+	}
+	renderDate() {
+		if (!this.currentScene || this.currentScene.current_date == null) return;
+		let date = this.currentScene.current_date.split(" "); // [month, year];
+		this.ctx.font = "24px BlueSky";
+		this.ctx.fillStyle = "98D7DB";
+		this.ctx.fillText(date[0].toUpperCase(), 80, 100);
+		this.ctx.fillText(date[1], 80, 135);
 	}
 	handleClick(x,y){
 		this.lastClickX = x;
@@ -198,9 +202,11 @@ class Game{
        
    			/* Render Scene Manager */
            	if(this.currentScene != null){
-           		this.currentScene.render();
+				this.currentScene.render();
+				this.renderDate();
 			   }
 			   
+			
 			if (this.budgetMenu !== null) this.budgetMenu.render();
       
             /* show menu */
