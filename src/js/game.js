@@ -94,14 +94,6 @@ class Game{
 		for (i = 0; i < CashFlow.length; i++) {  
 		this.money += CashFlow[i].Value  } 
 	}
-	renderDate() {
-		if (!this.currentScene || this.currentScene.current_date == null) return;
-		let date = this.currentScene.current_date.split(" "); // [month, year];
-		this.ctx.font = "24px BlueSky";
-		this.ctx.fillStyle = "98D7DB";
-		this.ctx.fillText(date[0].toUpperCase(), 80, 100);
-		this.ctx.fillText(date[1], 80, 135);
-	}
 	handleClick(x,y){
 		this.lastClickX = x;
 		this.lastClickY = y;
@@ -199,16 +191,11 @@ class Game{
 			// Clear the Canvas
 			this.clearCanvas();
 
-       
-   			/* Render Scene Manager */
-           	if(this.currentScene != null){
-				this.currentScene.render();
-				this.renderDate();
-			   }
-			   
-			
+			// Render primary elements
+			if(this.currentScene != null)this.currentScene.render();
 			if (this.budgetMenu !== null) this.budgetMenu.render();
-      
+			if (this.currentScene != null) this.renderDate();
+
             /* show menu */
 			if(this.firstload == true){
 				this.drawMenu();
@@ -224,6 +211,14 @@ class Game{
 	}
 	drawPlayAgain(){
 		this.ctx.drawImage(this.backgroundImages[4],375,110);
+	}
+	renderDate() {
+		if (!this.currentScene || this.currentScene.current_date == null) return;
+		let date = this.currentScene.current_date.split(" "); // [month, year];
+		this.ctx.font = "24px BlueSky";
+		this.ctx.fillStyle = "98D7DB";
+		this.ctx.fillText(date[0].toUpperCase(), 80, 100);
+		this.ctx.fillText(date[1], 80, 135);
 	}
 	drawMenu(){
 

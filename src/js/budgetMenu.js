@@ -27,7 +27,7 @@ export default class BudgetMenu extends Sprite {
 		let img = new Image();
 		img.src = './dist/images/BudgetButton.png';
 		img.height = 23;
-		this.showButton = new Button(this.ax2, 630, 147, 50, img);
+		this.showButton = new Button(this.ax1, 630, 147, 50, img);
 		img = new Image();
 		img.height = 23;
 		img.src = './dist/images/BudgetUpdateButton.png';
@@ -46,13 +46,15 @@ export default class BudgetMenu extends Sprite {
 			this.game.ctx.fillRect(0, 0, 1440, 800);
 			this.game.ctx.drawImage(this.game.Images[2], 0, 0);
 			this.renderTitle(this.game.ctx);
-			this.renderTotals(this.game.ctx);
+			this.renderCash(this.game.ctx);
+			this.renderSummary(this.game.ctx);
 			for (let i in this.budgetItems) {
 				this.budgetItems[i].render(this.game.ctx);
 			}
 			this.hideButton.render(this.game.ctx);
 		} else {
 			this.showButton.render(this.game.ctx);
+			this.renderCash(this.game.ctx);
 		}
 	}
 	click(x, y) {
@@ -82,15 +84,21 @@ export default class BudgetMenu extends Sprite {
 		ctx.fillStyle = "389DB1";
 		ctx.fillText("BUDGET", this.ax2, 150);
 	}
-	renderTotals(ctx) {
-		this.game.renderDate();
+	renderCash(ctx) {
 		ctx.font = "12px BlueSky";
 		ctx.fillStyle = "389DB1";
 		ctx.fillText("CASH", this.ax1, 180);
+		ctx.font = "24px BlueSky";
+		ctx.fillText("$"+this.game.money, this.ax1, 215);
+	}
+	renderSummary(ctx) {
+		this.game.renderDate();
+		this.renderCash(ctx);
+		ctx.font = "12px BlueSky";
+		ctx.fillStyle = "389DB1";
 		ctx.fillText("MONTHLY NET", this.ax1, 260);
 		ctx.fillText("POLLING", this.ax1, 340);
 		ctx.font = "24px BlueSky";
-		ctx.fillText("$"+this.game.money, this.ax1, 215);
 		ctx.fillText((this.game.polling*100).toPrecision(3)+"%", this.ax1, 375);
 		let net = this.calculateNet();
 		if (net < 0) { // losing money
