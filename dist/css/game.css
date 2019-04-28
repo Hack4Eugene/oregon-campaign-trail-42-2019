@@ -1,0 +1,11 @@
+body{
+	margin:0;
+	padding:0; 
+	background-color:black;
+}
+canvas{
+	margin-left:30px; 
+	margin-right:auto;
+	padding-left:auto;
+	padding-right:auto;
+}
