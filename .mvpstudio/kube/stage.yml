@@ -2,23 +2,23 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: stage-fourtytwo-deployment
-  namespace: fourtytwo
+  name: stage-fortytwo-deployment
+  namespace: fortytwo
   labels:
-    app: fourtytwo
+    app: fortytwo
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: fourtytwo
+      app: fortytwo
   template:
     metadata:
       labels:
-        app: fourtytwo
+        app: fortytwo
     spec:
       containers:
       - name: web-server
-        image: mvpstudio/fourtytwo:a1fe80a
+        image: mvpstudio/fortytwo:6e48faee
         resources:
            limits:
               cpu: 0.25
@@ -37,27 +37,27 @@ spec:
 apiVersion: v1
 kind: Service
 metadata:
-  name: fourtytwo-web
-  namespace: fourtytwo
+  name: fortytwo-web
+  namespace: fortytwo
   annotations:
     getambassador.io/config: |
       ---
       apiVersion: ambassador/v0
       kind: Mapping
-      name: fourtytwo-mapping
+      name: fortytwo-mapping
       host: 42.stage.apps.mvpstudio.org
       prefix: /
-      service: fourtytwo-web.fourtytwo
+      service: fortytwo-web.fortytwo
       ---
       apiVersion: ambassador/v0
       kind: TLSContext
-      name: stage-fourtytwo-tls
+      name: stage-fortytwo-tls
       hosts:
       - 42.stage.apps.mvpstudio.org
       secret: stage-apps-cert
 spec:
   selector:
-     app: fourtytwo
+     app: fortytwo
   ports:
   - protocol: TCP
     port: 80
