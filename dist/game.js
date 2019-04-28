@@ -61,7 +61,7 @@
 /******/ 	
 /******/ 	
 /******/ 	var hotApplyOnUpdate = true;
-/******/ 	var hotCurrentHash = "1027f2e31fb5efba70b8"; // eslint-disable-line no-unused-vars
+/******/ 	var hotCurrentHash = "8c4beab3ed1994024b25"; // eslint-disable-line no-unused-vars
 /******/ 	var hotRequestTimeout = 10000;
 /******/ 	var hotCurrentModuleData = {};
 /******/ 	var hotCurrentChildModule; // eslint-disable-line no-unused-vars
@@ -722,240 +722,11 @@
 /******/ 	__webpack_require__.h = function() { return hotCurrentHash; };
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return hotCreateRequire(1)(__webpack_require__.s = 1);
+/******/ 	return hotCreateRequire(2)(__webpack_require__.s = 2);
 /******/ })
 /************************************************************************/
 /******/ ([
-/* 0 */,
-/* 1 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
-
-var _sprite = __webpack_require__(2);
-
-var _sprite2 = _interopRequireDefault(_sprite);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-var Game = function () {
-	function Game(game) {
-		_classCallCheck(this, Game);
-
-		this.canvas = document.getElementsByTagName("canvas")[0];
-		this.ctx = this.canvas.getContext('2d');
-
-		/* Refactor into array of sprites */
-
-		//this.batter = new Batter(this);
-		//	//this.pitcher = new Pitcher(this);
-		//this.ball = new Ball(this);
-		//this.platform = new Platform(this);
-		//this.scoreboard = new Scoreboard(this);
-
-		/* Some Defaults */
-		this.backgroundColor = "#000000";
-
-		/* Timer */
-		this.timer = null;
-		this.tickTime = 100;
-
-		this.roundTime = -1;
-		// Round has begun
-		this.roundStarted = true;
-
-		// Current Number of Runs
-		this.roundScore = 0;
-		this.backgroundImage = null;
-
-		this.audio = null;
-		/* array of images */
-		this.backgroundImage = null;
-
-		this.showPlayAgain = false;
-		/* Call Methods */
-		/* stretch canvas */
-		this.initCanvas();
-
-		this.firstload = true;
-
-		// Start Game Rendering  - Last Method
-		this.animateGame();
-	}
-
-	_createClass(Game, [{
-		key: 'initCanvas',
-		value: function initCanvas() {
-			this.canvas.width = 960;
-			this.canvas.height = 540;
-			this.backgroundImages = [];
-			var drawing = new Image();
-			//drawing.src = "./dist/images/background.png"; // can also be a remote URL e.g. http:// // 0
-			//this.backgroundImages.push(drawing);
-
-			/*		drawing = new Image();
-   		drawing.src = "./dist/images/background-stars.png"; // 1
-   		this.backgroundImages.push(drawing);
-   
-   		drawing = new Image();
-   		drawing.src = "./dist/images/background-stars2.png"; // 2
-   		this.backgroundImages.push(drawing);
-   		
-   		drawing = new Image();
-   		drawing.src = "./dist/images/keys.png"; // 3
-   		this.backgroundImages.push(drawing);
-   
-   		drawing = new Image();
-   		drawing.src = "./dist/images/playagain.png"; // 4
-   		this.backgroundImages.push(drawing);
-   
-   		drawing = new Image();
-   		drawing.src = "./dist/images/title.png"; // 5
-   		this.backgroundImages.push(drawing);
-   
-   		drawing = new Image();
-   		drawing.src = "./dist/images/play.png"; // 6
-   		this.backgroundImages.push(drawing);
-   
-   		this.audio = [];
-   		this.audio.push(new Audio('./dist/audio/47356__fotoshop__oof.wav')); //0
-   		this.audio.push(new Audio('./dist/audio/fart01.wav')); // 1 / 
-   		this.audio.push(new Audio('./dist/audio/hitbat_v1.wav')); // 2 / 
-   		this.audio.push(new Audio('./dist/audio/stadiumcheer1.wav')); // 3 / 
-   		this.audio.push(new Audio('./dist/audio/whooshbat1.wav')); //4 
-   		
-   */
-		}
-	}, {
-		key: 'animateGame',
-		value: function animateGame() {
-			var _this = this;
-
-			this.timer = setInterval(function () {
-
-				// Clear the Canvas
-				_this.clearCanvas();
-				// Draw the platform
-				//  this.platform.draw(this.ctx);
-				// Draw the pitcher
-				// this.pitcher.draw(this.ctx);
-				// Draw the scoreboard
-				// this.scoreboard.draw(this.ctx);
-				// Draw the Ball
-				//this.ball.draw(this.ctx);
-				// Draw the Batter
-				// this.batter.draw(this.ctx);
-
-				// draw play again
-				/*  if(this.showPlayAgain){
-    	this.drawPlayAgain();
-      }*/
-
-				/* show menu */
-				//	if(this.firstload == true){
-				//	this.drawMenu();
-				//	}
-
-				// Round Timer Update
-				//  this.roundTimerTick();
-
-			}), this.tickTime;
-		}
-		/*startGame(){
-  	this.startroundTimer();
-  	this.roundStarted = true;
-  	this.roundScore = 0;
-  	this.showPlayAgain = false;
-  }
-  startroundTimer(){
-  	this.roundTime = 15000;
-  	//this.roundTime = 1000;
-  }
-  roundTimerTick(){
-  	if(this.roundStarted){
-  		if(this.roundTime > 0){
-  			this.roundTime--;  // so this is 100ms
-  		}
-  	}
-  	
-  	if(this.roundTime == 0){
-  		this.showPlayAgain = true;
-  		
-  	}
-  }*/
-
-	}, {
-		key: 'drawPlayAgain',
-		value: function drawPlayAgain() {
-			this.ctx.drawImage(this.backgroundImages[4], 375, 110);
-		}
-	}, {
-		key: 'drawMenu',
-		value: function drawMenu() {
-			this.ctx.beginPath();
-			this.ctx.rect(0, 0, 960, 540);
-			this.ctx.fillStyle = "black";
-			this.ctx.fill();
-			/*this.ctx.drawImage(this.backgroundImages[5],375,110);
-   this.ctx.strokecolor = "red";
-   this.ctx.fillStyle = "red";
-   this.ctx.font = "bold 24px Georgia";
-   this.ctx.color = "red";
-   this.ctx.fillText("Press Space or Touch to Start", 375, 400);
-   	this.ctx.font = "24px Georgia";
-   this.ctx.color = "white";
-   this.ctx.fillStyle = "white";
-   this.ctx.strokecolor = "white";
-   this.ctx.fillText("Lead Art", 10, 350);
-   this.ctx.fillText("Eric Hill", 10, 370);
-   this.ctx.fillText("Lead Programming", 10, 400);
-   this.ctx.fillText("Robert Moore", 10, 420);
-   	this.ctx.fillText("Programming", 10, 450);
-   this.ctx.fillText("Gordon Wallace", 10, 470);
-   this.ctx.fillText("QA / System Design", 10, 500);
-   this.ctx.fillText("Jack Kimball", 10, 520);
-   	this.ctx.font = "18px Arial";
-   this.ctx.fillText("Copyright 2019 - Made for GameJam 2019", 660, 520);
-   	this.ctx.drawImage(this.backgroundImages[6],470,430);*/
-		}
-	}, {
-		key: 'clearCanvas',
-		value: function clearCanvas() {
-			/*  main background */
-			this.ctx.drawImage(this.backgroundImages[0], 0, 0); // draw first batter image
-
-			/*  stars alt */
-			/*if(this.roundTime%2 == 0){
-   	this.ctx.drawImage(this.backgroundImages[1],0,0);
-   }
-   		else{ 
-   	this.ctx.drawImage(this.backgroundImages[2],0,0);
-   }
-   
-   /*  keys */
-			//this.ctx.drawImage(this.backgroundImages[3],50,360);
-
-		}
-	}]);
-
-	return Game;
-}();
-
-var game = void 0;
-window.addEventListener('load', function () {
-	game = new Game();
-});
-window.addEventListener('resize', function () {
-	console.log("Window Changed");
-});
-
-/***/ }),
-/* 2 */
+/* 0 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -991,6 +762,536 @@ var Sprite = function Sprite(game) {
 };
 
 exports.default = Sprite;
+
+/***/ }),
+/* 1 */,
+/* 2 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+var _sprite = __webpack_require__(0);
+
+var _sprite2 = _interopRequireDefault(_sprite);
+
+var _scenes = __webpack_require__(3);
+
+var _scenes2 = _interopRequireDefault(_scenes);
+
+var _scene = __webpack_require__(4);
+
+var _scene2 = _interopRequireDefault(_scene);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+var Game = function () {
+	function Game(game) {
+		var _this = this;
+
+		_classCallCheck(this, Game);
+
+		this.canvas = document.getElementsByTagName("canvas")[0];
+		this.ctx = this.canvas.getContext('2d');
+		this.handleClick.bind(this);
+		this.clickAbleSprites = [];
+		this.lastClickX = null;
+		this.lastclickY = null;
+		/*
+  type {
+  	x.pos
+  	x.width
+  	y.pos
+  	y.width
+  }
+  */
+		/* Refactor into array of sprites */
+
+		//this.batter = new Batter(this);
+		//	//this.pitcher = new Pitcher(this);
+		//this.ball = new Ball(this);
+		//this.platform = new Platform(this);
+		//this.scoreboard = new Scoreboard(this);
+
+		/* Some Defaults */
+		this.backgroundColor = "#000000";
+
+		/* Timer */
+		this.playSound = true;
+		this.timer = null;
+		this.tickTime = 100;
+
+		// Which Scene is showing
+		this.showScene = false;
+		this.currentScene = null;
+		this.scenes = _scenes2.default;
+
+		this.roundTime = -1;
+		// Round has begun
+		this.roundStarted = true;
+
+		// Current Number of Runs
+		this.roundScore = 0;
+		this.backgroundImage = null;
+
+		this.audio = new Audio("dist/sound/loop.mp3");
+		this.audio.play();
+		this.audio.loop = true;
+		/* array of images */
+		this.backgroundImage = null;
+
+		this.showPlayAgain = false;
+		/* Call Methods */
+		/* stretch canvas */
+		this.initCanvas();
+		this.playButton = true;
+		this.firstload = true;
+
+		this.canvas.addEventListener('click', function (e) {
+			var pos = {
+				x: e.clientX,
+				y: e.clientY
+			};
+			_this.handleClick(pos.x, pos.y);
+		});
+		// Start Game Rendering  - Last Method
+		this.animateGame();
+	}
+
+	_createClass(Game, [{
+		key: 'handleClick',
+		value: function handleClick(x, y) {
+			this.lastClickX = x;
+			this.lastClickY = y;
+			if (this.playButton) {
+				// Play the game button
+				if (x >= 526 & x <= 850 & y >= 354 & y <= 400) {
+					// Stop drawing the menu
+					this.firstload = false;
+					this.playButton = false;
+					this.showScene = true;
+					// Start drawing the first scene
+					this.currentScene = new _scene2.default(this, this.getSceneByName("start"));
+				}
+				console.log("x: " + x + "y: " + y);
+			}
+			// If we want to do something special outside of scenes we can set the currentScene to nothing
+			else if (this.showScene) {
+
+					this.currentScene.click(x, y);
+				}
+		}
+	}, {
+		key: 'getSceneByName',
+		value: function getSceneByName(name) {
+			var selectedScene = null;
+			this.scenes.forEach(function (scene) {
+				if (scene.name == name) {
+					selectedScene = scene;
+				}
+			});
+			if (selectedScene == null) {
+				return "start";
+			} else {
+				return selectedScene;
+			}
+		}
+	}, {
+		key: 'initCanvas',
+		value: function initCanvas() {
+			this.canvas.width = 1440;
+			this.canvas.height = 800;
+			this.backgroundImages = [];
+			this.Images = [];
+
+			var drawing = new Image();
+
+			drawing.src = "./dist/images/title.png"; // can also be a remote URL e.g. http:// // 0
+			this.Images.push(drawing);
+
+			drawing = new Image();
+			drawing.src = "./dist/images/campaign.png"; // 1
+			this.Images.push(drawing);
+
+			drawing = new Image();
+			drawing.src = "./dist/images/frame.png"; // 2
+			this.Images.push(drawing);
+
+			drawing = new Image();
+			drawing.src = "./dist/images/campaign.png"; // 3
+			this.Images.push(drawing);
+
+			drawing = new Image();
+			drawing.src = "./dist/images/credits.png"; // 4
+			this.Images.push(drawing);
+
+			/*		
+   		drawing = new Image();
+   		drawing.src = "./dist/images/keys.png"; // 4
+   		this.backgroundImages.push(drawing);
+   
+   		drawing = new Image();
+   		drawing.src = "./dist/images/playagain.png"; // 4
+   		this.backgroundImages.push(drawing);
+   
+   		drawing = new Image();
+   		drawing.src = "./dist/images/title.png"; // 5
+   		this.backgroundImages.push(drawing);
+   
+   		drawing = new Image();
+   		drawing.src = "./dist/images/play.png"; // 6
+   		this.backgroundImages.push(drawing);
+   
+   		this.audio = [];
+   		this.audio.push(new Audio('./dist/audio/47356__fotoshop__oof.wav')); //0
+   		this.audio.push(new Audio('./dist/audio/fart01.wav')); // 1 / 
+   		this.audio.push(new Audio('./dist/audio/hitbat_v1.wav')); // 2 / 
+   		this.audio.push(new Audio('./dist/audio/stadiumcheer1.wav')); // 3 / 
+   		this.audio.push(new Audio('./dist/audio/whooshbat1.wav')); //4 
+   		
+   */
+		}
+	}, {
+		key: 'animateGame',
+		value: function animateGame() {
+			var _this2 = this;
+
+			this.timer = setInterval(function () {
+
+				// Clear the Canvas
+				_this2.clearCanvas();
+
+				/* Render Scene Manager */
+				if (_this2.currentScene != null) {
+					_this2.currentScene.render();
+				}
+
+				/* show menu */
+				if (_this2.firstload == true) {
+					_this2.drawMenu();
+				}
+			}), this.tickTime;
+		}
+	}, {
+		key: 'loadScene',
+		value: function loadScene(scene) {
+			console.log("load scene" + scene);
+		}
+	}, {
+		key: 'drawPlayAgain',
+		value: function drawPlayAgain() {
+			this.ctx.drawImage(this.backgroundImages[4], 375, 110);
+		}
+	}, {
+		key: 'drawMenu',
+		value: function drawMenu() {
+
+			this.ctx.beginPath();
+			this.ctx.rect(0, 0, this.canvas.width, this.canvas.height);
+			this.ctx.fillStyle = "black";
+			this.ctx.fill();
+			// Title Image
+			this.ctx.drawImage(this.Images[0], 475, 80);
+			// Play Button
+			this.ctx.drawImage(this.Images[1], 525, 350);
+
+			// Draw the frame
+			this.ctx.drawImage(this.Images[2], 0, 0);
+
+			this.ctx.strokecolor = "red";
+			this.ctx.fillStyle = "red";
+			this.ctx.font = "bold 24px Arial";
+			this.ctx.color = "red";
+		}
+	}, {
+		key: 'clearCanvas',
+		value: function clearCanvas() {
+			/*  main background */
+
+			this.ctx.fillStyle = "#000000";
+			this.ctx.strokeStyle = "#ffffff";
+			//  context.fillRect(10,10, 100,100);
+			this.ctx.fillRect(0, 0, this.canvas.width, this.canvas.height);
+		}
+	}]);
+
+	return Game;
+}();
+
+var game = void 0;
+window.addEventListener('load', function () {
+	game = new Game();
+});
+window.addEventListener('resize', function () {
+	console.log("Window Changed");
+});
+
+/***/ }),
+/* 3 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+	value: true
+});
+var Scenes = [{
+	// Screen 3
+	"name": "start", // Name of the Scene "Scene"
+	"question": "At a school board meeting in April 2020, the school board surprises the community with plans to change the location of your local school. You are upset by these plans, and take the opportunity to speak out against the move. ", // Question 
+	"current_date": "April 2020", // Date for Month
+	"campaign_month_count": 0, // Counter for Budget
+	"choices": [{
+		"description": "Continue",
+		"sceneDestination": "screen_4"
+	}]
+}, { // Screen 4
+	"name": "screen_4",
+	"question": "After the meeting, your friend Heather, a former school board member, says, \"Hey, you should run. Have you thought about it?\" \n\t\t\u201CI wouldn\u2019t even know where to start--these people seem like they\u2019ve been doing this their whole lives.\u201D\n\t\t\u201CLet\u2019s have coffee in May,\u201D Heather says. \u201CI was on the school board a few years ago, and I can help you get started.\u201D",
+	"current_date": "April 2020", // Date for Month
+	"campaign_month_count": 0, // Counter for Budget
+	"choices": [{
+		"description": "Continue",
+		"sceneDestination": "screen_5"
+	}]
+}, { // Screen 5
+	"name": "screen_5",
+	"question": "You meet up with Heather for coffee at The Old Washburne.\n\t\t\u201CI\u2019ve never even thought about running for office before,\u201D you tell Heather.\n\t\t\n\t\tHeather smiles and tells you, \u201CIt\u2019s not that hard, but it does take some planning. The school board elections happen every 2 years, and our next one is in May 2021. This is a great time to get started!\u201D",
+	"current_date": "April 2020", // Date for Month
+	"campaign_month_count": 0, // Counter for Budget
+	"choices": [{
+		"description": "Continue",
+		"sceneDestination": "screen_6"
+	}]
+}, {
+	"name": "screen_6",
+	"question": "\u201CWhat do I need to do? Do I have to go declare my intention somewhere?\u201D\n\t\tHeather takes out a pad of paper. \u201CActually, the best place to start is with budgeting. What\u2019s your top budget priority?\u201D \n\t\t",
+	"current_date": "May 2020", // Date for Month
+	"campaign_month_count": 1, // Counter for Budget
+	"choices": [{
+		"description": "Rent an office to run your campaign from",
+		"sceneDestination": "start"
+	}, {
+		"description": "Hire a campaign manager",
+		"sceneDestination": "start"
+	}, {
+		"description": "Hire a public relations manager",
+		"sceneDestination": "start"
+	}, {
+		"description": "Find volunteers",
+		"sceneDestination": "start"
+	}]
+
+}, {
+	"name": "screen_7",
+	"question": "Example Question? Wecome to the game?",
+	"current_date": "April 2020", // Date for Month
+	"campaign_month_count": 1, // Counter for Budget
+	"choices": [{
+		"description": "go back to example",
+		"sceneDestination": "start"
+	}]
+
+}, {
+	"name": "screen_6",
+	"question": "Example Question? Wecome to the game?",
+	"current_date": "April 2020", // Date for Month
+	"campaign_month_count": 0, // Counter for Budget
+	"choices": [{
+		"description": "go back to example",
+		"sceneDestination": "start"
+	}]
+
+}];
+exports.default = Scenes;
+
+/***/ }),
+/* 4 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+	value: true
+});
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+var _sprite = __webpack_require__(0);
+
+var _sprite2 = _interopRequireDefault(_sprite);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+var Scene = function (_Sprite) {
+	_inherits(Scene, _Sprite);
+
+	function Scene(game, options) {
+		_classCallCheck(this, Scene);
+
+		var _this = _possibleConstructorReturn(this, (Scene.__proto__ || Object.getPrototypeOf(Scene)).call(this, game));
+
+		_this.game = game;
+		_this.offset = 75;
+		_this.positionX = 0;
+		_this.positionY = 0;
+		//this.scoreboardImages = null;
+		_this.startY = 375;
+		_this.font = "30px Arial";
+		_this.fontColor = "red";
+		_this.question = options.question;
+		_this.current_date = options.current_date;
+		_this.campaign_month_count = options.campaign_month_count;
+		console.log("options" + JSON.stringify(options));
+		// this is for checking if it exists before using
+		_this.imgLoad = "./dist/images/scenes/" + options.name + ".png";
+
+		if (_this.imageExists(_this.imgLoad)) {
+			_this.sceneImage = new Image();
+			_this.sceneImage.src = _this.imgLoad;
+		} else {
+			_this.sceneImage = null;
+		}
+
+		_this.options = options;
+		_this.buildOptions();
+		return _this;
+	}
+
+	_createClass(Scene, [{
+		key: "render",
+		value: function render() {
+			//draw the frame
+
+
+			// Draw main image
+			if (this.sceneImage != null) {
+
+				this.game.ctx.drawImage(this.sceneImage, 0, 0);
+			}
+			// Draw choices
+			var startY = this.startY + this.offset;
+			for (var i = 0; i < this.options.choices.length; i++) {
+
+				this.game.ctx.strokecolor = "white";
+				this.game.ctx.fillStyle = "white";
+				this.game.ctx.font = " 24px Arial";
+				this.game.ctx.color = "white";
+				this.game.ctx.fillText(this.options.choices[i].description, 50, startY);
+				// Spacing of question
+				startY += 50;
+			}
+			// wrapText(context, text, x, y, line_width, line_height)
+			// Lets work on drawing the final questions
+			this.game.ctx.strokecolor = "white";
+			this.game.ctx.fillStyle = "white";
+			this.game.ctx.font = " 14px Arial";
+			this.game.ctx.color = "white";
+			this.wrapText(this.game.ctx, this.question, 50, 350, 1200, 12);
+
+			this.game.ctx.drawImage(this.game.Images[2], 0, 0);
+		}
+		// This gets called if its clickable
+
+	}, {
+		key: "buildOptions",
+		value: function buildOptions() {
+			console.log(this.options);
+		}
+	}, {
+		key: "click",
+		value: function click(x, y) {
+			/*
+   opt 1 : 350 - 400
+   opt 2 : 400 - 450
+   opt 3: 450 - 500
+   opt 4: 500 - 550
+   opt 5: 550 - 600*/
+
+			if (this.options.choices.length >= 5) {
+				if (y > 550 + this.offset && y < 600 + this.offset) {
+					this.game.currentScene = new Scene(this.game, this.game.getSceneByName(this.options.choices[4].sceneDestination));
+				}
+			}
+			if (this.options.choices.length >= 4) {
+				if (y > 500 + this.offset && y < 550 + this.offset) {
+					this.game.currentScene = new Scene(this.game, this.game.getSceneByName(this.options.choices[3].sceneDestination));
+				}
+			}
+			if (this.options.choices.length >= 3) {
+				if (y > 450 + this.offset && y < 500 + this.offset) {
+					this.game.currentScene = new Scene(this.game, this.game.getSceneByName(this.options.choices[2].sceneDestination));
+				}
+			}
+			if (this.options.choices.length >= 2) {
+				if (y > 400 + this.offset && y < 450 + this.offset) {
+					this.game.currentScene = new Scene(this.game, this.game.getSceneByName(this.options.choices[1].sceneDestination));
+				}
+			}
+			if (this.options.choices.length >= 1) {
+				if (y > 350 + this.offset && y < 400 + this.offset) {
+					this.game.currentScene = new Scene(this.game, this.game.getSceneByName(this.options.choices[0].sceneDestination));
+				}
+			}
+
+			var selection = y;
+			console.log("I was clicked x:" + x + "y:" + y);
+			console.log("options:" + this.options.choices.length);
+		}
+		// Helper
+
+	}, {
+		key: "wrapText",
+		value: function wrapText(context, text, x, y, line_width, line_height) {
+			var line = '';
+			var paragraphs = text.split('\n');
+			for (var i = 0; i < paragraphs.length; i++) {
+				var words = paragraphs[i].split(' ');
+				for (var n = 0; n < words.length; n++) {
+					var testLine = line + words[n] + ' ';
+					var metrics = context.measureText(testLine);
+					var testWidth = metrics.width;
+					if (testWidth > line_width && n > 0) {
+						context.fillText(line, x, y);
+						line = words[n] + ' ';
+						y += line_height;
+					} else {
+						line = testLine;
+					}
+				}
+				context.fillText(line, x, y);
+				y += line_height;
+				line = '';
+			}
+		}
+	}, {
+		key: "imageExists",
+		value: function imageExists(image_url) {
+			var http = new XMLHttpRequest();
+
+			http.open('HEAD', image_url, false);
+			http.send();
+
+			return http.status != 404;
+		}
+	}]);
+
+	return Scene;
+}(_sprite2.default);
+
+exports.default = Scene;
 
 /***/ })
 /******/ ]);

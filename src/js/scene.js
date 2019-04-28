@@ -5,11 +5,11 @@ export default class Scene extends Sprite{
 
 		super(game);
 		this.game = game;
-		this.offset = 75;
+		this.offset = -50;
 		this.positionX = 0;
 		this.positionY = 0;
 		//this.scoreboardImages = null;
-		this.startY = 375;
+		this.startY = 500;
 		this.font = "30px Arial";
 		this.fontColor = "red";
 		this.question = options.question;
@@ -17,15 +17,12 @@ export default class Scene extends Sprite{
 		this.campaign_month_count = options.campaign_month_count;
 		console.log("options" + JSON.stringify(options));
 		// this is for checking if it exists before using
-		this.imgLoad = "./dist/images/scenes/" + options.name + ".png";
+		//this.imgLoad = 
+		this.image = options.img;
 		
-		if(this.imageExists(this.imgLoad)){
-			this.sceneImage = new Image();
-			this.sceneImage.src = this.imgLoad;
-		}
-		else{
-			this.sceneImage = null;
-		}
+		//this.sceneImage = new Image();
+		//this.sceneImage.src = "./dist/images/scenes/" + options.name + ".png";
+		
 		
 		this.options = options;
 		this.buildOptions();
@@ -36,31 +33,42 @@ export default class Scene extends Sprite{
 
 		// Draw main image
 		if(this.sceneImage != null){
-
-				this.game.ctx.drawImage(this.sceneImage,0,0);
+				try{
+					this.game.ctx.drawImage(this.sceneImage,0,0);
+				}
+				catch(error){
+					null;
+				}
 		}
 		// Draw choices
-		let startY = this.startY + this.offset;
+		let startY = this.startY ;
 		for(let i=0; i < this.options.choices.length; i++){
 
 			this.game.ctx.strokecolor = "white";
 			this.game.ctx.fillStyle = "white";
 			this.game.ctx.font = " 24px Arial";
 			this.game.ctx.color = "white";
-			this.game.ctx.fillText(this.options.choices[i].description, 50, startY );
+			this.game.ctx.fillText(this.options.choices[i].description, 400, startY );
 			// Spacing of question
 			startY+= 50;
-			
+			console.log(" x: 400, y:" + startY);
 		}
 		// wrapText(context, text, x, y, line_width, line_height)
 		// Lets work on drawing the final questions
 		this.game.ctx.strokecolor = "white";
 		this.game.ctx.fillStyle = "white";
-		this.game.ctx.font = " 14px Arial";
+		this.game.ctx.font = " 20px BlueSky8x8Monospaced";
 		this.game.ctx.color = "white";
-		this.wrapText(this.game.ctx,this.question,50,350, 1200, 12);
+		this.wrapText(this.game.ctx,this.question,400,300, 700, 22);
 
+		if(this.image != null){
+			let image = new Image();
+				image.src = "./dist/images" + options.name + ".png";
+				this.game.ctx.drawImage(image,300,0);
+		//	t
+		}
 		this.game.ctx.drawImage(this.game.Images[2],0,0);
+		
 
 	}
 	// This gets called if its clickable
@@ -99,7 +107,9 @@ export default class Scene extends Sprite{
 			 if(this.options.choices.length >= 1){
 					 if((y > 350+this.offset) && (y < 400+this.offset)){
 						this.game.currentScene = new Scene(this.game,this.game.getSceneByName(this.options.choices[0].sceneDestination));
+
 					}
+					console.log("y > " + (350+this.offset) + " y < " + (400+this.offset));
 			}			
 
 			let selection = y
@@ -135,13 +145,5 @@ export default class Scene extends Sprite{
 	        line = '';
 	    }
 	}
-	imageExists(image_url){
-	    var http = new XMLHttpRequest();
 
-	    http.open('HEAD', image_url, false);
-	    http.send();
-
-	    return http.status != 404;
-
-	}
 }

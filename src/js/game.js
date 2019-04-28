@@ -50,7 +50,7 @@ class Game{
 		this.backgroundImage = null;
 
 		this.audio = new Audio("dist/sound/loop.mp3");
-		this.audio.play();
+		//this.audio.play();
 		this.audio.loop = true;
 		/* array of images */
 		this.backgroundImage = null;
@@ -80,7 +80,7 @@ class Game{
 		this.lastClickY = y;
 		if(this.playButton){
 			// Play the game button
-			if((x>= 526) & (x <= 850) & (y>= 354) & (y <= 400))  {
+			if((x>= 526) & (x <= 850) & (y>= 200) & (y <= 300))  {
 				// Stop drawing the menu
 				this.firstload = false;
 				this.playButton = false;
@@ -212,22 +212,17 @@ class Game{
 		
 		this.ctx.strokecolor = "red";
 		this.ctx.fillStyle = "red";
-		this.ctx.font = "bold 24px Arial";
+		this.ctx.font = "bold 24px BlueSky8x8Monospaced";
 		this.ctx.color = "red";
 			
 	}
 	clearCanvas(){
-		/*  main background */
-	
+		/*  main background */	
 		
 		this.ctx.fillStyle = "#000000";
 		this.ctx.strokeStyle = "#ffffff";
 		//  context.fillRect(10,10, 100,100);
 		this.ctx.fillRect(0, 0, this.canvas.width, this.canvas.height);
-		
-	
- 
-
 	}
 }
 let game;
