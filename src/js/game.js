@@ -44,7 +44,8 @@ class Game{
 
 		// Scoring
 		this.polling = 0.3251243124; // TODO calculate this somewhere
-		this.month = 0; // TODO update this with navigation
+		this.month = 0; 
+		this.lastMonth = 0; // updated when calculateBudget() is called
 
 		// Background
 		this.backgroundImage = null;
@@ -76,23 +77,29 @@ class Game{
 		this.animateGame();
 		
 	}
-	calculateBudget(selectedIDs, month) {
-		return; // TODO fix this function
-		for (var i = 0; i < selectedIDs.length; i++){
-			if (budget_ledger["BudgetItems"][i].ID = selectedIDs[i]) {
-				budget_ledger.LedgerItems.push({
-					"EntryName": budget_ledger["BudgetItems"][i]["NAME"], 
-					"Value": (budget_ledger["BudgetItems"][i]["MOCOST"] == 0) ? budget_ledger["BudgetItems"][i]["INITCOST"]:budget_ledger["BudgetItems"][i]["MOCOST"], 
-					"MONTH":month, 
-					"MOD": budget_ledger["BudgetItems"][i]["MOD"] 
-				});
-			}
+	calculateBudget(selectedIDs) {
+		if (this.month <= this.lastMonth) return;
+		let months = this.month - this.lastMonth;
+		for (let i in selectedIDs) {
+			this.money += MoneyData["BudgetItems"][selectedIDs[i]]["MOCOST"]*months;
 		}
-		var CashFlow = budget_ledger.LedgerItems;
-		this.money = 0;
+		this.lastMonth = this.month;
+
+		// for (var i = 0; i < selectedIDs.length; i++){
+		// 	if (budget_ledger["BudgetItems"][i].ID = selectedIDs[i]) {
+		// 		budget_ledger.LedgerItems.push({
+		// 			"EntryName": budget_ledger["BudgetItems"][i]["NAME"], 
+		// 			"Value": (budget_ledger["BudgetItems"][i]["MOCOST"] == 0) ? budget_ledger["BudgetItems"][i]["INITCOST"]:budget_ledger["BudgetItems"][i]["MOCOST"], 
+		// 			"MONTH":month, 
+		// 			"MOD": budget_ledger["BudgetItems"][i]["MOD"] 
+		// 		});
+		// 	}
+		// }
+		// var CashFlow = budget_ledger.LedgerItems;
+		// this.money = 0;
 		
-		for (i = 0; i < CashFlow.length; i++) {  
-		this.money += CashFlow[i].Value  } 
+		// for (i = 0; i < CashFlow.length; i++) {  
+		// this.money += CashFlow[i].Value  } 
 	}
 	handleClick(x,y){
 		this.lastClickX = x;
@@ -116,6 +123,8 @@ class Game{
 		// If we want to do something special outside of scenes we can set the currentScene to nothing
 		else if(this.showScene){
 			this.currentScene.click(x,y);
+			this.month = this.currentScene.campaign_month_count;
+			this.calculateBudget(this.budgetMenu.getSelectedIDs());
 		}
 	}
 	getSceneByName(name){

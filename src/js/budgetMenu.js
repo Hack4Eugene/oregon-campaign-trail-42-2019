@@ -59,7 +59,7 @@ export default class BudgetMenu extends Sprite {
 	}
 	click(x, y) {
 		if (this.expanded) { // clicked somewhere on menu
-			this.game.calculateBudget(this.getSelectedIDs(), this.game.month);
+			this.game.calculateBudget(this.getSelectedIDs());
 			for (let i in this.budgetItems) {
 				this.budgetItems[i].click(x, y);
 			}
@@ -89,7 +89,7 @@ export default class BudgetMenu extends Sprite {
 		ctx.fillStyle = "389DB1";
 		ctx.fillText("CASH", this.ax1, 180);
 		ctx.font = "24px BlueSky";
-		ctx.fillText("$"+this.game.money, this.ax1, 215);
+		ctx.fillText("$"+this.game.money.toLocaleString(), this.ax1, 215);
 	}
 	renderSummary(ctx) {
 		this.game.renderDate();
@@ -103,10 +103,10 @@ export default class BudgetMenu extends Sprite {
 		let net = this.calculateNet();
 		if (net < 0) { // losing money
 			ctx.fillStyle = "DA5B66";
-			net = "-$"+(-net);
+			net = "-$"+(-net).toLocaleString();
 		} else { // gaining money
 			ctx.fillStyle = "80DB8E";
-			net = "$"+net;
+			net = "$"+net.toLocaleString();
 		}
 		ctx.fillText(net, this.ax1, 295);
 	}
@@ -127,7 +127,7 @@ class Button {
 		this.h = h;
 		this.img = img;
 		this.pad = 5; // buffer that still counts as click
-		this.backColor = "rgb(50, 50, 50)"; // debug
+		// this.backColor = "rgb(50, 50, 50)"; // debug
 		this.visible = visible;
 	}
 	isClick(x, y) {
@@ -158,7 +158,7 @@ class BudgetItem {
 		this.font = pt+"px LeagueMono";
 		this.pad = 5;
 		this.checked = false;
-		this.backColor = "rgb(50, 50, 50)"; // debug
+		// this.backColor = "rgb(50, 50, 50)"; // debug
 	}
 	click(x, y) {
 		if (x > this.x-this.pad && x < this.x+this.w+this.pad && y > this.y-this.pad && y < this.y+this.h+this.pad) {
