@@ -16,11 +16,10 @@ let Scenes =  [
 	{   // Screen 4
 		"name": "screen_4",
 		"question" : `After the meeting, your friend Heather, a former school board member, says, "Hey, you should run. Have you thought about it?" 
-		
+
 		“I wouldn’t even know where to start--these people seem like they’ve been doing this their whole lives.”
-		
-		“Let’s have coffee in May,” Heather says. “I was on the school board a few years ago, and I can help you get started.”`
-		,
+		“Let’s have coffee in May,” Heather says. “I was on the school board a few years ago, and I can help you get started.”`,
+
 		"current_date" : "April 2020", // Date for Month
 		"campaign_month_count" : 0, // Counter for Budget
 		"choices" : [
@@ -36,8 +35,8 @@ let Scenes =  [
 
 		“I’ve never even thought about running for office before,” you tell Heather.
 		
-		Heather smiles and tells you, “It’s not that hard, but it does take some planning. The school board elections happen every 2 years, and our next one is in May 2021. This is a great time to get started!”
-		`,
+		Heather smiles and tells you, “It’s not that hard, but it does take some planning. The school board elections happen every 2 years, and our next one is in May 2021. This is a great time to get started!”`,
+
 		"current_date" : "April 2020", // Date for Month
 		"campaign_month_count" : 0, // Counter for Budget
 		"choices" : [
@@ -50,7 +49,6 @@ let Scenes =  [
 	{ 
 		"name": "screen_6",
 		"question" : `“What do I need to do? Do I have to go declare my intention somewhere?”
-
 		Heather takes out a pad of paper. “Actually, the best place to start is with budgeting. What’s your top budget priority?” 
 		`,
 		"current_date" : "May 2020", // Date for Month
@@ -58,6 +56,7 @@ let Scenes =  [
 		"choices" : [
 				{
 					"description" : "Rent an office to run your campaign from",
+
 					"sceneDestination" : "screen_6_wrong"
 				},
 				{
@@ -94,6 +93,7 @@ let Scenes =  [
 		"name": "screen_6_right",
 		"question" : `Heather responds with, “A campaign manager and someone to design a logo would be my top priority too!”`,
 		"current_date" : "May 2020", // Date for Month
+
 		"campaign_month_count" : 1, // Counter for Budget
 		"choices" : [
 				{
@@ -210,6 +210,7 @@ let Scenes =  [
 		"question" : `Heather responds with “That isn't what I'd do. But I guess you could try it and see what happens."`,
 		"current_date" : "July 2020", // Date for Month
 		"campaign_month_count" : 3, // Counter for Budget
+
 		"choices" : [
 				{
 					"description" : "Continue",
