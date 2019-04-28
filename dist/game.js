@@ -61,7 +61,7 @@
 /******/ 	
 /******/ 	
 /******/ 	var hotApplyOnUpdate = true;
-/******/ 	var hotCurrentHash = "b13c2c78904164a7e60f"; // eslint-disable-line no-unused-vars
+/******/ 	var hotCurrentHash = "e3a7095959b07eed0455"; // eslint-disable-line no-unused-vars
 /******/ 	var hotRequestTimeout = 10000;
 /******/ 	var hotCurrentModuleData = {};
 /******/ 	var hotCurrentChildModule; // eslint-disable-line no-unused-vars
@@ -902,6 +902,7 @@ var Game = function () {
 		/* array of images */
 		this.backgroundImage = null;
 		this.showPlayAgain = false;
+		this.showCredits = true;
 		/* Call Methods */
 		this.initCanvas();
 		this.playButton = true;
@@ -960,7 +961,7 @@ var Game = function () {
 					this.firstload = false;
 					this.playButton = false;
 					this.showScene = true;
-
+					this.showCredits = false;
 					this.audio.play();
 					this.audio.loop = true;
 
@@ -968,6 +969,19 @@ var Game = function () {
 
 					// Start drawing the first scene
 					this.currentScene = new _scene2.default(this, this.getSceneByName("start"));
+				} else if (x >= 600 & x <= 800 & y >= 430 & y <= 500) {
+					/* should be changed to dry - but oot */
+					this.firstload = false;
+					this.playButton = false;
+					this.showScene = true;
+					this.showCredits = false;
+					this.audio.play();
+					this.audio.loop = true;
+
+					this.showBudgetMenu = true;
+
+					// Start drawing the first scene
+					this.currentScene = new _scene2.default(this, this.getSceneByName("credits"));
 				}
 			}
 			// If we want to do something special outside of scenes we can set the currentScene to nothing
@@ -1018,7 +1032,7 @@ var Game = function () {
 			this.Images.push(drawing);
 
 			drawing = new Image();
-			drawing.src = "./dist/images/credits.png"; // 4
+			drawing.src = "./dist/images/creditbutton.png"; // 4
 			this.Images.push(drawing);
 		}
 	}, {
@@ -1046,7 +1060,15 @@ var Game = function () {
 				if (_this2.firstload == true) {
 					_this2.drawMenu();
 				}
+				if (_this2.showCredits) {
+					_this2.renderCredits();
+				}
 			}), this.tickTime;
+		}
+	}, {
+		key: 'renderCredits',
+		value: function renderCredits() {
+			this.ctx.drawImage(this.Images[4], 600, 450);
 		}
 	}, {
 		key: 'renderDate',
@@ -1212,10 +1234,10 @@ var Scenes = [{
 		"description": "The most recent number of votes that a candidate needed to win",
 		"sceneDestination": "screen_8_wrong"
 	}, {
-		"description": "The average number of winning votes needed over the last two campaigns, multiplied by .55",
+		"description": "The average number of winning votes needed over last 2 campaigns",
 		"sceneDestination": "screen_8_right"
 	}, {
-		"description": "The number of votes needed to be elected in the previous three elections",
+		"description": "The number of votes needed to be elected in last 3 elections",
 		"sceneDestination": "screen_8_wrong"
 	}]
 
@@ -1718,28 +1740,29 @@ var Scenes = [{
 		"sceneDestination": "screen_24"
 	}]
 }, {
-	"name": "screen_23",
-	"question": "Woo-Hoo!! Yes!! You won your race -- doesn\u2019t it feel good?\n\n\t\tCelebrate with everyone gathered and hopefully you can take some time to relax after the race.\n\t\t\n\t\tThis is a great time to recoup and prepare for your upcoming term as Springfield School Board member.",
-	"current_date": "May 2021", // Date for Month
-	"campaign_month_count": 13, // Counter for Budget
-	"choices": [{
-		"description": "Continue",
-		"sceneDestination": "screen_25"
-	}]
-}, {
 	"name": "screen_24",
 	"question": "It\u2019s Wednesday morning at the Washburne and you\u2019re getting ready to see Heather for a cup of coffee before work. You feel that you may have let her down. When Heather gets to the table she gives you a big hug and says, \u201CYou ran such a great campaign! One thing I didn\u2019t tell you because I didn\u2019t want to scare you: I served two terms on the school board, and it was great. But I also ran two times before and lost. Your next campaign will be so much better!\u201D",
 	"current_date": "May 2021", // Date for Month
 	"campaign_month_count": 13, // Counter for Budget
 	"choices": [{
 		"description": "Continue",
-		"sceneDestination": "screen_25"
+		"sceneDestination": "credits"
+	}]
+}, {
+	"name": "credits",
+	"question": "",
+	"current_date": "H4C", // Date for Month
+	"campaign_month_count": 1,
+	"img": "Credits.png", // Counter for Budget
+	"choices": [{
+		"description": "Continue",
+		"sceneDestination": "start"
 	}]
 }, {
 	"name": "screen_25",
 	"question": "Game Over\n\t\tWe created this game at Hack For A Cause 2019. The intention of this game is to inspire and help get some new faces in office. We hope you enjoyed playing the game. \t\t\n\t\tThanks!\n\t\t",
-	"current_date": "May 2021", // Date for Month
-	"campaign_month_count": 13, // Counter for Budget
+	"current_date": "", // Date for Month
+	"campaign_month_count": "", // Counter for Budget
 	"choices": [{
 		"description": "Play Again",
 		"sceneDestination": "start"
@@ -2035,7 +2058,6 @@ var BudgetMenu = function (_Sprite) {
 	}, {
 		key: 'renderTitle',
 		value: function renderTitle(ctx) {
-			console.log("this is trying to render at x:" + this.ax2 + " y:" + 150);
 			ctx.strokecolor = "white";
 			ctx.font = "24px BlueSky";
 			//ctx.fillStyle = "389DB1";
