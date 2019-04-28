@@ -839,7 +839,7 @@ let Scenes =  [
 	{
 		"name": "credits",
 		"question" : ``,
-		"current_date" : "H4C", // Date for Month
+		"current_date" : "H4C 42", // Date for Month
 		"campaign_month_count" : 1,
 		"img" : "Credits.png", // Counter for Budget
 		"choices" : [
