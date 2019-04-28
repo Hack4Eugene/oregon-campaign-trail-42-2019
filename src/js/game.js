@@ -89,7 +89,7 @@ class Game{
 			if (budget_ledger["BudgetItems"][i].ID = selectedIDs[i]) {
 				budget_ledger.LedgerItems.push({
 					"EntryName": budget_ledger["BudgetItems"][i]["NAME"], 
-					"Value": (budget_ledger["BudgetItems"][i]["MOCOST"] == 0) ? budget_ledger["BudgetItems"][i]["INITCOST"]:budget_ledger["BudgetItems"][i]["MOCOST"], 
+					"Value": (budget_ledger["BudgetItems"][i]["MOCOST"] + budget_ledger["BudgetItems"][i]["MINC"]), 
 					"MONTH":this.month, 
 					"MOD": budget_ledger["BudgetItems"][i]["MOD"] 
 				});
