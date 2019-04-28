@@ -5,7 +5,7 @@ export default class Scene extends Sprite{
 
 		super(game);
 		this.game = game;
-		this.offset = 25;
+		this.offset = 75;
 		this.positionX = 0;
 		this.positionY = 0;
 		//this.scoreboardImages = null;
@@ -16,16 +16,27 @@ export default class Scene extends Sprite{
 		this.current_date = options.current_date;
 		this.campaign_month_count = options.campaign_month_count;
 		console.log("options" + JSON.stringify(options));
-		this.sceneImage = new Image();
-		this.sceneImage.src = "./dist/images/scenes/" + options.name + ".png"; // 1
+		// this is for checking if it exists before using
+		this.imgLoad = "./dist/images/scenes/" + options.name + ".png";
+		
+		if(this.imageExists(this.imgLoad)){
+			this.sceneImage = new Image();
+			this.sceneImage.src = this.imgLoad;
+		}
+		else{
+			this.sceneImage = null;
+		}
+		
 		this.options = options;
 		this.buildOptions();
 	}
 	render(){
-		
+		//draw the frame
+
 
 		// Draw main image
 		if(this.sceneImage != null){
+
 				this.game.ctx.drawImage(this.sceneImage,0,0);
 		}
 		// Draw choices
@@ -43,7 +54,13 @@ export default class Scene extends Sprite{
 		}
 		// wrapText(context, text, x, y, line_width, line_height)
 		// Lets work on drawing the final questions
-		this.wrapText(this.game.ctx,this.question,10,350, 1200, 25);
+		this.game.ctx.strokecolor = "white";
+		this.game.ctx.fillStyle = "white";
+		this.game.ctx.font = " 14px Arial";
+		this.game.ctx.color = "white";
+		this.wrapText(this.game.ctx,this.question,50,350, 1200, 12);
+
+		this.game.ctx.drawImage(this.game.Images[2],0,0);
 
 	}
 	// This gets called if its clickable
@@ -118,5 +135,13 @@ export default class Scene extends Sprite{
 	        line = '';
 	    }
 	}
-	
+	imageExists(image_url){
+	    var http = new XMLHttpRequest();
+
+	    http.open('HEAD', image_url, false);
+	    http.send();
+
+	    return http.status != 404;
+
+	}
 }

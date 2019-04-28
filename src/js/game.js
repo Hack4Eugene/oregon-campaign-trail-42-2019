@@ -49,7 +49,9 @@ class Game{
 		this.roundScore = 0;
 		this.backgroundImage = null;
 
-		this.audio = null;
+		this.audio = new Audio("dist/sound/loop.mp3");
+		this.audio.play();
+		this.audio.loop = true;
 		/* array of images */
 		this.backgroundImage = null;
 
@@ -70,7 +72,9 @@ class Game{
 		});
 		// Start Game Rendering  - Last Method
 		this.animateGame();
+		
 	}
+
 	handleClick(x,y){
 		this.lastClickX = x;
 		this.lastClickY = y;
