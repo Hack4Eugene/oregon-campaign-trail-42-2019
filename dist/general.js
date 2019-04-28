@@ -61,7 +61,7 @@
 /******/ 	
 /******/ 	
 /******/ 	var hotApplyOnUpdate = true;
-/******/ 	var hotCurrentHash = "943541dcad4f47e22a4e"; // eslint-disable-line no-unused-vars
+/******/ 	var hotCurrentHash = "b13c2c78904164a7e60f"; // eslint-disable-line no-unused-vars
 /******/ 	var hotRequestTimeout = 10000;
 /******/ 	var hotCurrentModuleData = {};
 /******/ 	var hotCurrentChildModule; // eslint-disable-line no-unused-vars
@@ -722,12 +722,12 @@
 /******/ 	__webpack_require__.h = function() { return hotCurrentHash; };
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return hotCreateRequire(1)(__webpack_require__.s = 1);
+/******/ 	return hotCreateRequire(2)(__webpack_require__.s = 2);
 /******/ })
 /************************************************************************/
-/******/ ([
-/* 0 */,
-/* 1 */
+/******/ ({
+
+/***/ 2:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -737,40 +737,6 @@ var _createClass = function () { function defineProperties(target, props) { for 
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
-/*
-	Interstellar Home Run Derby
-	License: Attribution-NonCommercial-ShareAlike 3.0 United States (CC BY-NC-SA 3.0 US)
-
-	Developed By
-
-	Lead Art 
-	----------
-	Eric Hill  
-		twitter.com/erichill1232
-		instagram.com/eric.hill.1232
-		https://www.deviantart.com/beza
-		https://nightmarenetherworld.tumblr.com/
-
-	Lead Programming
-	----------
-	Robert Moore
-		http://www.eugeneprogramming.com
-		https://www.linkedin.com/in/robertbenmoore/
-
-	Programming
-	----------
-	Gordon Wallace
-
-	Q & A / System Design
-	----------
-	Jack Kimball
-
-	Github Copy @ 
-	https://github.com/bobby5892/InterstellarHomeRunDerby
-
-
-
-*/
 var Viewport = function () {
 	function Viewport() {
 		_classCallCheck(this, Viewport);
@@ -781,13 +747,13 @@ var Viewport = function () {
 	}
 
 	_createClass(Viewport, [{
-		key: 'setViewport',
+		key: "setViewport",
 		value: function setViewport() {
 			if (screen.width > 960) {
-				this.viewport_meta.setAttribute('content', "width=" + screen.width);
+				//	this.viewport_meta.setAttribute('content',"width=" + screen.width);
 				console.log("Setting viewport to " + screen.width);
 			} else {
-				this.viewport_meta.setAttribute('content', "width=" + screen.width + ",initial-scale=1,height=" + screen.height + ",user-scalable=no, minimal-ui");
+				//this.viewport_meta.setAttribute('content',"width=" + screen.width + ",initial-scale=1,height=" + screen.height + ",user-scalable=no, minimal-ui");
 			}
 		}
 	}]);
@@ -801,5 +767,6 @@ window.addEventListener('load', function () {
 });
 
 /***/ })
-/******/ ]);
+
+/******/ });
 //# sourceMappingURL=general.js.map

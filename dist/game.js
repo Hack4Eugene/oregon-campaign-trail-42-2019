@@ -61,7 +61,7 @@
 /******/ 	
 /******/ 	
 /******/ 	var hotApplyOnUpdate = true;
-/******/ 	var hotCurrentHash = "943541dcad4f47e22a4e"; // eslint-disable-line no-unused-vars
+/******/ 	var hotCurrentHash = "b13c2c78904164a7e60f"; // eslint-disable-line no-unused-vars
 /******/ 	var hotRequestTimeout = 10000;
 /******/ 	var hotCurrentModuleData = {};
 /******/ 	var hotCurrentChildModule; // eslint-disable-line no-unused-vars
@@ -722,7 +722,7 @@
 /******/ 	__webpack_require__.h = function() { return hotCurrentHash; };
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return hotCreateRequire(2)(__webpack_require__.s = 2);
+/******/ 	return hotCreateRequire(3)(__webpack_require__.s = 3);
 /******/ })
 /************************************************************************/
 /******/ ([
@@ -747,8 +747,85 @@ var Sprite = function Sprite(game) {
 exports.default = Sprite;
 
 /***/ }),
-/* 1 */,
-/* 2 */
+/* 1 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+var MoneyData = {
+    "BudgetItems": [{
+        "NAME": "Campaign Manager",
+        "MOD": 0.2,
+        "INITCOST": 0,
+        "MOCOST": -2000,
+        "MINC": 2300,
+        "MEFF": 0,
+        "ID": 0
+    }, {
+        "NAME": "Graphic Designer",
+        "MOD": 0.1,
+        "INITCOST": -2000,
+        "MOCOST": 0,
+        "MINC": 400,
+        "MEFF": 0,
+        "ID": 1
+    }, {
+        "NAME": "Office Rent",
+        "MOD": 0,
+        "INITCOST": 0,
+        "MOCOST": -500,
+        "MINC": 0,
+        "MEFF": 0,
+        "ID": 2
+    }, {
+        "NAME": "Volunteer Coordinator",
+        "MOD": 0.3,
+        "INITCOST": 0,
+        "MOCOST": -800,
+        "MINC": 800,
+        "MEFF": 0,
+        "ID": 3
+    }, {
+        "NAME": "Literature/Digital",
+        "MOD": 0.3,
+        "INITCOST": 0,
+        "MOCOST": -3000,
+        "MINC": 1000,
+        "MEFF": 0,
+        "ID": 4
+    }, {
+        "NAME": "Other Media",
+        "MOD": 0.2,
+        "INITCOST": 0,
+        "MOCOST": -3000,
+        "MINC": 0,
+        "MEFF": 0,
+        "ID": 5
+    }, {
+        "NAME": "Fundraising",
+        "MOD": 0,
+        "INITCOST": 0,
+        "MOCOST": -2000,
+        "MINC": 2500,
+        "MEFF": 0,
+        "ID": 6
+    }],
+    "LedgerItems": [{
+        "EntryName": "Starting Funds",
+        "Value": 10000,
+        "Month": 0,
+        "MOD": 0
+    }]
+};
+exports.default = MoneyData;
+
+/***/ }),
+/* 2 */,
+/* 3 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -760,13 +837,21 @@ var _sprite = __webpack_require__(0);
 
 var _sprite2 = _interopRequireDefault(_sprite);
 
-var _scenes = __webpack_require__(3);
+var _scenes = __webpack_require__(4);
 
 var _scenes2 = _interopRequireDefault(_scenes);
 
-var _scene = __webpack_require__(4);
+var _scene = __webpack_require__(5);
 
 var _scene2 = _interopRequireDefault(_scene);
+
+var _budgetMenu = __webpack_require__(6);
+
+var _budgetMenu2 = _interopRequireDefault(_budgetMenu);
+
+var _money = __webpack_require__(1);
+
+var _money2 = _interopRequireDefault(_money);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -784,6 +869,7 @@ var Game = function () {
 		this.clickAbleSprites = [];
 		this.lastClickX = null;
 		this.lastclickY = null;
+
 		/* Some Defaults */
 		this.backgroundColor = "#000000";
 
@@ -797,14 +883,20 @@ var Game = function () {
 		this.currentScene = null;
 		this.scenes = _scenes2.default;
 
-		this.roundTime = -1;
-		// Round has begun
-		this.roundStarted = true;
+		// Budget
+		this.budgetMenu = new _budgetMenu2.default(this);
+		this.showBudgetMenu = false; // budget menu or menu access button is visible
+		this.money = 10000; // starting budget
 
-		// Current Number of Runs
-		this.roundScore = 0;
+		// Scoring
+		this.polling = 0.3251243124; // TODO calculate this somewhere
+		this.month = 0;
+		this.lastMonth = 0; // updated when calculateBudget() is called
+
+		// Background
 		this.backgroundImage = null;
 
+		// Audio
 		this.audio = new Audio("dist/sound/loop.mp3");
 
 		/* array of images */
@@ -816,6 +908,7 @@ var Game = function () {
 		this.firstload = true;
 
 		this.canvas.addEventListener('click', function (e) {
+			// console.log("mousedown @ "+e.clientX+" "+e.clientY); // debug
 			var pos = {
 				x: e.clientX,
 				y: e.clientY
@@ -827,10 +920,39 @@ var Game = function () {
 	}
 
 	_createClass(Game, [{
+		key: 'calculateBudget',
+		value: function calculateBudget(selectedIDs) {
+			if (this.month <= this.lastMonth) return;
+			var months = this.month - this.lastMonth;
+			for (var i in selectedIDs) {
+				this.money += _money2.default["BudgetItems"][selectedIDs[i]]["MOCOST"] * months;
+			}
+			this.lastMonth = this.month;
+
+			// for (var i = 0; i < selectedIDs.length; i++){
+			// 	if (budget_ledger["BudgetItems"][i].ID = selectedIDs[i]) {
+			// 		budget_ledger.LedgerItems.push({
+			// 			"EntryName": budget_ledger["BudgetItems"][i]["NAME"], 
+			// 			"Value": (budget_ledger["BudgetItems"][i]["MOCOST"] == 0) ? budget_ledger["BudgetItems"][i]["INITCOST"]:budget_ledger["BudgetItems"][i]["MOCOST"], 
+			// 			"MONTH":month, 
+			// 			"MOD": budget_ledger["BudgetItems"][i]["MOD"] 
+			// 		});
+			// 	}
+			// }
+			// var CashFlow = budget_ledger.LedgerItems;
+			// this.money = 0;
+
+			// for (i = 0; i < CashFlow.length; i++) {  
+			// this.money += CashFlow[i].Value  } 
+		}
+	}, {
 		key: 'handleClick',
 		value: function handleClick(x, y) {
 			this.lastClickX = x;
 			this.lastClickY = y;
+			if (this.showBudgetMenu) {
+				if (this.budgetMenu.click(x, y) === true) return;
+			}
 			if (this.playButton) {
 				// Play the game button
 				if (x >= 526 & x <= 850 & y >= 200 & y <= 400) {
@@ -838,17 +960,21 @@ var Game = function () {
 					this.firstload = false;
 					this.playButton = false;
 					this.showScene = true;
+
 					this.audio.play();
 					this.audio.loop = true;
+
+					this.showBudgetMenu = true;
+
 					// Start drawing the first scene
 					this.currentScene = new _scene2.default(this, this.getSceneByName("start"));
 				}
-				console.log("x: " + x + "y: " + y);
 			}
 			// If we want to do something special outside of scenes we can set the currentScene to nothing
 			else if (this.showScene) {
-
 					this.currentScene.click(x, y);
+					this.month = this.currentScene.campaign_month_count;
+					this.calculateBudget(this.budgetMenu.getSelectedIDs());
 				}
 		}
 	}, {
@@ -901,19 +1027,36 @@ var Game = function () {
 			var _this2 = this;
 
 			this.timer = setInterval(function () {
+
 				// Clear the Canvas
 				_this2.clearCanvas();
 
-				/* Render Scene Manager */
+				// Render primary elements
 				if (_this2.currentScene != null) {
 					_this2.currentScene.render();
-				}
+				};
+				if (_this2.budgetMenu !== null) {
+					_this2.budgetMenu.render();
+				};
+				if (_this2.currentScene != null) {
+					_this2.renderDate();
+				};
 
 				/* show menu */
 				if (_this2.firstload == true) {
 					_this2.drawMenu();
 				}
 			}), this.tickTime;
+		}
+	}, {
+		key: 'renderDate',
+		value: function renderDate() {
+			if (!this.currentScene || this.currentScene.current_date == null) return;
+			var date = this.currentScene.current_date.split(" "); // [month, year];
+			this.ctx.font = "24px BlueSky";
+			this.ctx.fillStyle = "98D7DB";
+			this.ctx.fillText(date[0].toUpperCase(), 80, 100);
+			this.ctx.fillText(date[1], 80, 135);
 		}
 	}, {
 		key: 'drawMenu',
@@ -943,7 +1086,7 @@ var Game = function () {
 
 			this.ctx.fillStyle = "#000000";
 			this.ctx.strokeStyle = "#ffffff";
-			//  context.fillRect(10,10, 100,100);
+			//context.fillRect(10,10, 100,100);
 			this.ctx.fillRect(0, 0, this.canvas.width, this.canvas.height);
 		}
 	}]);
@@ -960,7 +1103,7 @@ window.addEventListener('resize', function () {
 });
 
 /***/ }),
-/* 3 */
+/* 4 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -1558,7 +1701,7 @@ var Scenes = [{
 		"description": "Thank your donors for believing in you",
 		"sceneDestination": "screen_22"
 	}, {
-		"description": "Thank your family and friends for putting up with you while you were being absent, distracted, and self centered for the past year",
+		"description": "Thank your family and friends for putting up with you while you were being absent",
 		"sceneDestination": "screen_22"
 	}]
 
@@ -1594,7 +1737,7 @@ var Scenes = [{
 	}]
 }, {
 	"name": "screen_25",
-	"question": "Game Over\n\n\t\tWe created this game at Hack For A Cause 2019. The intention of this game is to inspire and help get some new faces in office. We hope you enjoyed playing the game. \n\t\t\n\t\tPlease fill out this form https://forms.gle/DpY782qF8CCdwxrG9 so we can understand ways we can improve the game.\n\t\t\n\t\tThanks!\n\t\t",
+	"question": "Game Over\n\t\tWe created this game at Hack For A Cause 2019. The intention of this game is to inspire and help get some new faces in office. We hope you enjoyed playing the game. \t\t\n\t\tThanks!\n\t\t",
 	"current_date": "May 2021", // Date for Month
 	"campaign_month_count": 13, // Counter for Budget
 	"choices": [{
@@ -1605,7 +1748,7 @@ var Scenes = [{
 exports.default = Scenes;
 
 /***/ }),
-/* 4 */
+/* 5 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -1642,8 +1785,8 @@ var Scene = function (_Sprite) {
 		_this.positionX = 0;
 		_this.positionY = 0;
 		_this.startY = 500;
-		_this.font = "30px Arial";
-		_this.fontColor = "red";
+		// this.font = "30px Arial";
+		// this.fontColor = "red";
 		_this.question = options.question;
 		_this.current_date = options.current_date;
 		_this.campaign_month_count = options.campaign_month_count;
@@ -1676,11 +1819,13 @@ var Scene = function (_Sprite) {
 			// Draw choices
 			var startY = this.startY;
 			for (var i = 0; i < this.options.choices.length; i++) {
+
 				this.game.ctx.strokecolor = "white";
 				this.game.ctx.fillStyle = "white";
-				this.game.ctx.font = " 24px Arial";
+				this.game.ctx.fillStyle = "EBE6DD";
+				this.game.ctx.font = "22px LeagueMono";
 				this.game.ctx.color = "white";
-				this.game.ctx.fillText(this.options.choices[i].description, 500, startY);
+				this.game.ctx.fillText("> " + this.options.choices[i].description, 500, startY);
 				// Spacing of question
 				startY += 50;
 			}
@@ -1688,9 +1833,10 @@ var Scene = function (_Sprite) {
 			// Lets work on drawing the final questions
 			this.game.ctx.strokecolor = "white";
 			this.game.ctx.fillStyle = "white";
-			this.game.ctx.font = " 20px BlueSky8x8Monospaced";
-			this.game.ctx.color = "white";
-			this.wrapText(this.game.ctx, this.question, 500, 300, 700, 22);
+			this.game.ctx.fillStyle = "EBE6DD";
+			this.game.ctx.font = "22px LeagueMono";
+			this.wrapText(this.game.ctx, this.question, 500, 200, 700, 22);
+
 			this.game.ctx.drawImage(this.game.Images[2], 0, 0);
 		}
 	}, {
@@ -1702,7 +1848,7 @@ var Scene = function (_Sprite) {
    opt 3: 450 - 500
    opt 4: 500 - 550
    opt 5: 550 - 600*/
-
+			if (x < 300) return; // definitely out of range
 			if (this.options.choices.length >= 5) {
 				if (y > 550 + this.offset && y < 600 + this.offset) {
 					this.game.currentScene = new Scene(this.game, this.game.getSceneByName(this.options.choices[4].sceneDestination));
@@ -1761,6 +1907,273 @@ var Scene = function (_Sprite) {
 }(_sprite2.default);
 
 exports.default = Scene;
+
+/***/ }),
+/* 6 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+	value: true
+});
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+var _sprite = __webpack_require__(0);
+
+var _sprite2 = _interopRequireDefault(_sprite);
+
+var _money = __webpack_require__(1);
+
+var _money2 = _interopRequireDefault(_money);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+var BudgetMenu = function (_Sprite) {
+	_inherits(BudgetMenu, _Sprite);
+
+	function BudgetMenu(game) {
+		_classCallCheck(this, BudgetMenu);
+
+		var _this = _possibleConstructorReturn(this, (BudgetMenu.__proto__ || Object.getPrototypeOf(BudgetMenu)).call(this, game));
+
+		_this.expanded = false;
+		_this.budgetItems = [];
+		_this.ax1 = 80; // alignment
+		_this.ax2 = 450; // alignment
+
+		var offsetY = 180;
+		var data = _money2.default["BudgetItems"];
+		for (var i = 0; i < data.length; i++) {
+			var name = data[i]["NAME"] + ":";
+			var c1 = -data[i]["INITCOST"];
+			var c2 = -data[i]["MOCOST"];
+			var cost = "";
+			if (c1 > 0) {
+				cost = (c1 > 999 ? "$" + c1 / 1000 + "K" : c1) + " (one time)";
+			} else {
+				cost = (c2 > 999 ? "$" + c2 / 1000 + "K" : c2) + "/month";
+			}
+			_this.budgetItems.push(new BudgetItem(_this.ax2, offsetY, 600, 35, 22, name, cost));
+			offsetY += 60;
+		}
+
+		var img = new Image();
+		img.src = './dist/images/BudgetButton.png';
+		img.height = 23;
+		_this.showButton = new Button(_this.ax1, 630, 147, 50, img);
+		img = new Image();
+		img.height = 23;
+		img.src = './dist/images/BudgetUpdateButton.png';
+		_this.hideButton = new Button(_this.ax2, 630, 260, 56, img);
+		return _this;
+	}
+
+	_createClass(BudgetMenu, [{
+		key: 'getSelectedIDs',
+		value: function getSelectedIDs() {
+			var ret = [];
+			for (var i in this.budgetItems) {
+				if (this.budgetItems[i].checked) ret.push(i);
+			}
+			return ret;
+		}
+	}, {
+		key: 'render',
+		value: function render() {
+			if (this.expanded) {
+				this.game.ctx.fillStyle = "#141922";
+				this.game.ctx.fillRect(0, 0, 1440, 800);
+				this.game.ctx.drawImage(this.game.Images[2], 0, 0);
+				this.renderTitle(this.game.ctx);
+				this.renderCash(this.game.ctx);
+				this.renderSummary(this.game.ctx);
+				for (var i in this.budgetItems) {
+					this.budgetItems[i].render(this.game.ctx);
+				}
+				this.hideButton.render(this.game.ctx);
+			} else {
+				this.showButton.render(this.game.ctx);
+				this.renderCash(this.game.ctx);
+			}
+		}
+	}, {
+		key: 'click',
+		value: function click(x, y) {
+			if (this.expanded) {
+				// clicked somewhere on menu
+				this.game.calculateBudget(this.getSelectedIDs());
+				for (var i in this.budgetItems) {
+					this.budgetItems[i].click(x, y);
+				}
+				if (this.hideButton.isClick(x, y)) {
+					this.hideButton.visible = false;
+					this.showButton.visible = true;
+					this.expanded = false;
+				}
+				return true;
+			} else if (this.showButton.isClick(x, y)) {
+				// clicked button
+				this.showButton.visible = false;
+				this.hideButton.visible = true;
+				this.expanded = true;
+				return true;
+			} else {
+				return false;
+			}
+		}
+		// private
+
+	}, {
+		key: 'renderTitle',
+		value: function renderTitle(ctx) {
+			console.log("this is trying to render at x:" + this.ax2 + " y:" + 150);
+			ctx.strokecolor = "white";
+			ctx.font = "24px BlueSky";
+			//ctx.fillStyle = "389DB1";
+			ctx.fillStyle = "white";
+			ctx.fillText("BUDGET", this.ax2, 150);
+		}
+	}, {
+		key: 'renderCash',
+		value: function renderCash(ctx) {
+			ctx.strokecolor = "white";
+			ctx.font = "12px BlueSky";
+			ctx.fillStyle = "389DB1";
+			ctx.fillText("CASH", this.ax1, 180);
+			ctx.font = "24px BlueSky";
+			ctx.fillText("$" + this.game.money.toLocaleString(), this.ax1, 215);
+		}
+	}, {
+		key: 'renderSummary',
+		value: function renderSummary(ctx) {
+			ctx.strokecolor = "white";
+			this.game.renderDate();
+			this.renderCash(ctx);
+			ctx.font = "12px BlueSky";
+			ctx.fillStyle = "389DB1";
+			ctx.fillText("MONTHLY NET", this.ax1, 260);
+			ctx.fillText("POLLING", this.ax1, 340);
+			ctx.font = "24px BlueSky";
+			ctx.fillText((this.game.polling * 100).toPrecision(3) + "%", this.ax1, 375);
+			var net = this.calculateNet();
+			if (net < 0) {
+				// losing money
+				ctx.fillStyle = "DA5B66";
+				net = "-$" + (-net).toLocaleString();
+			} else {
+				// gaining money
+				ctx.fillStyle = "80DB8E";
+				net = "$" + net.toLocaleString();
+			}
+			ctx.fillText(net, this.ax1, 295);
+		}
+	}, {
+		key: 'calculateNet',
+		value: function calculateNet() {
+			var ids = this.getSelectedIDs();
+			var net = 0;
+			for (var i in ids) {
+				net += _money2.default["BudgetItems"][ids[i]]["MOCOST"];
+			}
+			return net;
+		}
+	}]);
+
+	return BudgetMenu;
+}(_sprite2.default);
+
+exports.default = BudgetMenu;
+
+var Button = function () {
+	function Button(x, y, w, h, img) {
+		var visible = arguments.length > 5 && arguments[5] !== undefined ? arguments[5] : true;
+
+		_classCallCheck(this, Button);
+
+		this.x = x;
+		this.y = y;
+		this.w = w;
+		this.h = h;
+		this.img = img;
+		this.pad = 5; // buffer that still counts as click
+		// this.backColor = "rgb(50, 50, 50)"; // debug
+		this.visible = visible;
+	}
+
+	_createClass(Button, [{
+		key: 'isClick',
+		value: function isClick(x, y) {
+			return this.visible && x > this.x - this.pad && x < this.x + this.w + this.pad && y > this.y - this.pad && y < this.y + this.h + this.pad;
+		}
+	}, {
+		key: 'render',
+		value: function render(ctx) {
+			if (!this.visible) return;
+			// ctx.fillStyle = this.backColor;
+			// ctx.fillRect(this.x-this.pad, this.y-this.pad, this.w+(this.pad*2), this.h+(this.pad*2)); // background
+			ctx.drawImage(this.img, this.x, this.y);
+		}
+	}]);
+
+	return Button;
+}();
+
+var BudgetItem = function () {
+	function BudgetItem(x, y, w, h, pt, text1, text2) {
+		_classCallCheck(this, BudgetItem);
+
+		this.x = x;
+		this.y = y;
+		this.w = w;
+		this.h = h;
+		this.pt = pt;
+		this.text1 = text1;
+		this.text2 = text2;
+
+		this.imgChecked = new Image();
+		this.imgChecked.src = './dist/images/CheckButton_Selected.png';
+		this.imgUnchecked = new Image();
+		this.imgUnchecked.src = './dist/images/CheckButton_Static.png';
+
+		this.font = pt + "px LeagueMono";
+		this.pad = 5;
+		this.checked = false;
+		// this.backColor = "rgb(50, 50, 50)"; // debug
+	}
+
+	_createClass(BudgetItem, [{
+		key: 'click',
+		value: function click(x, y) {
+			if (x > this.x - this.pad && x < this.x + this.w + this.pad && y > this.y - this.pad && y < this.y + this.h + this.pad) {
+				this.checked = !this.checked;
+			}
+		}
+	}, {
+		key: 'render',
+		value: function render(ctx) {
+			// ctx.fillStyle = this.backColor;
+			// ctx.fillRect(this.x-this.pad, this.y-this.pad, this.w+(this.pad*2), this.h+(this.pad*2)); // background
+			var img = this.checked ? this.imgChecked : this.imgUnchecked;
+			ctx.drawImage(img, this.x, this.y + (this.h - img.height) / 2); // checkbox
+			ctx.font = this.font;
+			ctx.fillStyle = "EBE6DD";
+			ctx.fillText(this.text1, this.x + img.width + 20, this.y + this.h - (this.h - this.pt) / 2 - 3);
+			ctx.fillStyle = "389DB1";
+			ctx.fillText(this.text2, this.x + img.width + 20 + (this.text1.length + 1) * (this.pt / 1.7), this.y + this.h - (this.h - this.pt) / 2 - 3);
+		}
+	}]);
+
+	return BudgetItem;
+}();
 
 /***/ })
 /******/ ]);
