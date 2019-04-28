@@ -27,7 +27,7 @@ export default class BudgetMenu extends Sprite {
 		let img = new Image();
 		img.src = './dist/images/BudgetButton.png';
 		img.height = 23;
-		this.showButton = new Button(this.ax2, 630, 147, 50, img);
+		this.showButton = new Button(this.ax1, 630, 147, 50, img);
 		img = new Image();
 		img.height = 23;
 		img.src = './dist/images/BudgetUpdateButton.png';
@@ -46,18 +46,20 @@ export default class BudgetMenu extends Sprite {
 			this.game.ctx.fillRect(0, 0, 1440, 800);
 			this.game.ctx.drawImage(this.game.Images[2], 0, 0);
 			this.renderTitle(this.game.ctx);
-			this.renderTotals(this.game.ctx);
+			this.renderCash(this.game.ctx);
+			this.renderSummary(this.game.ctx);
 			for (let i in this.budgetItems) {
 				this.budgetItems[i].render(this.game.ctx);
 			}
 			this.hideButton.render(this.game.ctx);
 		} else {
 			this.showButton.render(this.game.ctx);
+			this.renderCash(this.game.ctx);
 		}
 	}
 	click(x, y) {
 		if (this.expanded) { // clicked somewhere on menu
-			this.game.calculateBudget(this.getSelectedIDs(), this.game.month);
+			this.game.calculateBudget(this.getSelectedIDs());
 			for (let i in this.budgetItems) {
 				this.budgetItems[i].click(x, y);
 			}
@@ -82,23 +84,29 @@ export default class BudgetMenu extends Sprite {
 		ctx.fillStyle = "389DB1";
 		ctx.fillText("BUDGET", this.ax2, 150);
 	}
-	renderTotals(ctx) {
-		this.game.renderDate();
+	renderCash(ctx) {
 		ctx.font = "12px BlueSky";
 		ctx.fillStyle = "389DB1";
 		ctx.fillText("CASH", this.ax1, 180);
+		ctx.font = "24px BlueSky";
+		ctx.fillText("$"+this.game.money.toLocaleString(), this.ax1, 215);
+	}
+	renderSummary(ctx) {
+		this.game.renderDate();
+		this.renderCash(ctx);
+		ctx.font = "12px BlueSky";
+		ctx.fillStyle = "389DB1";
 		ctx.fillText("MONTHLY NET", this.ax1, 260);
 		ctx.fillText("POLLING", this.ax1, 340);
 		ctx.font = "24px BlueSky";
-		ctx.fillText("$"+this.game.money, this.ax1, 215);
 		ctx.fillText((this.game.polling*100).toPrecision(3)+"%", this.ax1, 375);
 		let net = this.calculateNet();
 		if (net < 0) { // losing money
 			ctx.fillStyle = "DA5B66";
-			net = "-$"+(-net);
+			net = "-$"+(-net).toLocaleString();
 		} else { // gaining money
 			ctx.fillStyle = "80DB8E";
-			net = "$"+net;
+			net = "$"+net.toLocaleString();
 		}
 		ctx.fillText(net, this.ax1, 295);
 	}
@@ -119,7 +127,7 @@ class Button {
 		this.h = h;
 		this.img = img;
 		this.pad = 5; // buffer that still counts as click
-		this.backColor = "rgb(50, 50, 50)"; // debug
+		// this.backColor = "rgb(50, 50, 50)"; // debug
 		this.visible = visible;
 	}
 	isClick(x, y) {
@@ -150,7 +158,7 @@ class BudgetItem {
 		this.font = pt+"px LeagueMono";
 		this.pad = 5;
 		this.checked = false;
-		this.backColor = "rgb(50, 50, 50)"; // debug
+		// this.backColor = "rgb(50, 50, 50)"; // debug
 	}
 	click(x, y) {
 		if (x > this.x-this.pad && x < this.x+this.w+this.pad && y > this.y-this.pad && y < this.y+this.h+this.pad) {
