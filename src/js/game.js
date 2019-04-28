@@ -56,7 +56,9 @@ class Game{
 		this.roundScore = 0;
 		this.backgroundImage = null;
 
-		this.audio = null;
+		this.audio = new Audio("dist/sound/loop.mp3");
+		//this.audio.play();
+		this.audio.loop = true;
 		/* array of images */
 		this.backgroundImage = null;
 
@@ -78,6 +80,7 @@ class Game{
 		});
 		// Start Game Rendering  - Last Method
 		this.animateGame();
+		
 	}
 	calculateBudget(selectedIDs, month) {
 		for (var i = 0; i < selectedIDs.length; i++){
@@ -103,7 +106,7 @@ class Game{
 		}
 		if(this.playButton){
 			// Play the game button
-			if((x>= 526) & (x <= 850) & (y>= 354) & (y <= 400))  {
+			if((x>= 526) & (x <= 850) & (y>= 200) & (y <= 400))  {
 				// Stop drawing the menu
 				this.firstload = false;
 				this.playButton = false;
@@ -192,60 +195,24 @@ class Game{
 			// Clear the Canvas
 			this.clearCanvas();
 
-			// Draw the platform
-			//this.platform.draw(this.ctx);
-			// Draw the pitcher
-			//this.pitcher.draw(this.ctx);
-			// Draw the scoreboard
-			//this.scoreboard.draw(this.ctx);
-			// Draw the Ball
-			//this.ball.draw(this.ctx);
-			// Draw the Batter
-			//this.batter.draw(this.ctx);
-
-			if(this.currentScene != null){
-				this.currentScene.render();
-			}
-
+       
+   			/* Render Scene Manager */
+           	if(this.currentScene != null){
+           		this.currentScene.render();
+			   }
+			   
 			if (this.budgetMenu !== null) this.budgetMenu.render();
-
-			// draw play again
-			/*if(this.showPlayAgain){
-				this.drawPlayAgain();
-			}*/
-
-			/* show menu */
+      
+            /* show menu */
 			if(this.firstload == true){
 				this.drawMenu();
 			}
-
-			// Round Timer Update
-			//this.roundTimerTick();
+            
+  
 
 		}), this.tickTime;
 	}
-	/*startGame(){
-		this.startroundTimer();
-		this.roundStarted = true;
-		this.roundScore = 0;
-		this.showPlayAgain = false;
-	}
-	startroundTimer(){
-		this.roundTime = 15000;
-		//this.roundTime = 1000;
-	}
-	roundTimerTick(){
-		if(this.roundStarted){
-			if(this.roundTime > 0){
-				this.roundTime--;  // so this is 100ms
-			}
-		}
-		
-		if(this.roundTime == 0){
-			this.showPlayAgain = true;
-			
-		}
-	}*/
+	
 	loadScene(scene){
 		console.log("load scene" + scene);
 	}
@@ -253,6 +220,7 @@ class Game{
 		this.ctx.drawImage(this.backgroundImages[4],375,110);
 	}
 	drawMenu(){
+
 		this.ctx.beginPath();
 		this.ctx.rect(0, 0, this.canvas.width, this.canvas.height);
 		this.ctx.fillStyle = "black";
@@ -267,49 +235,17 @@ class Game{
 		
 		this.ctx.strokecolor = "red";
 		this.ctx.fillStyle = "red";
-		this.ctx.font = "bold 24px Arial";
+		this.ctx.font = "bold 24px BlueSky8x8Monospaced";
 		this.ctx.color = "red";
-		//this.ctx.fillText("Touch to Start", 365, 450 );
-			/*
-		this.ctx.font = "24px Georgia";
-		this.ctx.color = "white";
-		this.ctx.fillStyle = "white";
-		this.ctx.strokecolor = "white";
-		this.ctx.fillText("Lead Art", 10, 350);
-		this.ctx.fillText("Eric Hill", 10, 370);
-		this.ctx.fillText("Lead Programming", 10, 400);
-		this.ctx.fillText("Robert Moore", 10, 420);
-
-		this.ctx.fillText("Programming", 10, 450);
-		this.ctx.fillText("Gordon Wallace", 10, 470);
-		this.ctx.fillText("QA / System Design", 10, 500);
-		this.ctx.fillText("Jack Kimball", 10, 520);
-
-		this.ctx.font = "18px Arial";
-		this.ctx.fillText("Copyright 2019 - Made for GameJam 2019", 660, 520);
-
-		this.ctx.drawImage(this.backgroundImages[6],470,430);*/
+			
 	}
 	clearCanvas(){
-		/*  main background */
-		//this.ctx.drawImage(this.backgroundImages[0],0,0); // draw first batter image
+		/*  main background */	
 		
 		this.ctx.fillStyle = "#000000";
 		this.ctx.strokeStyle = "#ffffff";
 		//context.fillRect(10,10, 100,100);
 		this.ctx.fillRect(0, 0, this.canvas.width, this.canvas.height);
-		
-		/*  stars alt */
-		/*if(this.roundTime%2 == 0){
-			this.ctx.drawImage(this.backgroundImages[1],0,0);
-		}
-	
-		else{ 
-			this.ctx.drawImage(this.backgroundImages[2],0,0);
-		}
-		
-		/*  keys */
-		//this.ctx.drawImage(this.backgroundImages[3],50,360);
 	}
 }
 let game;
