@@ -1,5 +1,5 @@
 {
-  "name": "oregonTrailcampaign",
+  "name": "oregontrailcampaign",
   "version": "1.0.0",
   "description": "Hack For Cause 2019",
   "main": "index.js",
@@ -13,7 +13,7 @@
     "type": "git",
     "url": "git+https://github.com/bobby5892/InterstellarHomeRunDerby.git"
   },
-  "author": "Jim / Daniel / Eric / Connor / Jacob / Tucker / Mike / Annie/ Wendy / Jeremy ",
+  "author": "Jim / Daniel / Eric / Connor / Jacob / Tucker / Mike / Annie/ Wendy / Jeremy",
   "license": "ISC",
   "bugs": {
     "url": "https://github.com/Hack4Eugene/oregon-campaign-trail-42-2019/issues"

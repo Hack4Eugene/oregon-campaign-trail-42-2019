@@ -849,6 +849,19 @@ let Scenes =  [
 		"choices" : [
 				{
 					"description" : "Continue",
+					"sceneDestination" : "credits"
+				}
+		]
+	},
+	{
+		"name": "credits",
+		"question" : ``,
+		"current_date" : "", // Date for Month
+		"campaign_month_count" : "",
+		"img" : "Credits.png", // Counter for Budget
+		"choices" : [
+				{
+					"description" : "Continue",
 					"sceneDestination" : "screen_25"
 				}
 		]
@@ -860,8 +873,8 @@ let Scenes =  [
 		We created this game at Hack For A Cause 2019. The intention of this game is to inspire and help get some new faces in office. We hope you enjoyed playing the game. 		
 		Thanks!
 		`,
-		"current_date" : "May 2021", // Date for Month
-		"campaign_month_count" : 13, // Counter for Budget
+		"current_date" : "", // Date for Month
+		"campaign_month_count" : "", // Counter for Budget
 		"choices" : [
 				{
 					"description" : "Play Again",
