@@ -7,20 +7,20 @@ import Scene from './scene.js';
 class Game{
 	constructor(game){
 		this.canvas =  document.getElementsByTagName("canvas")[0];
-        this.ctx    = this.canvas.getContext('2d');
-        this.handleClick.bind(this);
-        this.clickAbleSprites = [];
-        this.lastClickX = null;
-        this.lastclickY = null;
-        /*
-        type {
-        	x.pos
-        	x.width
-        	y.pos
-        	y.width
-        }
-        */
-        /* Refactor into array of sprites */
+		this.ctx    = this.canvas.getContext('2d');
+		this.handleClick.bind(this);
+		this.clickAbleSprites = [];
+		this.lastClickX = null;
+		this.lastclickY = null;
+		/*
+		type {
+			x.pos
+			x.width
+			y.pos
+			y.width
+		}
+		*/
+		/* Refactor into array of sprites */
 		
 		//this.batter = new Batter(this);
 	//	//this.pitcher = new Pitcher(this);
@@ -34,64 +34,64 @@ class Game{
 		/* Timer */
 		this.playSound = true;
 		this.timer = null;
-        this.tickTime = 100;
+		this.tickTime = 100;
 
-        // Which Scene is showing
+		// Which Scene is showing
 		this.showScene = false;
 		this.currentScene = null;
 		this.scenes = Scenes;
 
-        this.roundTime = -1;
+		this.roundTime = -1;
  		// Round has begun
-        this.roundStarted = true;
-    	
-    	// Current Number of Runs
-        this.roundScore = 0;
-        this.backgroundImage = null;
+		this.roundStarted = true;
+		
+		// Current Number of Runs
+		this.roundScore = 0;
+		this.backgroundImage = null;
 
-        this.audio = null;
-        /* array of images */
-        this.backgroundImage = null;
+		this.audio = null;
+		/* array of images */
+		this.backgroundImage = null;
 
 
-        this.showPlayAgain = false;
-	    /* Call Methods */
-        /* stretch canvas */
-        this.initCanvas();
+		this.showPlayAgain = false;
+		/* Call Methods */
+		/* stretch canvas */
+		this.initCanvas();
 		this.playButton = true;
-		this.firstload = true;      
-      
-      	this.canvas.addEventListener('click', (e) => {
+		this.firstload = true;
+	
+		this.canvas.addEventListener('click', (e) => {
 		 const pos = {
-		    x: e.clientX,
-		    y: e.clientY
+			x: e.clientX,
+			y: e.clientY
 		  };
 		  this.handleClick(pos.x,pos.y);
 		});
-        // Start Game Rendering  - Last Method
-        this.animateGame();
+		// Start Game Rendering  - Last Method
+		this.animateGame();
 	}
 	handleClick(x,y){
-			this.lastClickX = x;
-			this.lastClickY = y;
-			if(this.playButton){
-				// Play the game button
-				if((x>= 526) & (x <= 850) & (y>= 354) & (y <= 400))  {
-					// Stop drawing the menu
-					this.firstload = false;
-					this.playButton = false;
-					this.showScene = true;
-					// Start drawing the first scene
-					this.currentScene = new Scene(this,this.getSceneByName("start"));
-				}
-				console.log("x: " + x + "y: " + y);
+		this.lastClickX = x;
+		this.lastClickY = y;
+		if(this.playButton){
+			// Play the game button
+			if((x>= 526) & (x <= 850) & (y>= 354) & (y <= 400))  {
+				// Stop drawing the menu
+				this.firstload = false;
+				this.playButton = false;
+				this.showScene = true;
+				// Start drawing the first scene
+				this.currentScene = new Scene(this,this.getSceneByName("start"));
 			}
-			// If we want to do something special outside of scenes we can set the currentScene to nothing
-			else if(this.showScene){
-				
-					this.currentScene.click(x,y);
-			}
+			console.log("x: " + x + "y: " + y);
+		}
+		// If we want to do something special outside of scenes we can set the currentScene to nothing
+		else if(this.showScene){
 			
+				this.currentScene.click(x,y);
+		}
+		
 	}
 	getSceneByName(name){
 		let selectedScene = null;
@@ -162,10 +162,13 @@ class Game{
 	}
 	animateGame(){
 		this.timer = setInterval(() => {
-            
+			
 
-            // Clear the Canvas
-            this.clearCanvas();
+			// Clear the Canvas
+			this.clearCanvas();
+
+	
+
 
        
    			/* Render Scene Manager */
@@ -178,9 +181,9 @@ class Game{
 				this.drawMenu();
 			}
             
-   
+  
 
-        }), this.tickTime;
+		}), this.tickTime;
 	}
 	
 	loadScene(scene){
@@ -190,22 +193,23 @@ class Game{
 		this.ctx.drawImage(this.backgroundImages[4],375,110);
 	}
 	drawMenu(){
-			this.ctx.beginPath();
-			this.ctx.rect(0, 0, this.canvas.width, this.canvas.height);
-			this.ctx.fillStyle = "black";
-			this.ctx.fill();
-			// Title Image
-			this.ctx.drawImage(this.Images[0],475,80);
-			// Play Button
-			this.ctx.drawImage(this.Images[1],525,350);
-			
-			// Draw the frame
-			this.ctx.drawImage(this.Images[2],0,0);
-			
-			this.ctx.strokecolor = "red";
-			this.ctx.fillStyle = "red";
-			this.ctx.font = "bold 24px Arial";
-			this.ctx.color = "red";
+
+		this.ctx.beginPath();
+		this.ctx.rect(0, 0, this.canvas.width, this.canvas.height);
+		this.ctx.fillStyle = "black";
+		this.ctx.fill();
+		// Title Image
+		this.ctx.drawImage(this.Images[0],475,80);
+		// Play Button
+		this.ctx.drawImage(this.Images[1],525,350);
+		
+		// Draw the frame
+		this.ctx.drawImage(this.Images[2],0,0);
+		
+		this.ctx.strokecolor = "red";
+		this.ctx.fillStyle = "red";
+		this.ctx.font = "bold 24px Arial";
+		this.ctx.color = "red";
 			
 	}
 	clearCanvas(){
