@@ -43,7 +43,8 @@ export default class Scene extends Sprite{
 		let startY = this.startY ;
 		for(let i=0; i < this.options.choices.length; i++){
 
-
+			this.game.ctx.strokecolor = "white";
+			this.game.ctx.fillStyle = "white";
 			this.game.ctx.fillStyle = "EBE6DD";
 			this.game.ctx.font = "22px LeagueMono";
 			this.game.ctx.color = "white";
@@ -53,10 +54,11 @@ export default class Scene extends Sprite{
 		}
 		
 		// Lets work on drawing the final questions
-
+		this.game.ctx.strokecolor = "white";
+		this.game.ctx.fillStyle = "white";
 		this.game.ctx.fillStyle = "EBE6DD";
 		this.game.ctx.font = "22px LeagueMono";
-		this.wrapText(this.game.ctx,this.question,400,200, 700, 22);
+		this.wrapText(this.game.ctx,this.question,500,200, 700, 22);
 
 		
 
