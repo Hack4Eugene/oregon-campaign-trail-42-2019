@@ -174,6 +174,11 @@ class Game{
 		drawing = new Image();
 		drawing.src = "./dist/images/creditbutton.png"; // 4
 		this.Images.push(drawing);
+		
+		drawing = new Image();
+		drawing.src = "./dist/images/background_title.png"; // 5
+		this.Images.push(drawing);
+		
 
 
 	}
@@ -215,6 +220,7 @@ class Game{
 		this.ctx.rect(0, 0, this.canvas.width, this.canvas.height);
 		this.ctx.fillStyle = "black";
 		this.ctx.fill();
+		this.ctx.drawImage(this.Images[5],0,0);
 		// Title Image
 		this.ctx.drawImage(this.Images[0],475,80);
 		// Play Button

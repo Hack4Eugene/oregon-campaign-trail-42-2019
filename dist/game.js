@@ -61,7 +61,7 @@
 /******/ 	
 /******/ 	
 /******/ 	var hotApplyOnUpdate = true;
-/******/ 	var hotCurrentHash = "e3a7095959b07eed0455"; // eslint-disable-line no-unused-vars
+/******/ 	var hotCurrentHash = "90e38290893bcc80d36e"; // eslint-disable-line no-unused-vars
 /******/ 	var hotRequestTimeout = 10000;
 /******/ 	var hotCurrentModuleData = {};
 /******/ 	var hotCurrentChildModule; // eslint-disable-line no-unused-vars
@@ -1034,6 +1034,10 @@ var Game = function () {
 			drawing = new Image();
 			drawing.src = "./dist/images/creditbutton.png"; // 4
 			this.Images.push(drawing);
+
+			drawing = new Image();
+			drawing.src = "./dist/images/background_title.png"; // 5
+			this.Images.push(drawing);
 		}
 	}, {
 		key: 'animateGame',
@@ -1088,6 +1092,7 @@ var Game = function () {
 			this.ctx.rect(0, 0, this.canvas.width, this.canvas.height);
 			this.ctx.fillStyle = "black";
 			this.ctx.fill();
+			this.ctx.drawImage(this.Images[5], 0, 0);
 			// Title Image
 			this.ctx.drawImage(this.Images[0], 475, 80);
 			// Play Button
@@ -1147,7 +1152,7 @@ var Scenes = [{
 	}]
 }, { // Screen 4
 	"name": "screen_4",
-	"question": "After the meeting, your friend Heather, a former school board member, says, \"Hey, you should run. Have you thought about it?\" \n\n\t\t\u201CI wouldn\u2019t even know where to start--these people seem like they\u2019ve been doing this their whole lives.\u201D\n\t\t\u201CLet\u2019s have coffee in May,\u201D Heather says. \u201CI was on the school board a few years ago, and I can help you get started.\u201D",
+	"question": "After the meeting, your friend Heather, a former school board member, says, \"Hey, you should run. Have you thought about it?\" \n\n\t\t\u201CI wouldn\u2019t even know where to start--these people seem like they\u2019ve been doing this their whole lives.\u201D\n\n\t\t\u201CLet\u2019s have coffee in May,\u201D Heather says. \u201CI was on the school board a few years ago, and I can help you get started.\u201D",
 
 	"current_date": "April 2020", // Date for Month
 	"campaign_month_count": 0, // Counter for Budget
@@ -1158,7 +1163,7 @@ var Scenes = [{
 	}]
 }, { // Screen 5
 	"name": "screen_5",
-	"question": "You meet up with Heather for coffee at The Old Washburne.\n\n\t\t\u201CI\u2019ve never even thought about running for office before,\u201D you tell Heather.\n\t\t\n\t\tHeather smiles and tells you, \u201CIt\u2019s not that hard, but it does take some planning. The school board elections happen every 2 years, and our next one is in May 2021. This is a great time to get started!\u201D",
+	"question": "You meet up with Heather for coffee at The Washburne Cafe.\n\n\t\t\u201CI\u2019ve never even thought about running for office before,\u201D you tell Heather.\n\t\t\n\t\tHeather smiles and tells you, \u201CIt\u2019s not that hard, but it does take some planning. The school board elections happen every 2 years, and our next one is in May 2021. This is a great time to get started!\u201D",
 
 	"current_date": "April 2020", // Date for Month
 	"campaign_month_count": 0, // Counter for Budget
@@ -1169,7 +1174,7 @@ var Scenes = [{
 	}]
 }, {
 	"name": "screen_6",
-	"question": "\u201CWhat do I need to do? Do I have to go declare my intention somewhere?\u201D\n\t\tHeather takes out a pad of paper. \u201CActually, the best place to start is with budgeting. What\u2019s your top budget priority?\u201D \n\t\t",
+	"question": "\u201CWhat do I need to do? Do I have to go declare my intention somewhere?\u201D\n\n\t\tHeather takes out a pad of paper. \u201CActually, the best place to start is with budgeting. What\u2019s your top budget priority?\u201D \n\t\t",
 	"current_date": "May 2020", // Date for Month
 	"campaign_month_count": 1, // Counter for Budget
 	"img": "Animation_Heather_Planning.gif",
@@ -1212,7 +1217,7 @@ var Scenes = [{
 
 }, {
 	"name": "screen_7",
-	"question": "It\u2019s time to set your budget! Click on the \u201Cbudget\u201D button to set up your campaign budget. Each item will cost money. Items may generate additional income, and even give bonuses to your polling percentage.",
+	"question": "It\u2019s time to set your budget!\n\n\t\tClick on the \u201Cbudget\u201D button to set up your campaign budget. \n\t\t\n\t\tEach item will cost money. Items may generate additional income, and even give bonuses to your polling percentage.",
 	"current_date": "May 2020", // Date for Month
 	"campaign_month_count": 1, // Counter for Budget
 	"img": "Animation_Heather_Planning.gif",
@@ -1223,7 +1228,7 @@ var Scenes = [{
 
 }, {
 	"name": "screen_8",
-	"question": "The campaign is getting organized, and you meet up with Heather again in June. \u201CNow that we\u2019ve got your budget laid out, we should figure out what your goal is,\u201D Heather says. \u201CDo you know how to calculate your vote win number?\u201D Which is the formula for a \u201Cvote win number\u201D?",
+	"question": "The campaign is getting organized, and you meet up with Heather again in June. \n\t\t\n\t\t\u201CNow that we\u2019ve got your budget laid out, we should figure out what your goal is,\u201D Heather says. \u201CDo you know how to calculate your vote win number?\u201D \n\t\t\n\t\tWhich is the formula for a \u201Cvote win number\u201D?",
 
 	"current_date": "June 2020", // Date for Month
 	"campaign_month_count": 2, // Counter for Budget
@@ -1231,13 +1236,13 @@ var Scenes = [{
 		"description": "The largest number of votes a candidate has received",
 		"sceneDestination": "screen_8_wrong"
 	}, {
-		"description": "The most recent number of votes that a candidate needed to win",
+		"description": "The number of votes that the most recent candidate needed to win",
 		"sceneDestination": "screen_8_wrong"
 	}, {
-		"description": "The average number of winning votes needed over last 2 campaigns",
+		"description": "Winner’s vote average for past two races x .55",
 		"sceneDestination": "screen_8_right"
 	}, {
-		"description": "The number of votes needed to be elected in last 3 elections",
+		"description": "Winner’s vote average from the previous 3 elections",
 		"sceneDestination": "screen_8_wrong"
 	}]
 
@@ -1285,7 +1290,7 @@ var Scenes = [{
 
 }, {
 	"name": "screen_9_wrong",
-	"question": "Heather responds with \u201CThat isn't what I'd do. But I guess you could try it and see what happens.\"",
+	"question": "Heather responds, \u201CI'm not sure that's right. Let's see if we can find some data on this.\"",
 	"current_date": "July 2020", // Date for Month
 	"campaign_month_count": 3, // Counter for Budget
 
@@ -1296,7 +1301,7 @@ var Scenes = [{
 
 }, {
 	"name": "screen_9_right",
-	"question": "Heather responds with, \u201CYes! This is exactly what I would suggest!\u201D",
+	"question": "Heather responds, \u201CYes! This is exactly what the data shows!\u201D",
 	"current_date": "July 2020", // Date for Month
 	"campaign_month_count": 3, // Counter for Budget
 	"choices": [{
@@ -1306,7 +1311,7 @@ var Scenes = [{
 
 }, {
 	"name": "screen_10",
-	"question": "The after school political club has decided to help out. Their coordinator, Tim, has come to you to ask how they can they can get involved. After speaking with Heather, you decide to have them reach out to the younger voter demographic. \n\n\t\tWhat outreach method will be MOST effective for Millennials?",
+	"question": "The after school political club has decided to help out. Their coordinator, Fred, has come to you to ask how they can they can get involved. After speaking with Heather, you decide to have them reach out to the younger voter demographic. \n\n\t\tWhat outreach method will be MOST effective for Millennials?",
 	"current_date": "July 2020", // Date for Month
 	"campaign_month_count": 3, // Counter for Budget
 	"choices": [{
@@ -1328,7 +1333,7 @@ var Scenes = [{
 
 }, {
 	"name": "screen_10_wrong",
-	"question": "Heather responds with \u201CThat isn't what I'd do. But I guess you could try it and see what happens.\"",
+	"question": "Heather responds, \u201CI'm not sure that's right. Let's see if we can find some data on this.\"",
 	"current_date": "July 2020", // Date for Month
 	"campaign_month_count": 3, // Counter for Budget
 	"choices": [{
@@ -1338,7 +1343,7 @@ var Scenes = [{
 
 }, {
 	"name": "screen_10_right",
-	"question": "Heather responds with, \u201CYes! This is exactly what I would suggest!\u201D",
+	"question": "Heather responds, \u201CYes! This is exactly what the data shows!\u201D",
 	"current_date": "July 2020", // Date for Month
 	"campaign_month_count": 3, // Counter for Budget
 	"choices": [{
@@ -1417,7 +1422,7 @@ var Scenes = [{
 
 }, {
 	"name": "screen_13_wrong",
-	"question": "Heather responds with \u201CThat isn't what I'd do. But I guess you could try it and see what happens.\" Check out ORESTAR for more help: https://sos.oregon.gov/elections/Pages/orestar.aspx",
+	"question": "Heather responds with \u201CThat isn't what I'd do. But I guess you could try it and see what happens.\" \n\t\t\n\t\tCheck out ORESTAR for more help: https://sos.oregon.gov/elections/Pages/orestar.aspx",
 	"current_date": "May 2020", // Date for Month
 	"campaign_month_count": 1, // Counter for Budget
 	"choices": [{
@@ -1447,10 +1452,10 @@ var Scenes = [{
 		"description": "E-mail the paper asking them to write an article about you",
 		"sceneDestination": "screen_14_wrong"
 	}, {
-		"description": "Prepare an editorial with your policy ideas and submit it for publication",
+		"description": "Send the Register Guard an editorial with your policy ideas",
 		"sceneDestination": "screen_14_right"
 	}, {
-		"description": "Show up unannounced at the front desk and demand a meeting with the editor",
+		"description": "Arrive unannounced at newspaper office and demand meeting",
 		"sceneDestination": "screen_14_wrong"
 	}]
 
@@ -1710,26 +1715,26 @@ var Scenes = [{
 
 }, {
 	"name": "screen_21",
-	"question": "Election Day is tomorrow morning, and there\u2019s not much more you can do to support your candidacy. In a rare bit of quiet, you realize how much of a toll this campaign has taken on everyone you love and everyone who has helped you. What can you do to start to make amends and repair your relationships?",
+	"question": "Election Day is tomorrow morning, and there\u2019s not much more you can do to support your candidacy. In a rare bit of quiet, you realize how much of a toll this campaign has taken on everyone you love and everyone who has helped you; you have been absent, distracted, and self centered for the past year. What can you do to start to make amends and repair your relationships?",
 	"current_date": "May 2021", // Date for Month
 	"campaign_month_count": 13, // Counter for Budget
 	"choices": [{
 		"description": "Show gratitude to your volunteers by giving them all hugs",
 		"sceneDestination": "screen_22"
 	}, {
-		"description": "Let your staff know they will get a Win Bonus whether or not you win",
+		"description": "Let your staff know the Win Bonus is a given",
 		"sceneDestination": "screen_22"
 	}, {
 		"description": "Thank your donors for believing in you",
 		"sceneDestination": "screen_22"
 	}, {
-		"description": "Thank your family and friends for putting up with you while you were being absent",
+		"description": "Thank your family and friends for putting up with you",
 		"sceneDestination": "screen_22"
 	}]
 
 }, {
 	"name": "screen_22",
-	"question": "You\u2019re at Roaring Rapids on a warm spring evening and it\u2019s election night. It\u2019s been one year of hard work and you\u2019re looking forward to the ending, win or lose. Your family, staff, volunteers, friends, and donors are all with you, enjoying pizza and waiting for the election results to come in\u2026.",
+	"question": "You\u2019re at Roaring Rapids on a warm spring evening and it\u2019s election night. It\u2019s been one year of hard work and you\u2019re looking forward to the ending, win or lose. Your family, staff, volunteers, friends, and donors are all with you, enjoying pizza and waiting for the election results to come in\u2026",
 	"current_date": "May 2021", // Date for Month
 	"campaign_month_count": 13, // Counter for Budget
 	"choices": [{
@@ -1738,6 +1743,15 @@ var Scenes = [{
 	}, {
 		"description": "Lose",
 		"sceneDestination": "screen_24"
+	}]
+}, {
+	"name": "screen_23",
+	"question": "Woo-Hoo!!Yes You won your race -- doesn't it feel good?\n\t\tCelebrate with everyone gathered and hopefully you can take some time to relax after the race.\n\t\tThis is a great time to recoup and prepare for your upcoming term as Springfield School Board",
+	"current_date": "May 2021", // Date for Month
+	"campaign_month_count": 13, // Counter for Budget
+	"choices": [{
+		"description": "Continue",
+		"sceneDestination": "credits"
 	}]
 }, {
 	"name": "screen_24",
@@ -1751,7 +1765,7 @@ var Scenes = [{
 }, {
 	"name": "credits",
 	"question": "",
-	"current_date": "H4C", // Date for Month
+	"current_date": "H4C 42", // Date for Month
 	"campaign_month_count": 1,
 	"img": "Credits.png", // Counter for Budget
 	"choices": [{
