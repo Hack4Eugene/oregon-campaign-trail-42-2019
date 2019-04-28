@@ -138,11 +138,11 @@ let Scenes =  [
 				"sceneDestination" : "screen_8_wrong"
 			},
 			{
-				"description" : "The average number of winning votes needed over the last two campaigns, multiplied by .55",
+				"description" : "The average number of winning votes needed over last 2 campaigns",
 				"sceneDestination" : "screen_8_right"
 			},
 			{
-				"description" : "The number of votes needed to be elected in the previous three elections",
+				"description" : "The number of votes needed to be elected in last 3 elections",
 				"sceneDestination" : "screen_8_wrong"
 			},
 			
@@ -825,23 +825,6 @@ let Scenes =  [
 	},
 	
 	{
-		"name": "screen_23",
-		"question" : `Woo-Hoo!! Yes!! You won your race -- doesn’t it feel good?
-
-		Celebrate with everyone gathered and hopefully you can take some time to relax after the race.
-		
-		This is a great time to recoup and prepare for your upcoming term as Springfield School Board member.`,
-		"current_date" : "May 2021", // Date for Month
-		"campaign_month_count" : 13, // Counter for Budget
-		"choices" : [
-				{
-					"description" : "Continue",
-					"sceneDestination" : "screen_25"
-				}
-		]
-	},
-	
-	{
 		"name": "screen_24",
 		"question" : `It’s Wednesday morning at the Washburne and you’re getting ready to see Heather for a cup of coffee before work. You feel that you may have let her down. When Heather gets to the table she gives you a big hug and says, “You ran such a great campaign! One thing I didn’t tell you because I didn’t want to scare you: I served two terms on the school board, and it was great. But I also ran two times before and lost. Your next campaign will be so much better!”`,
 		"current_date" : "May 2021", // Date for Month
@@ -849,7 +832,20 @@ let Scenes =  [
 		"choices" : [
 				{
 					"description" : "Continue",
-					"sceneDestination" : "screen_25"
+					"sceneDestination" : "credits"
+				}
+		]
+	},
+	{
+		"name": "credits",
+		"question" : ``,
+		"current_date" : "H4C", // Date for Month
+		"campaign_month_count" : 1,
+		"img" : "Credits.png", // Counter for Budget
+		"choices" : [
+				{
+					"description" : "Continue",
+					"sceneDestination" : "start"
 				}
 		]
 	},
@@ -860,8 +856,8 @@ let Scenes =  [
 		We created this game at Hack For A Cause 2019. The intention of this game is to inspire and help get some new faces in office. We hope you enjoyed playing the game. 		
 		Thanks!
 		`,
-		"current_date" : "May 2021", // Date for Month
-		"campaign_month_count" : 13, // Counter for Budget
+		"current_date" : "", // Date for Month
+		"campaign_month_count" : "", // Counter for Budget
 		"choices" : [
 				{
 					"description" : "Play Again",
