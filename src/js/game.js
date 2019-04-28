@@ -186,7 +186,7 @@ class Game{
 			
 			// Render primary elements
 			if(this.currentScene != null){this.currentScene.render()};
-			if (this.budgetMenu !== null){this.budgetMenu.render()};
+			if (this.budgetMenu !== null && this.showBudgetMenu){this.budgetMenu.render()};
 			if (this.currentScene != null){ this.renderDate()};
 			
 
@@ -204,7 +204,7 @@ class Game{
 		if (!this.currentScene || this.currentScene.current_date == null) return;
 		let date = this.currentScene.current_date.split(" "); // [month, year];
 		this.ctx.font = "24px BlueSky";
-		this.ctx.fillStyle = "98D7DB";
+		this.ctx.fillStyle = "#98D7DB";
 		this.ctx.fillText(date[0].toUpperCase(), 80, 100);
 		this.ctx.fillText(date[1], 80, 135);
 	}
