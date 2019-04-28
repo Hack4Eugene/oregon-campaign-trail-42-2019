@@ -14,16 +14,7 @@ class Game{
 		this.clickAbleSprites = [];
 		this.lastClickX = null;
 		this.lastclickY = null;
-		/*
-		type {
-			x.pos
-			x.width
-			y.pos
-			y.width
-		}
-		*/
-		
- 
+
 		/* Some Defaults */
 		this.backgroundColor = "#000000";
 
@@ -44,22 +35,20 @@ class Game{
 
 		// Scoring
 		this.polling = 0.3251243124; // TODO calculate this somewhere
-		this.month = 0; // TODO update this with navigation
+		this.month = 0; 
+		this.lastMonth = 0; // updated when calculateBudget() is called
 
 		// Background
 		this.backgroundImage = null;
 
 		// Audio
 		this.audio = new Audio("dist/sound/loop.mp3");
-		//this.audio.play();
-		this.audio.loop = true;
+		
 		/* array of images */
 		this.backgroundImage = null;
-
-
 		this.showPlayAgain = false;
+		this.showCredits = true;
 		/* Call Methods */
-		/* stretch canvas */
 		this.initCanvas();
 		this.playButton = true;
 		this.firstload = true;
@@ -76,31 +65,29 @@ class Game{
 		this.animateGame();
 		
 	}
-	calculateBudget(selectedIDs, month) {
-		return; // TODO fix this function
-		for (var i = 0; i < selectedIDs.length; i++){
-			if (budget_ledger["BudgetItems"][i].ID = selectedIDs[i]) {
-				budget_ledger.LedgerItems.push({
-					"EntryName": budget_ledger["BudgetItems"][i]["NAME"], 
-					"Value": (budget_ledger["BudgetItems"][i]["MOCOST"] == 0) ? budget_ledger["BudgetItems"][i]["INITCOST"]:budget_ledger["BudgetItems"][i]["MOCOST"], 
-					"MONTH":month, 
-					"MOD": budget_ledger["BudgetItems"][i]["MOD"] 
-				});
-			}
+	calculateBudget(selectedIDs) {
+		if (this.month <= this.lastMonth) return;
+		let months = this.month - this.lastMonth;
+		for (let i in selectedIDs) {
+			this.money += MoneyData["BudgetItems"][selectedIDs[i]]["MOCOST"]*months;
 		}
-		var CashFlow = budget_ledger.LedgerItems;
-		this.money = 0;
+		this.lastMonth = this.month;
+
+		// for (var i = 0; i < selectedIDs.length; i++){
+		// 	if (budget_ledger["BudgetItems"][i].ID = selectedIDs[i]) {
+		// 		budget_ledger.LedgerItems.push({
+		// 			"EntryName": budget_ledger["BudgetItems"][i]["NAME"], 
+		// 			"Value": (budget_ledger["BudgetItems"][i]["MOCOST"] == 0) ? budget_ledger["BudgetItems"][i]["INITCOST"]:budget_ledger["BudgetItems"][i]["MOCOST"], 
+		// 			"MONTH":month, 
+		// 			"MOD": budget_ledger["BudgetItems"][i]["MOD"] 
+		// 		});
+		// 	}
+		// }
+		// var CashFlow = budget_ledger.LedgerItems;
+		// this.money = 0;
 		
-		for (i = 0; i < CashFlow.length; i++) {  
-		this.money += CashFlow[i].Value  } 
-	}
-	renderDate() {
-		if (!this.currentScene || this.currentScene.current_date == null) return;
-		let date = this.currentScene.current_date.split(" "); // [month, year];
-		this.ctx.font = "24px BlueSky";
-		this.ctx.fillStyle = "98D7DB";
-		this.ctx.fillText(date[0].toUpperCase(), 80, 100);
-		this.ctx.fillText(date[1], 80, 135);
+		// for (i = 0; i < CashFlow.length; i++) {  
+		// this.money += CashFlow[i].Value  } 
 	}
 	handleClick(x,y){
 		this.lastClickX = x;
@@ -115,15 +102,36 @@ class Game{
 				this.firstload = false;
 				this.playButton = false;
 				this.showScene = true;
+				this.showCredits = false;
+				this.audio.play();
+				this.audio.loop = true;
+
 				this.showBudgetMenu = true;
+
 				// Start drawing the first scene
 				this.currentScene = new Scene(this,this.getSceneByName("start"));
 			}
-			// console.log("x: " + x + "y: " + y);
+			else if((x>= 600) & (x <= 800) & (y>= 430) & (y <= 500))  {
+				/* should be changed to dry - but oot */
+				this.firstload = false;
+				this.playButton = false;
+				this.showScene = true;
+				this.showCredits = false;
+				this.audio.play();
+				this.audio.loop = true;
+
+				this.showBudgetMenu = true;
+
+				// Start drawing the first scene
+				this.currentScene = new Scene(this,this.getSceneByName("credits"));
+			}
+			
 		}
 		// If we want to do something special outside of scenes we can set the currentScene to nothing
 		else if(this.showScene){
 			this.currentScene.click(x,y);
+			this.month = this.currentScene.campaign_month_count;
+			this.calculateBudget(this.budgetMenu.getSelectedIDs());
 		}
 	}
 	getSceneByName(name){
@@ -164,67 +172,43 @@ class Game{
 		this.Images.push(drawing);
 
 		drawing = new Image();
-		drawing.src = "./dist/images/credits.png"; // 4
+		drawing.src = "./dist/images/creditbutton.png"; // 4
 		this.Images.push(drawing);
 
-/*		
-		drawing = new Image();
-		drawing.src = "./dist/images/keys.png"; // 4
-		this.backgroundImages.push(drawing);
 
-		drawing = new Image();
-		drawing.src = "./dist/images/playagain.png"; // 4
-		this.backgroundImages.push(drawing);
-
-		drawing = new Image();
-		drawing.src = "./dist/images/title.png"; // 5
-		this.backgroundImages.push(drawing);
-
-		drawing = new Image();
-		drawing.src = "./dist/images/play.png"; // 6
-		this.backgroundImages.push(drawing);
-
-		this.audio = [];
-		this.audio.push(new Audio('./dist/audio/47356__fotoshop__oof.wav')); //0
-		this.audio.push(new Audio('./dist/audio/fart01.wav')); // 1 / 
-		this.audio.push(new Audio('./dist/audio/hitbat_v1.wav')); // 2 / 
-		this.audio.push(new Audio('./dist/audio/stadiumcheer1.wav')); // 3 / 
-		this.audio.push(new Audio('./dist/audio/whooshbat1.wav')); //4 
-		
-*/
 	}
 	animateGame(){
 		this.timer = setInterval(() => {
 
+
 			// Clear the Canvas
 			this.clearCanvas();
-
-       
-   			/* Render Scene Manager */
-           	if(this.currentScene != null){
-				this.currentScene.render();
-				this.renderDate();
-			   }
-			   
 			
-			if (this.budgetMenu !== null) this.budgetMenu.render();
-      
+			// Render primary elements
+			if(this.currentScene != null){this.currentScene.render()};
+			if (this.budgetMenu !== null){this.budgetMenu.render()};
+			if (this.currentScene != null){ this.renderDate()};
+			
+
             /* show menu */
 			if(this.firstload == true){
 				this.drawMenu();
 			}
-            
-  
-
+			if(this.showCredits ){ this.renderCredits();}
 		}), this.tickTime;
 	}
-	
-	loadScene(scene){
-		console.log("load scene" + scene);
+	renderCredits(){
+		this.ctx.drawImage(this.Images[4],600,450);
 	}
-	drawPlayAgain(){
-		this.ctx.drawImage(this.backgroundImages[4],375,110);
+	renderDate() {
+		if (!this.currentScene || this.currentScene.current_date == null) return;
+		let date = this.currentScene.current_date.split(" "); // [month, year];
+		this.ctx.font = "24px BlueSky";
+		this.ctx.fillStyle = "98D7DB";
+		this.ctx.fillText(date[0].toUpperCase(), 80, 100);
+		this.ctx.fillText(date[1], 80, 135);
 	}
+
 	drawMenu(){
 
 		this.ctx.beginPath();
