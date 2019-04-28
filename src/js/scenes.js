@@ -800,7 +800,7 @@ let Scenes =  [
 					"sceneDestination" : "screen_22"
 				},
 				{
-					"description" : "Thank your family and friends for putting up with you while you were being absent, distracted, and self centered for the past year",
+					"description" : "Thank your family and friends for putting up with you while you were being absent",
 					"sceneDestination" : "screen_22"
 				}
 		]
@@ -857,11 +857,7 @@ let Scenes =  [
 	{
 		"name": "screen_25",
 		"question" : `Game Over
-
-		We created this game at Hack For A Cause 2019. The intention of this game is to inspire and help get some new faces in office. We hope you enjoyed playing the game. 
-		
-		Please fill out this form https://forms.gle/DpY782qF8CCdwxrG9 so we can understand ways we can improve the game.
-		
+		We created this game at Hack For A Cause 2019. The intention of this game is to inspire and help get some new faces in office. We hope you enjoyed playing the game. 		
 		Thanks!
 		`,
 		"current_date" : "May 2021", // Date for Month
