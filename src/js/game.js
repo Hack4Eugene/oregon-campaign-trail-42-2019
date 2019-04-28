@@ -309,7 +309,7 @@ class Game{
 let game;
 window.addEventListener('load', () => {
 	game = new Game();
-	game.validateEventEndpoints();
+	//game.validateEventEndpoints();
 });
 window.addEventListener('resize', () =>{
 	console.log("Window Changed");
