@@ -19,7 +19,7 @@ export default class Sprite{
 		/* Center of Screen */
 		this.centerX = this.game.canvas.width/2;
 		this.centerY = this.game.canvas.height/2;
-
-		
 	}
+	// render();
+	// click(x,y);
 }

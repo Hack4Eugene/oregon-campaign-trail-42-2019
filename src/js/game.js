@@ -3,6 +3,7 @@
 import Sprite from './sprite.js';
 import Scenes from './scenes.js';
 import Scene from './scene.js';
+import BudgetMenu from './budgetMenu.js';
 
 class Game{
 	constructor(game){
@@ -23,7 +24,7 @@ class Game{
 		/* Refactor into array of sprites */
 		
 		//this.batter = new Batter(this);
-	//	//this.pitcher = new Pitcher(this);
+		//this.pitcher = new Pitcher(this);
 		//this.ball = new Ball(this);
 		//this.platform = new Platform(this);
 		//this.scoreboard = new Scoreboard(this);
@@ -41,8 +42,13 @@ class Game{
 		this.currentScene = null;
 		this.scenes = Scenes;
 
+		// budget
+		this.budgetMenu = new BudgetMenu(game);
+		this.showbudgetMenu = false; // budget menu or menu access button is visible
+		this.money = 10000; // starting budget
+
+		// Round has begun
 		this.roundTime = -1;
- 		// Round has begun
 		this.roundStarted = true;
 		
 		// Current Number of Runs
@@ -62,11 +68,11 @@ class Game{
 		this.firstload = true;
 	
 		this.canvas.addEventListener('click', (e) => {
-		 const pos = {
-			x: e.clientX,
-			y: e.clientY
-		  };
-		  this.handleClick(pos.x,pos.y);
+			const pos = {
+				x: e.clientX,
+				y: e.clientY
+			};
+			this.handleClick(pos.x,pos.y);
 		});
 		// Start Game Rendering  - Last Method
 		this.animateGame();
@@ -74,7 +80,10 @@ class Game{
 	handleClick(x,y){
 		this.lastClickX = x;
 		this.lastClickY = y;
-		if(this.playButton){
+		if(this.showbudgetMenu) {
+			this.budgetMenu.click(x,y);
+		}
+		else if(this.playButton){
 			// Play the game button
 			if((x>= 526) & (x <= 850) & (y>= 354) & (y <= 400))  {
 				// Stop drawing the menu
@@ -88,17 +97,15 @@ class Game{
 		}
 		// If we want to do something special outside of scenes we can set the currentScene to nothing
 		else if(this.showScene){
-			
-				this.currentScene.click(x,y);
+			this.currentScene.click(x,y);
 		}
-		
 	}
 	getSceneByName(name){
 		let selectedScene = null;
 		this.scenes.forEach( (scene) => {
-				if(scene.name == name){
-						selectedScene = scene;
-				}
+			if(scene.name == name){
+					selectedScene = scene;
+			}
 		});
 		if(selectedScene == null ){
 			return "start";
@@ -114,7 +121,6 @@ class Game{
 		this.Images = [];
 
 		let drawing = new Image();
-
 
 		drawing.src = "./dist/images/title.png"; // can also be a remote URL e.g. http:// // 0
 		this.Images.push(drawing);
@@ -163,12 +169,10 @@ class Game{
 	}
 	animateGame(){
 		this.timer = setInterval(() => {
-			
 
 			// Clear the Canvas
 			this.clearCanvas();
 
-	
 			// Draw the platform
 			//this.platform.draw(this.ctx);
 			// Draw the pitcher
@@ -179,6 +183,8 @@ class Game{
 			//this.ball.draw(this.ctx);
 			// Draw the Batter
 			//this.batter.draw(this.ctx);
+
+			if (this.budgetMenu != null) this.budgetMenu.render();
 
 			if(this.currentScene != null){
 				this.currentScene.render();
@@ -192,10 +198,9 @@ class Game{
 			if(this.firstload == true){
 				this.drawMenu();
 			}
-			
+
 			// Round Timer Update
 			//this.roundTimerTick();
-			
 
 		}), this.tickTime;
 	}
@@ -271,7 +276,7 @@ class Game{
 		
 		this.ctx.fillStyle = "#000000";
 		this.ctx.strokeStyle = "#ffffff";
-		//  context.fillRect(10,10, 100,100);
+		//context.fillRect(10,10, 100,100);
 		this.ctx.fillRect(0, 0, this.canvas.width, this.canvas.height);
 		
 		/*  stars alt */
@@ -285,9 +290,6 @@ class Game{
 		
 		/*  keys */
 		//this.ctx.drawImage(this.backgroundImages[3],50,360);
-
- 
-
 	}
 }
 let game;
