@@ -12,8 +12,8 @@ let MoneyData = {
         {
             "NAME": "Graphic Designer",
             "MOD": 0.1,
-            "INITCOST": -2000,
-            "MOCOST": 0,
+            "INITCOST": 0,
+            "MOCOST": -200,
             "MINC": 400,
             "MEFF": 0,
             "ID": 1
