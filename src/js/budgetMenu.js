@@ -80,7 +80,6 @@ export default class BudgetMenu extends Sprite {
 	}
 	// private
 	renderTitle(ctx) {
-		console.log("this is trying to render at x:" + this.ax2 + " y:" + 150);
 		ctx.strokecolor = "white";
 		ctx.font = "24px BlueSky";
 		//ctx.fillStyle = "389DB1";

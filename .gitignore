@@ -2,4 +2,6 @@ node_modules/*
 **/.*
 **/.*.*
 **/*.dSYM
-!.gitignore
+!.
+!.circleci
+!.mvpstudio

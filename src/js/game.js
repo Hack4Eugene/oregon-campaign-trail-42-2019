@@ -47,6 +47,7 @@ class Game{
 		/* array of images */
 		this.backgroundImage = null;
 		this.showPlayAgain = false;
+		this.showCredits = true;
 		/* Call Methods */
 		this.initCanvas();
 		this.playButton = true;
@@ -101,7 +102,7 @@ class Game{
 				this.firstload = false;
 				this.playButton = false;
 				this.showScene = true;
-
+				this.showCredits = false;
 				this.audio.play();
 				this.audio.loop = true;
 
@@ -110,6 +111,21 @@ class Game{
 				// Start drawing the first scene
 				this.currentScene = new Scene(this,this.getSceneByName("start"));
 			}
+			else if((x>= 600) & (x <= 800) & (y>= 430) & (y <= 500))  {
+				/* should be changed to dry - but oot */
+				this.firstload = false;
+				this.playButton = false;
+				this.showScene = true;
+				this.showCredits = false;
+				this.audio.play();
+				this.audio.loop = true;
+
+				this.showBudgetMenu = true;
+
+				// Start drawing the first scene
+				this.currentScene = new Scene(this,this.getSceneByName("credits"));
+			}
+			
 		}
 		// If we want to do something special outside of scenes we can set the currentScene to nothing
 		else if(this.showScene){
@@ -156,8 +172,10 @@ class Game{
 		this.Images.push(drawing);
 
 		drawing = new Image();
-		drawing.src = "./dist/images/credits.png"; // 4
+		drawing.src = "./dist/images/creditbutton.png"; // 4
 		this.Images.push(drawing);
+
+
 	}
 	animateGame(){
 		this.timer = setInterval(() => {
@@ -165,20 +183,23 @@ class Game{
 
 			// Clear the Canvas
 			this.clearCanvas();
-
+			
 			// Render primary elements
 			if(this.currentScene != null){this.currentScene.render()};
 			if (this.budgetMenu !== null){this.budgetMenu.render()};
 			if (this.currentScene != null){ this.renderDate()};
-
+			
 
             /* show menu */
 			if(this.firstload == true){
 				this.drawMenu();
 			}
+			if(this.showCredits ){ this.renderCredits();}
 		}), this.tickTime;
 	}
-
+	renderCredits(){
+		this.ctx.drawImage(this.Images[4],600,450);
+	}
 	renderDate() {
 		if (!this.currentScene || this.currentScene.current_date == null) return;
 		let date = this.currentScene.current_date.split(" "); // [month, year];
