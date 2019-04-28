@@ -75,15 +75,16 @@ class Game{
 			this.lastClickX = x;
 			this.lastClickY = y;
 			if(this.playButton){
-				if((x>= 350) & (x <= 550) & (y>= 200) & (y <= 400))  {
+				// Play the game button
+				if((x>= 526) & (x <= 850) & (y>= 354) & (y <= 400))  {
 					// Stop drawing the menu
 					this.firstload = false;
 					this.playButton = false;
 					this.showScene = true;
 					// Start drawing the first scene
 					this.currentScene = new Scene(this,this.getSceneByName("start"));
-					
 				}
+				console.log("x: " + x + "y: " + y);
 			}
 			// If we want to do something special outside of scenes we can set the currentScene to nothing
 			else if(this.showScene){
@@ -121,20 +122,20 @@ class Game{
 		this.Images.push(drawing);
 		
 		drawing = new Image();
-		drawing.src = "./dist/images/play.png"; // 1
+		drawing.src = "./dist/images/campaign.png"; // 1
 		this.Images.push(drawing);
 
 		drawing = new Image();
 		drawing.src = "./dist/images/frame.png"; // 2
-		this.backgroundImages.push(drawing);
+		this.Images.push(drawing);
 
 		drawing = new Image();
 		drawing.src = "./dist/images/campaign.png"; // 3
-		this.backgroundImages.push(drawing);
+		this.Images.push(drawing);
 
 		drawing = new Image();
 		drawing.src = "./dist/images/credits.png"; // 4
-		this.backgroundImages.push(drawing);
+		this.Images.push(drawing);
 
 /*		
 		drawing = new Image();
@@ -233,16 +234,18 @@ class Game{
 			this.ctx.fillStyle = "black";
 			this.ctx.fill();
 			// Title Image
-			this.ctx.drawImage(this.Images[0],125,40);
+			this.ctx.drawImage(this.Images[0],475,80);
 			// Play Button
-			this.ctx.drawImage(this.Images[1],350,200);
+			this.ctx.drawImage(this.Images[1],525,350);
+			
 			// Draw the frame
 			this.ctx.drawImage(this.Images[2],0,0);
+			
 			this.ctx.strokecolor = "red";
 			this.ctx.fillStyle = "red";
 			this.ctx.font = "bold 24px Arial";
 			this.ctx.color = "red";
-			this.ctx.fillText("Touch to Start", 365, 450 );
+			//this.ctx.fillText("Touch to Start", 365, 450 );
 				/*
 			this.ctx.font = "24px Georgia";
 			this.ctx.color = "white";
