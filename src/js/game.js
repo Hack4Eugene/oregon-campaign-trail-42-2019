@@ -4,6 +4,7 @@ import Sprite from './sprite.js';
 import Scenes from './scenes.js';
 import Scene from './scene.js';
 import BudgetMenu from './budgetMenu.js';
+import MoneyData from './money.js';
 
 class Game{
 	constructor(game){
@@ -77,6 +78,14 @@ class Game{
 		});
 		// Start Game Rendering  - Last Method
 		this.animateGame();
+	}
+	calculateBudget(selectedIDs, month) {
+		// selectedIDs ex: [0, 3, 4, 5]
+		// month is some integer
+		// this.money holds current total
+		// MoneyData has your object
+		// calculate total
+		// update this.money with new total
 	}
 	handleClick(x,y){
 		this.lastClickX = x;
