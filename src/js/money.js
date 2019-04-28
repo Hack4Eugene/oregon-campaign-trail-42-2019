@@ -2,7 +2,7 @@ let MoneyData = {
     "BudgetItems": [
         {
             "NAME": "Campaign Manager",
-            "MOD": 0.2,
+            "MOD": 0.02,
             "INITCOST": 0,
             "MOCOST": -2000,
             "MINC": 2300,
@@ -11,9 +11,9 @@ let MoneyData = {
         },
         {
             "NAME": "Graphic Designer",
-            "MOD": 0.1,
-            "INITCOST": -2000,
-            "MOCOST": 0,
+            "MOD": 0.01,
+            "INITCOST": 0,
+            "MOCOST": -200,
             "MINC": 400,
             "MEFF": 0,
             "ID": 1
@@ -29,7 +29,7 @@ let MoneyData = {
         },
         {
             "NAME": "Volunteer Coordinator",
-            "MOD": 0.3,
+            "MOD": 0.03,
             "INITCOST": 0,
             "MOCOST": -800,
             "MINC": 800,
@@ -38,7 +38,7 @@ let MoneyData = {
         },
         {
             "NAME": "Literature/Digital",
-            "MOD": 0.3,
+            "MOD": 0.03,
             "INITCOST": 0,
             "MOCOST": -3000,
             "MINC": 1000,
@@ -47,7 +47,7 @@ let MoneyData = {
         },
         {
             "NAME": "Other Media",
-            "MOD": 0.2,
+            "MOD": 0.02,
             "INITCOST": 0,
             "MOCOST": -3000,
             "MINC": 0,

@@ -34,9 +34,9 @@ class Game{
 		this.money = 10000; // starting budget
 
 		// Scoring
-		this.polling = 0.3251243124; // TODO calculate this somewhere
+		this.polling = 0.1;
 		this.month = 0; 
-		this.lastMonth = 0; // updated when calculateBudget() is called
+		this.lastMonth = 0;
 
 		// Background
 		this.backgroundImage = null;
@@ -67,27 +67,35 @@ class Game{
 	}
 	calculateBudget(selectedIDs) {
 		if (this.month <= this.lastMonth) return;
-		let months = this.month - this.lastMonth;
-		for (let i in selectedIDs) {
-			this.money += MoneyData["BudgetItems"][selectedIDs[i]]["MOCOST"]*months;
-		}
-		this.lastMonth = this.month;
-
-		// for (var i = 0; i < selectedIDs.length; i++){
-		// 	if (budget_ledger["BudgetItems"][i].ID = selectedIDs[i]) {
-		// 		budget_ledger.LedgerItems.push({
-		// 			"EntryName": budget_ledger["BudgetItems"][i]["NAME"], 
-		// 			"Value": (budget_ledger["BudgetItems"][i]["MOCOST"] == 0) ? budget_ledger["BudgetItems"][i]["INITCOST"]:budget_ledger["BudgetItems"][i]["MOCOST"], 
-		// 			"MONTH":month, 
-		// 			"MOD": budget_ledger["BudgetItems"][i]["MOD"] 
-		// 		});
-		// 	}
+		//let months = this.month - this.lastMonth;
+		// for (let i in selectedIDs) {
+		// 	this.money += (MoneyData["BudgetItems"][selectedIDs[i]]["MOCOST"]*months)+;
 		// }
-		// var CashFlow = budget_ledger.LedgerItems;
-		// this.money = 0;
+		// this.lastMonth = this.month;
+
+		var PollMod = 0;
+
+		for (var i = 0; i < selectedIDs.length; i++){
+			if (budget_ledger["BudgetItems"][i].ID = selectedIDs[i]) {
+				budget_ledger.LedgerItems.push({
+					"EntryName": budget_ledger["BudgetItems"][i]["NAME"], 
+					"Value": (budget_ledger["BudgetItems"][i]["MOCOST"] + budget_ledger["BudgetItems"][i]["MINC"]), 
+					"MONTH":this.month, 
+					"MOD": budget_ledger["BudgetItems"][i]["MOD"] 
+				});
+				PollMod += budget_ledger["BudgetItems"][i]["MOD"];
+				this.polling += (this.polling*PollMod);
+			}
+		}
+		var CashFlow = budget_ledger.LedgerItems;
+		this.money = 0;
 		
-		// for (i = 0; i < CashFlow.length; i++) {  
-		// this.money += CashFlow[i].Value  } 
+		for (i = 0; i < CashFlow.length; i++) {  
+			this.money += CashFlow[i].Value;
+		}
+		
+
+		
 	}
 	handleClick(x,y){
 		this.lastClickX = x;
