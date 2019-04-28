@@ -44,7 +44,7 @@ class Game{
 		this.scenes = Scenes;
 
 		// budget
-		this.budgetMenu = new BudgetMenu(this);
+		this.budgetMenu = new BudgetMenu(this, MoneyData);
 		this.showBudgetMenu = false; // budget menu or menu access button is visible
 		this.money = 10000; // starting budget
 

@@ -1,14 +1,25 @@
 import Sprite from './sprite.js';
-import MoneyData from './money.js';
+// import MoneyData from './money.js';
 export default class BudgetMenu extends Sprite {
-	constructor(game) {
+	constructor(game, data) {
 		super(game);
+		this.data = data;
 		this.expanded = false;
 		this.budgetItems = [];
 		let offsetY = 100;
-		for (let i in MoneyData) { // TODO
-			this.budgetItems.push(new BudgetItem(100, offsetY, 600, 50, 24, "$200 – Something you can purchase"));
+		for (let i = 0; i < data["BudgetItems"].length; i++) {
+			let c1 = data["BudgetItems"][i]["INITCOST"];
+			let c2 = data["BudgetItems"][i]["MOCOST"];
+			let cost = "";
+			if (c1 < 0) {
+				cost = (c1 > 999 ? "$"+c1/1000+"K" : c1)+" (one time)";
+			} else {
+				cost = (c2 > 999 ? "$"+c2/1000+"K" : c2)+"/month";
+			}
+			this.budgetItems.push(new BudgetItem(100, offsetY, 600, 50, 24, data[i].NAME, cost));
+			offsetY += 80;
 		}
+		
 		let img = new Image();
 		img.src = './dist/images/BudgetButton.png';
 		img.height = 23;
@@ -97,20 +108,20 @@ class Button {
 	}
 }
 class BudgetItem {
-	constructor(x, y, w, h, pt, text) {
+	constructor(x, y, w, h, pt, text1, text2) {
 		this.x = x;
 		this.y = y;
 		this.w = w;
 		this.h = h;
 		this.pt = pt;
-		this.text = text;
+		this.text1 = text1;
+		this.text2 = text2;
 
 		this.imgChecked = new Image();
 		this.imgChecked.src = './dist/images/CheckButton_Selected.png';
 		this.imgUnchecked = new Image();
 		this.imgUnchecked.src = './dist/images/CheckButton_Static.png';
 
-		this.textColor = "rgb(250, 250, 250)";
 		this.font = pt+"px Arial";
 		this.pad = 5;
 		this.checked = false;
@@ -126,8 +137,10 @@ class BudgetItem {
 		ctx.fillRect(this.x-this.pad, this.y-this.pad, this.w+(this.pad*2), this.h+(this.pad*2)); // background
 		let img = (this.checked) ? this.imgChecked : this.imgUnchecked;
 		ctx.drawImage(img, this.x, this.y+(this.h-img.height)/2); // checkbox
-		ctx.fillStyle = this.textColor;
 		ctx.font = this.font;
-		ctx.fillText(this.text, this.x+img.width+20, (this.y+this.h)-(this.h-this.pt)/2); // center text vertically
+		ctx.fillStyle = "EBE6DD";
+		ctx.fillText(this.text1, this.x+img.width+20, (this.y+this.h)-(this.h-this.pt)/2);
+		ctx.fillStyle = "389DB1";
+		ctx.fillText(this.text2, this.x+img.width+20+(this.text1.length+1)*(this.pt/2), (this.y+this.h)-(this.h-this.pt)/2);
 	}
 }
