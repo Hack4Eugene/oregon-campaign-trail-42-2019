@@ -43,8 +43,8 @@ class Game{
 		this.scenes = Scenes;
 
 		// budget
-		this.budgetMenu = new BudgetMenu(game);
-		this.showbudgetMenu = false; // budget menu or menu access button is visible
+		this.budgetMenu = new BudgetMenu(this);
+		this.showBudgetMenu = false; // budget menu or menu access button is visible
 		this.money = 10000; // starting budget
 
 		// Round has begun
@@ -68,6 +68,7 @@ class Game{
 		this.firstload = true;
 	
 		this.canvas.addEventListener('click', (e) => {
+			console.log("mousedown @ "+e.clientX+" "+e.clientY);
 			const pos = {
 				x: e.clientX,
 				y: e.clientY
@@ -80,20 +81,21 @@ class Game{
 	handleClick(x,y){
 		this.lastClickX = x;
 		this.lastClickY = y;
-		if(this.showbudgetMenu) {
-			this.budgetMenu.click(x,y);
+		if(this.showBudgetMenu) {
+			if (this.budgetMenu.click(x,y) === true) return;
 		}
-		else if(this.playButton){
+		if(this.playButton){
 			// Play the game button
 			if((x>= 526) & (x <= 850) & (y>= 354) & (y <= 400))  {
 				// Stop drawing the menu
 				this.firstload = false;
 				this.playButton = false;
 				this.showScene = true;
+				this.showBudgetMenu = true;
 				// Start drawing the first scene
 				this.currentScene = new Scene(this,this.getSceneByName("start"));
 			}
-			console.log("x: " + x + "y: " + y);
+			// console.log("x: " + x + "y: " + y);
 		}
 		// If we want to do something special outside of scenes we can set the currentScene to nothing
 		else if(this.showScene){
@@ -184,11 +186,12 @@ class Game{
 			// Draw the Batter
 			//this.batter.draw(this.ctx);
 
-			if (this.budgetMenu != null) this.budgetMenu.render();
-
 			if(this.currentScene != null){
 				this.currentScene.render();
 			}
+
+			if (this.budgetMenu !== null) this.budgetMenu.render();
+
 			// draw play again
 			/*if(this.showPlayAgain){
 				this.drawPlayAgain();

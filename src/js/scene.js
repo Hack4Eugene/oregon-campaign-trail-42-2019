@@ -76,7 +76,7 @@ export default class Scene extends Sprite{
 			}			
 
 			let selection = y
-			console.log("I was clicked x:" +x+ "y:" + y);
+			// console.log("I was clicked x:" +x+ "y:" + y);
 		    console.log("options:" + this.options.choices.length);
 	}
 	
