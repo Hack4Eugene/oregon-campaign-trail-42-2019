@@ -34,7 +34,7 @@ class Game{
 		this.money = 10000; // starting budget
 
 		// Scoring
-		this.polling = 0.3251243124; // TODO calculate this somewhere
+		this.polling = 0.1; // updated when scene is clicked
 		this.month = 0; 
 		this.lastMonth = 0; // updated when calculateBudget() is called
 
@@ -179,7 +179,6 @@ class Game{
 	}
 	animateGame(){
 		this.timer = setInterval(() => {
-
 
 			// Clear the Canvas
 			this.clearCanvas();

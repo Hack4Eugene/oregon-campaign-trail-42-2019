@@ -1,3 +1,5 @@
+// Jeremy King
+
 import Sprite from './sprite.js';
 import MoneyData from './money.js';
 export default class BudgetMenu extends Sprite {
