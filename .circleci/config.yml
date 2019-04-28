@@ -5,7 +5,7 @@ jobs:
       - image: circleci/node:10
     steps:
       - checkout
-      - run: npm install && npm run webpack
+      - run: yarn && yarn webpack
       - persist_to_workspace:
           root: ./
           # must include anything needed to build/tag/push docker image
