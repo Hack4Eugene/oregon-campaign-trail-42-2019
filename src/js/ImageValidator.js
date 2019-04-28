@@ -6,7 +6,7 @@ ValidateImageEndpoints() {
 	Scenes.Foreach(sOut => {
 		sOut["choices"].Foreach(c => {
 			let hasMatch = false;
-			let sceneName = c["sceneDestination"]
+			let sceneName = c["sceneDestination"];
 			Scenes.Foreach(sIn => {
 				if (sIn["name"] == sceneName) {
 					hasMatch = true;

@@ -287,10 +287,29 @@ class Game{
  
 
 	}
+
+	validateEventEndpoints() {
+		this.scenes.forEach((sOut) => {
+			sOut["choices"].forEach((c) => {
+				let hasMatch = false;
+				let sceneName = c["sceneDestination"];
+				Scenes.forEach((sIn) => {
+					if (sIn["name"] == sceneName) {
+						hasMatch = true;
+					}
+				});
+				if (!hasMatch) {
+					console.log("Scene: " + sOut["name"] + " Decision: " + c["description"] + " has no match!");
+				}
+			});
+		});
+	}
+
 }
 let game;
 window.addEventListener('load', () => {
 	game = new Game();
+	game.validateEventEndpoints();
 });
 window.addEventListener('resize', () =>{
 	console.log("Window Changed");
