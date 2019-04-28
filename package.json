@@ -20,7 +20,7 @@
   },
   "homepage": "https://github.com/Hack4Eugene/oregon-campaign-trail-42-2019/#readme",
   "devDependencies": {
-    "babel-core": "^6.26.0",
+    "babel-core": "^6.26.3",
     "babel-loader": "^7.1.2",
     "babel-preset-env": "^1.6.1",
     "babel-preset-es2015": "^6.24.1",
@@ -45,6 +45,7 @@
     "webpack-dev-server": "^2.11.5"
   },
   "dependencies": {
+    "babel": "^6.23.0",
     "bootstrap": "^3.3.7",
     "jquery": "^3.2.1"
   }

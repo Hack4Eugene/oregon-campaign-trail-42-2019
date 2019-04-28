@@ -1,4 +1,25 @@
-let Scenes =  [
+let Scenes = [
+	{
+		"name": "Start Campaign",
+		"choices": [
+			{
+				"description": "Begin the Campaign.",
+				"sceneDestination": "start"
+			},
+			{
+				"description": "Learn About the Game.",
+				"sceneDestination": "aboutTheGame"
+			},
+			{
+				"description": "Credits",
+				"sceneDestination": "credits"
+			}
+		]
+	},
+
+]
+
+let TestScenes =  [
 	{
 		"name": "start",
 		"choices" : [
