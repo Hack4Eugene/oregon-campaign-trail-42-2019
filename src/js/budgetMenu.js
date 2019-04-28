@@ -80,11 +80,14 @@ export default class BudgetMenu extends Sprite {
 	}
 	// private
 	renderTitle(ctx) {
+		ctx.strokecolor = "white";
 		ctx.font = "24px BlueSky";
-		ctx.fillStyle = "389DB1";
+		//ctx.fillStyle = "389DB1";
+		ctx.fillStyle = "white";
 		ctx.fillText("BUDGET", this.ax2, 150);
 	}
 	renderCash(ctx) {
+		ctx.strokecolor = "white";
 		ctx.font = "12px BlueSky";
 		ctx.fillStyle = "389DB1";
 		ctx.fillText("CASH", this.ax1, 180);
@@ -92,6 +95,7 @@ export default class BudgetMenu extends Sprite {
 		ctx.fillText("$"+this.game.money.toLocaleString(), this.ax1, 215);
 	}
 	renderSummary(ctx) {
+		ctx.strokecolor = "white";
 		this.game.renderDate();
 		this.renderCash(ctx);
 		ctx.font = "12px BlueSky";

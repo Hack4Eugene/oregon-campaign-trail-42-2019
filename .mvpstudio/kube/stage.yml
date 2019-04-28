@@ -1,0 +1,64 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: stage-fourtytwo-deployment
+  namespace: fourtytwo
+  labels:
+    app: fourtytwo
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: fourtytwo
+  template:
+    metadata:
+      labels:
+        app: fourtytwo
+    spec:
+      containers:
+      - name: web-server
+        image: mvpstudio/fourtytwo:a1fe80a
+        resources:
+           limits:
+              cpu: 0.25
+              memory: 250Mi
+           requests:
+              cpu: 0.25
+              memory: 250Mi
+        ports:
+        - containerPort: 80
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxSurge: 1
+      maxUnavailable: 1 
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: fourtytwo-web
+  namespace: fourtytwo
+  annotations:
+    getambassador.io/config: |
+      ---
+      apiVersion: ambassador/v0
+      kind: Mapping
+      name: fourtytwo-mapping
+      host: 42.stage.apps.mvpstudio.org
+      prefix: /
+      service: fourtytwo-web.fourtytwo
+      ---
+      apiVersion: ambassador/v0
+      kind: TLSContext
+      name: stage-fourtytwo-tls
+      hosts:
+      - 42.stage.apps.mvpstudio.org
+      secret: stage-apps-cert
+spec:
+  selector:
+     app: fourtytwo
+  ports:
+  - protocol: TCP
+    port: 80
+    targetPort: 80
