@@ -12,22 +12,6 @@ class Game{
 		this.clickAbleSprites = [];
 		this.lastClickX = null;
 		this.lastclickY = null;
-		/*
-		type {
-			x.pos
-			x.width
-			y.pos
-			y.width
-		}
-		*/
-		/* Refactor into array of sprites */
-		
-		//this.batter = new Batter(this);
-	//	//this.pitcher = new Pitcher(this);
-		//this.ball = new Ball(this);
-		//this.platform = new Platform(this);
-		//this.scoreboard = new Scoreboard(this);
- 
 		/* Some Defaults */
 		this.backgroundColor = "#000000";
 
@@ -50,15 +34,11 @@ class Game{
 		this.backgroundImage = null;
 
 		this.audio = new Audio("dist/sound/loop.mp3");
-		//this.audio.play();
-		this.audio.loop = true;
+		
 		/* array of images */
 		this.backgroundImage = null;
-
-
 		this.showPlayAgain = false;
 		/* Call Methods */
-		/* stretch canvas */
 		this.initCanvas();
 		this.playButton = true;
 		this.firstload = true;
@@ -85,6 +65,8 @@ class Game{
 				this.firstload = false;
 				this.playButton = false;
 				this.showScene = true;
+				this.audio.play();
+				this.audio.loop = true;
 				// Start drawing the first scene
 				this.currentScene = new Scene(this,this.getSceneByName("start"));
 			}
@@ -94,8 +76,7 @@ class Game{
 		else if(this.showScene){
 			
 				this.currentScene.click(x,y);
-		}
-		
+		}	
 	}
 	getSceneByName(name){
 		let selectedScene = null;
@@ -137,64 +118,22 @@ class Game{
 		drawing = new Image();
 		drawing.src = "./dist/images/credits.png"; // 4
 		this.Images.push(drawing);
-
-/*		
-		drawing = new Image();
-		drawing.src = "./dist/images/keys.png"; // 4
-		this.backgroundImages.push(drawing);
-
-		drawing = new Image();
-		drawing.src = "./dist/images/playagain.png"; // 4
-		this.backgroundImages.push(drawing);
-
-		drawing = new Image();
-		drawing.src = "./dist/images/title.png"; // 5
-		this.backgroundImages.push(drawing);
-
-		drawing = new Image();
-		drawing.src = "./dist/images/play.png"; // 6
-		this.backgroundImages.push(drawing);
-
-		this.audio = [];
-		this.audio.push(new Audio('./dist/audio/47356__fotoshop__oof.wav')); //0
-		this.audio.push(new Audio('./dist/audio/fart01.wav')); // 1 / 
-		this.audio.push(new Audio('./dist/audio/hitbat_v1.wav')); // 2 / 
-		this.audio.push(new Audio('./dist/audio/stadiumcheer1.wav')); // 3 / 
-		this.audio.push(new Audio('./dist/audio/whooshbat1.wav')); //4 
-		
-*/
 	}
 	animateGame(){
 		this.timer = setInterval(() => {
-			
-
 			// Clear the Canvas
 			this.clearCanvas();
 
-	
-
-
-       
    			/* Render Scene Manager */
            	if(this.currentScene != null){
            		this.currentScene.render();
            	}
-      
+     
             /* show menu */
 			if(this.firstload == true){
 				this.drawMenu();
 			}
-            
-  
-
 		}), this.tickTime;
-	}
-	
-	loadScene(scene){
-		console.log("load scene" + scene);
-	}
-	drawPlayAgain(){
-		this.ctx.drawImage(this.backgroundImages[4],375,110);
 	}
 	drawMenu(){
 

@@ -61,7 +61,7 @@
 /******/ 	
 /******/ 	
 /******/ 	var hotApplyOnUpdate = true;
-/******/ 	var hotCurrentHash = "8c4beab3ed1994024b25"; // eslint-disable-line no-unused-vars
+/******/ 	var hotCurrentHash = "943541dcad4f47e22a4e"; // eslint-disable-line no-unused-vars
 /******/ 	var hotRequestTimeout = 10000;
 /******/ 	var hotCurrentModuleData = {};
 /******/ 	var hotCurrentChildModule; // eslint-disable-line no-unused-vars
@@ -787,7 +787,7 @@ var Viewport = function () {
 				this.viewport_meta.setAttribute('content', "width=" + screen.width);
 				console.log("Setting viewport to " + screen.width);
 			} else {
-				this.viewport_meta.setAttribute('content', "width=" + screen.width + ",initial-scale=0.75,height=" + screen.height + ",user-scalable=no, minimal-ui");
+				this.viewport_meta.setAttribute('content', "width=" + screen.width + ",initial-scale=1,height=" + screen.height + ",user-scalable=no, minimal-ui");
 			}
 		}
 	}]);

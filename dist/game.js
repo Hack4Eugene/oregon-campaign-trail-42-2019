@@ -61,7 +61,7 @@
 /******/ 	
 /******/ 	
 /******/ 	var hotApplyOnUpdate = true;
-/******/ 	var hotCurrentHash = "8c4beab3ed1994024b25"; // eslint-disable-line no-unused-vars
+/******/ 	var hotCurrentHash = "943541dcad4f47e22a4e"; // eslint-disable-line no-unused-vars
 /******/ 	var hotRequestTimeout = 10000;
 /******/ 	var hotCurrentModuleData = {};
 /******/ 	var hotCurrentChildModule; // eslint-disable-line no-unused-vars
@@ -742,23 +742,6 @@ var Sprite = function Sprite(game) {
 	_classCallCheck(this, Sprite);
 
 	this.game = game;
-	/* Where on the canvas is it */
-	this.positionX = 0;
-	this.positionY = 0;
-	/* How fast is it going */
-	this.speed = 0;
-
-	/* Where is it going */
-
-	this.destinationX = 0;
-	this.destinationY = 0;
-
-	/* Do we draw this in the canvas */
-	this.visible = false;
-
-	/* Center of Screen */
-	this.centerX = this.game.canvas.width / 2;
-	this.centerY = this.game.canvas.height / 2;
 };
 
 exports.default = Sprite;
@@ -801,22 +784,6 @@ var Game = function () {
 		this.clickAbleSprites = [];
 		this.lastClickX = null;
 		this.lastclickY = null;
-		/*
-  type {
-  	x.pos
-  	x.width
-  	y.pos
-  	y.width
-  }
-  */
-		/* Refactor into array of sprites */
-
-		//this.batter = new Batter(this);
-		//	//this.pitcher = new Pitcher(this);
-		//this.ball = new Ball(this);
-		//this.platform = new Platform(this);
-		//this.scoreboard = new Scoreboard(this);
-
 		/* Some Defaults */
 		this.backgroundColor = "#000000";
 
@@ -839,14 +806,11 @@ var Game = function () {
 		this.backgroundImage = null;
 
 		this.audio = new Audio("dist/sound/loop.mp3");
-		this.audio.play();
-		this.audio.loop = true;
+
 		/* array of images */
 		this.backgroundImage = null;
-
 		this.showPlayAgain = false;
 		/* Call Methods */
-		/* stretch canvas */
 		this.initCanvas();
 		this.playButton = true;
 		this.firstload = true;
@@ -869,11 +833,13 @@ var Game = function () {
 			this.lastClickY = y;
 			if (this.playButton) {
 				// Play the game button
-				if (x >= 526 & x <= 850 & y >= 354 & y <= 400) {
+				if (x >= 526 & x <= 850 & y >= 200 & y <= 400) {
 					// Stop drawing the menu
 					this.firstload = false;
 					this.playButton = false;
 					this.showScene = true;
+					this.audio.play();
+					this.audio.loop = true;
 					// Start drawing the first scene
 					this.currentScene = new _scene2.default(this, this.getSceneByName("start"));
 				}
@@ -928,32 +894,6 @@ var Game = function () {
 			drawing = new Image();
 			drawing.src = "./dist/images/credits.png"; // 4
 			this.Images.push(drawing);
-
-			/*		
-   		drawing = new Image();
-   		drawing.src = "./dist/images/keys.png"; // 4
-   		this.backgroundImages.push(drawing);
-   
-   		drawing = new Image();
-   		drawing.src = "./dist/images/playagain.png"; // 4
-   		this.backgroundImages.push(drawing);
-   
-   		drawing = new Image();
-   		drawing.src = "./dist/images/title.png"; // 5
-   		this.backgroundImages.push(drawing);
-   
-   		drawing = new Image();
-   		drawing.src = "./dist/images/play.png"; // 6
-   		this.backgroundImages.push(drawing);
-   
-   		this.audio = [];
-   		this.audio.push(new Audio('./dist/audio/47356__fotoshop__oof.wav')); //0
-   		this.audio.push(new Audio('./dist/audio/fart01.wav')); // 1 / 
-   		this.audio.push(new Audio('./dist/audio/hitbat_v1.wav')); // 2 / 
-   		this.audio.push(new Audio('./dist/audio/stadiumcheer1.wav')); // 3 / 
-   		this.audio.push(new Audio('./dist/audio/whooshbat1.wav')); //4 
-   		
-   */
 		}
 	}, {
 		key: 'animateGame',
@@ -961,7 +901,6 @@ var Game = function () {
 			var _this2 = this;
 
 			this.timer = setInterval(function () {
-
 				// Clear the Canvas
 				_this2.clearCanvas();
 
@@ -975,16 +914,6 @@ var Game = function () {
 					_this2.drawMenu();
 				}
 			}), this.tickTime;
-		}
-	}, {
-		key: 'loadScene',
-		value: function loadScene(scene) {
-			console.log("load scene" + scene);
-		}
-	}, {
-		key: 'drawPlayAgain',
-		value: function drawPlayAgain() {
-			this.ctx.drawImage(this.backgroundImages[4], 375, 110);
 		}
 	}, {
 		key: 'drawMenu',
@@ -1004,7 +933,7 @@ var Game = function () {
 
 			this.ctx.strokecolor = "red";
 			this.ctx.fillStyle = "red";
-			this.ctx.font = "bold 24px Arial";
+			this.ctx.font = "bold 24px BlueSky8x8Monospaced";
 			this.ctx.color = "red";
 		}
 	}, {
@@ -1046,24 +975,29 @@ var Scenes = [{
 	"question": "At a school board meeting in April 2020, the school board surprises the community with plans to change the location of your local school. You are upset by these plans, and take the opportunity to speak out against the move. ", // Question 
 	"current_date": "April 2020", // Date for Month
 	"campaign_month_count": 0, // Counter for Budget
+	"img": "Animation_School.gif",
 	"choices": [{
 		"description": "Continue",
 		"sceneDestination": "screen_4"
 	}]
 }, { // Screen 4
 	"name": "screen_4",
-	"question": "After the meeting, your friend Heather, a former school board member, says, \"Hey, you should run. Have you thought about it?\" \n\t\t\u201CI wouldn\u2019t even know where to start--these people seem like they\u2019ve been doing this their whole lives.\u201D\n\t\t\u201CLet\u2019s have coffee in May,\u201D Heather says. \u201CI was on the school board a few years ago, and I can help you get started.\u201D",
+	"question": "After the meeting, your friend Heather, a former school board member, says, \"Hey, you should run. Have you thought about it?\" \n\n\t\t\u201CI wouldn\u2019t even know where to start--these people seem like they\u2019ve been doing this their whole lives.\u201D\n\t\t\u201CLet\u2019s have coffee in May,\u201D Heather says. \u201CI was on the school board a few years ago, and I can help you get started.\u201D",
+
 	"current_date": "April 2020", // Date for Month
 	"campaign_month_count": 0, // Counter for Budget
+	"img": "Animation_Heather_Walking.gif",
 	"choices": [{
 		"description": "Continue",
 		"sceneDestination": "screen_5"
 	}]
 }, { // Screen 5
 	"name": "screen_5",
-	"question": "You meet up with Heather for coffee at The Old Washburne.\n\t\t\u201CI\u2019ve never even thought about running for office before,\u201D you tell Heather.\n\t\t\n\t\tHeather smiles and tells you, \u201CIt\u2019s not that hard, but it does take some planning. The school board elections happen every 2 years, and our next one is in May 2021. This is a great time to get started!\u201D",
+	"question": "You meet up with Heather for coffee at The Old Washburne.\n\n\t\t\u201CI\u2019ve never even thought about running for office before,\u201D you tell Heather.\n\t\t\n\t\tHeather smiles and tells you, \u201CIt\u2019s not that hard, but it does take some planning. The school board elections happen every 2 years, and our next one is in May 2021. This is a great time to get started!\u201D",
+
 	"current_date": "April 2020", // Date for Month
 	"campaign_month_count": 0, // Counter for Budget
+	"img": "Animation_Heather_Coffee.gif",
 	"choices": [{
 		"description": "Continue",
 		"sceneDestination": "screen_6"
@@ -1073,40 +1007,600 @@ var Scenes = [{
 	"question": "\u201CWhat do I need to do? Do I have to go declare my intention somewhere?\u201D\n\t\tHeather takes out a pad of paper. \u201CActually, the best place to start is with budgeting. What\u2019s your top budget priority?\u201D \n\t\t",
 	"current_date": "May 2020", // Date for Month
 	"campaign_month_count": 1, // Counter for Budget
+	"img": "Animation_Heather_Planning.gif",
 	"choices": [{
 		"description": "Rent an office to run your campaign from",
-		"sceneDestination": "start"
+
+		"sceneDestination": "screen_6_wrong"
 	}, {
 		"description": "Hire a campaign manager",
-		"sceneDestination": "start"
+		"sceneDestination": "screen_6_right"
 	}, {
 		"description": "Hire a public relations manager",
-		"sceneDestination": "start"
+		"sceneDestination": "screen_6_wrong"
 	}, {
 		"description": "Find volunteers",
-		"sceneDestination": "start"
+		"sceneDestination": "screen_6_wrong"
+	}]
+
+}, {
+	"name": "screen_6_wrong",
+	"question": "Heather responds with \u201CI\u2019d find someone to manage my campaign and design a logo first, but this could work too!\u201D",
+	"current_date": "May 2020", // Date for Month
+	"campaign_month_count": 1, // Counter for Budget
+	"img": "Animation_Heather_Planning.gif",
+	"choices": [{
+		"description": "Continue",
+		"sceneDestination": "screen_7"
+	}]
+
+}, {
+	"name": "screen_6_right",
+	"question": "Heather responds with, \u201CA campaign manager and someone to design a logo would be my top priority too!\u201D",
+	"current_date": "May 2020", // Date for Month
+	"campaign_month_count": 1, // Counter for Budget
+	"img": "Animation_Heather_Planning.gif",
+	"choices": [{
+		"description": "Continue",
+		"sceneDestination": "screen_7"
 	}]
 
 }, {
 	"name": "screen_7",
-	"question": "Example Question? Wecome to the game?",
-	"current_date": "April 2020", // Date for Month
+	"question": "It\u2019s time to set your budget! Click on the \u201Cbudget\u201D button to set up your campaign budget. Each item will cost money. Items may generate additional income, and even give bonuses to your polling percentage.",
+	"current_date": "May 2020", // Date for Month
 	"campaign_month_count": 1, // Counter for Budget
+	"img": "Animation_Heather_Planning.gif",
 	"choices": [{
-		"description": "go back to example",
-		"sceneDestination": "start"
+		"description": "Continue",
+		"sceneDestination": "screen_8"
 	}]
 
 }, {
-	"name": "screen_6",
-	"question": "Example Question? Wecome to the game?",
-	"current_date": "April 2020", // Date for Month
-	"campaign_month_count": 0, // Counter for Budget
+	"name": "screen_8",
+	"question": "The campaign is getting organized, and you meet up with Heather again in June. \u201CNow that we\u2019ve got your budget laid out, we should figure out what your goal is,\u201D Heather says. \u201CDo you know how to calculate your vote win number?\u201D Which is the formula for a \u201Cvote win number\u201D?",
+
+	"current_date": "June 2020", // Date for Month
+	"campaign_month_count": 2, // Counter for Budget
 	"choices": [{
-		"description": "go back to example",
-		"sceneDestination": "start"
+		"description": "The largest number of votes a candidate has received",
+		"sceneDestination": "screen_8_wrong"
+	}, {
+		"description": "The most recent number of votes that a candidate needed to win",
+		"sceneDestination": "screen_8_wrong"
+	}, {
+		"description": "The average number of winning votes needed over the last two campaigns, multiplied by .55",
+		"sceneDestination": "screen_8_right"
+	}, {
+		"description": "The number of votes needed to be elected in the previous three elections",
+		"sceneDestination": "screen_8_wrong"
 	}]
 
+}, {
+	"name": "screen_8_wrong",
+	"question": "Heather responds with \u201CThat isn't what I'd do. But I guess you could try it and see what happens.\"",
+	"current_date": "June 2020", // Date for Month
+	"campaign_month_count": 2, // Counter for Budget
+	"choices": [{
+		"description": "Continue",
+		"sceneDestination": "screen_9"
+	}]
+
+}, {
+	"name": "screen_8_right",
+	"question": "Heather responds with, \u201CYes! This is exactly what I would suggest!\u201D",
+	"current_date": "June 2020", // Date for Month
+	"campaign_month_count": 2, // Counter for Budget
+	"choices": [{
+		"description": "Continue",
+		"sceneDestination": "screen_9"
+	}]
+
+}, {
+	"name": "screen_9",
+	"question": "Everyone is getting into a rhythm, but your campaign doesn\u2019t have a lot of visibility in the community yet. Heather advises you to start some community outreach efforts.\n\n\t\tWhat outreach method do you think will be LEAST effective for Baby Boomers?",
+	"current_date": "July 2020", // Date for Month
+	"campaign_month_count": 3, // Counter for Budget
+	"choices": [{
+		"description": "Facebook",
+		"sceneDestination": "screen_9_wrong"
+	}, {
+		"description": "Door-to-door canvassing",
+		"sceneDestination": "screen_9_wrong"
+	}, {
+		"description": "Instagram",
+		"sceneDestination": "screen_9_right"
+	}, {
+		"description": "Phone banks",
+		"sceneDestination": "screen_9_wrong"
+	}, {
+		"description": "Radio ads",
+		"sceneDestination": "screen_9_wrong"
+	}]
+
+}, {
+	"name": "screen_9_wrong",
+	"question": "Heather responds with \u201CThat isn't what I'd do. But I guess you could try it and see what happens.\"",
+	"current_date": "July 2020", // Date for Month
+	"campaign_month_count": 3, // Counter for Budget
+
+	"choices": [{
+		"description": "Continue",
+		"sceneDestination": "screen_10"
+	}]
+
+}, {
+	"name": "screen_9_right",
+	"question": "Heather responds with, \u201CYes! This is exactly what I would suggest!\u201D",
+	"current_date": "July 2020", // Date for Month
+	"campaign_month_count": 3, // Counter for Budget
+	"choices": [{
+		"description": "Continue",
+		"sceneDestination": "screen_10"
+	}]
+
+}, {
+	"name": "screen_10",
+	"question": "The after school political club has decided to help out. Their coordinator, Tim, has come to you to ask how they can they can get involved. After speaking with Heather, you decide to have them reach out to the younger voter demographic. \n\n\t\tWhat outreach method will be MOST effective for Millennials?",
+	"current_date": "July 2020", // Date for Month
+	"campaign_month_count": 3, // Counter for Budget
+	"choices": [{
+		"description": "Facebook",
+		"sceneDestination": "screen_10_wrong"
+	}, {
+		"description": "Door-to-door canvassing",
+		"sceneDestination": "screen_10_wrong"
+	}, {
+		"description": "Phone banks",
+		"sceneDestination": "screen_10_wrong"
+	}, {
+		"description": "Instagram",
+		"sceneDestination": "screen_10_right"
+	}, {
+		"description": "Radio ads",
+		"sceneDestination": "screen_10_wrong"
+	}]
+
+}, {
+	"name": "screen_10_wrong",
+	"question": "Heather responds with \u201CThat isn't what I'd do. But I guess you could try it and see what happens.\"",
+	"current_date": "July 2020", // Date for Month
+	"campaign_month_count": 3, // Counter for Budget
+	"choices": [{
+		"description": "Continue",
+		"sceneDestination": "screen_11"
+	}]
+
+}, {
+	"name": "screen_10_right",
+	"question": "Heather responds with, \u201CYes! This is exactly what I would suggest!\u201D",
+	"current_date": "July 2020", // Date for Month
+	"campaign_month_count": 3, // Counter for Budget
+	"choices": [{
+		"description": "Continue",
+		"sceneDestination": "screen_11"
+	}]
+
+}, {
+	"name": "screen_11",
+	"question": "You\u2019re out at the Public House for dinner one night and see Heather. She asks, \u201CHow\u2019s your budget doing? In the second quarter, you\u2019ll probably need to start finding some volunteers. A volunteer coordinator could be a real help finding people and getting them organized!\u201D",
+	"current_date": "July 2020", // Date for Month
+	"campaign_month_count": 3, // Counter for Budget
+	"choices": [{
+		"description": "Continue",
+		"sceneDestination": "screen_12"
+	}]
+
+}, {
+	"name": "screen_12",
+	"question": "As the summer wears on, your campaign manager decides that it\u2019s time to start recruiting volunteers to help out with the campaign. There are many different benefits that different volunteers could bring, but what is the MOST important quality to look for?",
+	"current_date": "August 2020", // Date for Month
+	"campaign_month_count": 4, // Counter for Budget
+	"choices": [{
+		"description": "Skills",
+		"sceneDestination": "screen_12_wrong"
+	}, {
+		"description": "Alignment of goals",
+		"sceneDestination": "screen_12_right"
+	}, {
+		"description": "Availability",
+		"sceneDestination": "screen_12_right"
+	}, {
+		"description": "Dedication to the cause",
+		"sceneDestination": "screen_12_wrong"
+	}, {
+		"description": "Personality",
+		"sceneDestination": "screen_12_wrong"
+	}] }, {
+	"name": "screen_12_wrong",
+	"question": "Heather responds with \u201CThat isn't what I'd do. But I guess you could try it and see what happens.\"",
+	"current_date": "July 2020", // Date for Month
+	"campaign_month_count": 4, // Counter for Budget
+	"choices": [{
+		"description": "Continue",
+		"sceneDestination": "screen_13"
+	}]
+
+}, {
+	"name": "screen_12_right",
+	"question": "Heather responds with, \u201CYes! This is exactly what I would suggest!\u201D",
+	"current_date": "July 2020", // Date for Month
+	"campaign_month_count": 4, // Counter for Budget
+	"choices": [{
+		"description": "Continue",
+		"sceneDestination": "screen_13"
+	}]
+
+}, {
+	"name": "screen_13",
+	"question": "You check the funds with your team and discover that the money is getting low. You\u2019ve already solicited donations from everyone you know, so you need to find some new sources of funding. How can you refill your coffers?",
+	"current_date": "September 2020", // Date for Month
+	"campaign_month_count": 4, // Counter for Budget
+	"choices": [{
+		"description": "Visit the Oregon Secretary of State Finance Page (ORESTAR)",
+		"sceneDestination": "screen_13_right"
+	}, {
+		"description": "High-interest loan",
+		"sceneDestination": "screen_13_wrong"
+	}, {
+		"description": "An unpublicized Go Fund Me campaign",
+		"sceneDestination": "screen_13_wrong"
+	}, {
+		"description": "Cold-calling local businesses",
+		"sceneDestination": "screen_13_wrong"
+	}]
+
+}, {
+	"name": "screen_13_wrong",
+	"question": "Heather responds with \u201CThat isn't what I'd do. But I guess you could try it and see what happens.\" Check out ORESTAR for more help: https://sos.oregon.gov/elections/Pages/orestar.aspx",
+	"current_date": "May 2020", // Date for Month
+	"campaign_month_count": 1, // Counter for Budget
+	"choices": [{
+		"description": "Continue",
+		"sceneDestination": "screen_14"
+	}]
+
+}, {
+	"name": "screen_13_right",
+	"question": "Heather responds with, \u201CYes! This is exactly what I would suggest!\u201D",
+	"current_date": "May 2020", // Date for Month
+	"campaign_month_count": 1, // Counter for Budget
+	"choices": [{
+		"description": "Continue",
+		"sceneDestination": "screen_14"
+	}]
+
+}, {
+	"name": "screen_14",
+	"question": "You\u2019re reading the paper one morning in October, and notice that there\u2019s a letter to the editor supporting one of your opponents in the race. You realize that you need to get your name in the paper somehow too. What\u2019s the best way to achieve this goal?",
+	"current_date": "October 2020", // Date for Month
+	"campaign_month_count": 6, // Counter for Budget
+	"choices": [{
+		"description": "Invite a reporter you know of out for drinks",
+		"sceneDestination": "screen_14_wrong"
+	}, {
+		"description": "E-mail the paper asking them to write an article about you",
+		"sceneDestination": "screen_14_wrong"
+	}, {
+		"description": "Prepare an editorial with your policy ideas and submit it for publication",
+		"sceneDestination": "screen_14_right"
+	}, {
+		"description": "Show up unannounced at the front desk and demand a meeting with the editor",
+		"sceneDestination": "screen_14_wrong"
+	}]
+
+}, {
+	"name": "screen_14_wrong",
+	"question": "Heather responds with \u201CThat isn't what I'd do. But I guess you could try it and see what happens.\"",
+	"current_date": "October 2020", // Date for Month
+	"campaign_month_count": 6, // Counter for Budget
+	"choices": [{
+		"description": "Continue",
+		"sceneDestination": "screen_15"
+	}]
+
+}, {
+	"name": "screen_14_right",
+	"question": "Heather responds with, \u201CYes! This is exactly what I would suggest!\u201D",
+	"current_date": "October 2020", // Date for Month
+	"campaign_month_count": 6, // Counter for Budget
+	"choices": [{
+		"description": "Continue",
+		"sceneDestination": "screen_15"
+	}]
+
+}, {
+	"name": "screen_15",
+	"question": "It\u2019s the morning after the 2020 presidential election and the world is abuzz. Although all of the attention is at the White House, you\u2019re organizing for the most local elected level of office. You\u2019re excited to run and want to make it official when you realize\n\t\tHow do you qualify for the ballot? ",
+	"current_date": "November 2020", // Date for Month
+	"campaign_month_count": 7, // Counter for Budget
+	"choices": [{
+		"description": "You pay $10 or collect 25 signatures",
+		"sceneDestination": "screen_15_right"
+	}, {
+		"description": "You pay $30",
+		"sceneDestination": "screen_15_wrong"
+	}, {
+		"description": "You pay $10 fee and collect 25 signatures",
+		"sceneDestination": "screen_15_wrong"
+	}, {
+		"description": "You pay $30 or collect 20 signatures",
+		"sceneDestination": "screen_15_wrong"
+	}]
+
+}, {
+	"name": "screen_15_wrong",
+	"question": "Heather responds with \u201CThat isn't what I'd do. But I guess you could try it and see what happens.\"",
+	"current_date": "November 2020", // Date for Month
+	"campaign_month_count": 7, // Counter for Budget
+	"choices": [{
+		"description": "Continue",
+		"sceneDestination": "screen_16"
+	}]
+
+}, {
+	"name": "screen_15_right",
+	"question": "Heather responds with, \u201CYes! This is exactly what I would suggest!\u201D",
+	"current_date": "November 2020", // Date for Month
+	"campaign_month_count": 7, // Counter for Budget
+	"choices": [{
+		"description": "Continue",
+		"sceneDestination": "screen_16"
+	}]
+
+}, {
+	"name": "screen_16",
+	"question": "BOOM. You were hit by a negative TV ad, and your jaw drops at how vicious and untrue it is. No names are listed as the sponsors of the ad, just a PAC. How can you find out who is funding this smear campaign?",
+	"current_date": "November 2020", // Date for Month
+	"campaign_month_count": 7, // Counter for Budget
+	"choices": [{
+		"description": "Contact the TV station that aired the ad",
+		"sceneDestination": "screen_16_right"
+	}, {
+		"description": "Call the current school board",
+		"sceneDestination": "screen_16_wrong"
+	}, {
+		"description": "Send an e-mail to the county elections clerk",
+		"sceneDestination": "screen_16_wrong"
+	}, {
+		"description": "Check the Oregon Secretary of State ORESTAR page",
+		"sceneDestination": "screen_16_wrong"
+	}]
+
+}, {
+	"name": "screen_16_wrong",
+	"question": "Heather responds with \u201CThat isn't what I'd do. But I guess you could try it and see what happens. I'd really suggest checking out ORESTAR at https://sos.oregon.gov/elections/Pages/orestar.aspx\"",
+	"current_date": "November 2020", // Date for Month
+	"campaign_month_count": 7, // Counter for Budget
+	"choices": [{
+		"description": "Continue",
+		"sceneDestination": "screen_17"
+	}]
+
+}, {
+	"name": "screen_16_right",
+	"question": "Heather responds with, \u201CYes! This is exactly what I would suggest!\u201D",
+	"current_date": "November 2020", // Date for Month
+	"campaign_month_count": 7, // Counter for Budget
+	"choices": [{
+		"description": "Continue",
+		"sceneDestination": "screen_17"
+	}]
+
+}, {
+	"name": "screen_17",
+	"question": "You\u2019re having lunch with your co-workers, and they\u2019re curious about your campaign. Your cube-mate Aaron asks, \u201CHow many voters are there in the school district anyway?\u201D and you start to wonder as well. You know that Lane County has a document with the voter totals for the different districts, and decided to figure out just how many registered voters there are in Springfield School District #19.(link page)",
+	"current_date": "January 2021", // Date for Month
+	"campaign_month_count": 9, // Counter for Budget
+	"choices": [{
+		"description": "51650",
+		"sceneDestination": "screen_17_right"
+	}, {
+		"description": "48459",
+		"sceneDestination": "screen_17_wrong"
+	}, {
+		"description": "40060",
+		"sceneDestination": "screen_17_wrong"
+	}, {
+		"description": "35680",
+		"sceneDestination": "screen_17_wrong"
+	}]
+
+}, {
+	"name": "screen_17_right",
+	"question": "Heather responds with, \u201CYes! This is exactly what I would suggest!\u201D",
+	"current_date": "January 2021", // Date for Month
+	"campaign_month_count": 9, // Counter for Budget
+	"choices": [{
+		"description": "Continue",
+		"sceneDestination": "screen_18"
+	}]
+
+}, {
+	"name": "screen_17_wrong",
+	"question": "Heather responds with \u201CThat isn't what I'd do. But I guess you could try it and see what happens.\"",
+	"current_date": "January 2021", // Date for Month
+	"campaign_month_count": 9, // Counter for Budget
+	"choices": [{
+		"description": "Continue",
+		"sceneDestination": "screen_18"
+	}]
+
+}, {
+	"name": "screen_18",
+	"question": "Your top canvasser Dean comes back from a long afternoon of spreading the word. He says that he got a lot of friendly comments, but there were some houses where he had to knock for a while before anyone answered. A few residents never answered their doors, but Dean says he left flyers in their mailboxes. Your volunteer coordinator turns red and takes Dean back into her office to talk about Dos and Don\u2019ts of canvassing. What did Dean do wrong?",
+	"current_date": "February 2021", // Date for Month
+	"campaign_month_count": 10, // Counter for Budget
+	"choices": [{
+		"description": "Accepted a glass of water from a resident",
+		"sceneDestination": "screen_18_wrong"
+	}, {
+		"description": "Left flyers in mailboxes",
+		"sceneDestination": "screen_18_right"
+	}, {
+		"description": "Knocked too long",
+		"sceneDestination": "screen_18_wrong"
+	}, {
+		"description": "Didn’t have canvassing permit",
+		"sceneDestination": "screen_18_wrong"
+	}]
+
+}, {
+	"name": "screen_18_right",
+	"question": "Heather responds with, \u201CYes! This is exactly what I would suggest!\u201D",
+	"current_date": "February 2021", // Date for Month
+	"campaign_month_count": 10, // Counter for Budget
+	"choices": [{
+		"description": "Continue",
+		"sceneDestination": "screen_19"
+	}]
+
+}, {
+	"name": "screen_18_wrong",
+	"question": "Heather responds with \u201CThat isn't what I'd do. But I guess you could try it and see what happens.\"",
+	"current_date": "February 2021", // Date for Month
+	"campaign_month_count": 10, // Counter for Budget
+	"choices": [{
+		"description": "Continue",
+		"sceneDestination": "screen_19"
+	}]
+
+}, {
+	"name": "screen_19",
+	"question": "Election day is nearing, and you really want to take on your opponent in a public forum so that you can show everyone how much better you would be as a member of the school board. You realize you don\u2019t know how to get a debate set up, and decide to look into it. After some searches and talking to your campaign manager, you know that debates are organized by:",
+	"current_date": "March 2021", // Date for Month
+	"campaign_month_count": 11, // Counter for Budget
+	"choices": [{
+		"description": "Political parties",
+		"sceneDestination": "screen_19_wrong"
+	}, {
+		"description": "The superintendent of the school district",
+		"sceneDestination": "screen_19_wrong"
+	}, {
+		"description": "The county elections clerk",
+		"sceneDestination": "screen_19_wrong"
+	}, {
+		"description": "Community organizations",
+		"sceneDestination": "screen_19_right"
+	}]
+
+}, {
+	"name": "screen_19_right",
+	"question": "Heather responds with, \u201CYes! This is exactly what I would suggest!\u201D",
+	"current_date": "March 2021", // Date for Month
+	"campaign_month_count": 11, // Counter for Budget
+	"choices": [{
+		"description": "Continue",
+		"sceneDestination": "screen_20"
+	}]
+
+}, {
+	"name": "screen_19_wrong",
+	"question": "Heather responds with \u201CThat isn't what I'd do. But I guess you could try it and see what happens.\"",
+	"current_date": "March 2021", // Date for Month
+	"campaign_month_count": 11, // Counter for Budget
+	"choices": [{
+		"description": "Continue",
+		"sceneDestination": "screen_20"
+	}]
+
+}, {
+	"name": "screen_20",
+	"question": "You\u2019re checking out books at the Springfield Library when the librarian asks what sorts of things you\u2019re doing in this final month of the election. You pause for a moment, uncertain. What SHOULD you be doing in the final month of the election?",
+	"current_date": "April 2021", // Date for Month
+	"campaign_month_count": 12, // Counter for Budget
+	"choices": [{
+		"description": "Fundraise as much as possible",
+		"sceneDestination": "screen_20_wrong"
+	}, {
+		"description": "GOTV (Get out the vote)",
+		"sceneDestination": "screen_20_right"
+	}, {
+		"description": "Recruit more volunteers",
+		"sceneDestination": "screen_20_wrong"
+	}, {
+		"description": "Issue policy statements",
+		"sceneDestination": "screen_20_wrong"
+	}]
+
+}, {
+	"name": "screen_20_right",
+	"question": "Heather responds with, \u201CYes! This is exactly what I would suggest!\u201D",
+	"current_date": "April 2021", // Date for Month
+	"campaign_month_count": 12, // Counter for Budget
+	"choices": [{
+		"description": "Continue",
+		"sceneDestination": "screen_21"
+	}]
+
+}, {
+	"name": "screen_20_wrong",
+	"question": "Heather responds with \u201CThat isn't what I'd do. But I guess you could try it and see what happens.\"",
+	"current_date": "April 2021", // Date for Month
+	"campaign_month_count": 12, // Counter for Budget
+	"choices": [{
+		"description": "Continue",
+		"sceneDestination": "screen_21"
+	}]
+
+}, {
+	"name": "screen_21",
+	"question": "Election Day is tomorrow morning, and there\u2019s not much more you can do to support your candidacy. In a rare bit of quiet, you realize how much of a toll this campaign has taken on everyone you love and everyone who has helped you. What can you do to start to make amends and repair your relationships?",
+	"current_date": "May 2021", // Date for Month
+	"campaign_month_count": 13, // Counter for Budget
+	"choices": [{
+		"description": "Show gratitude to your volunteers by giving them all hugs",
+		"sceneDestination": "screen_22"
+	}, {
+		"description": "Let your staff know they will get a Win Bonus whether or not you win",
+		"sceneDestination": "screen_22"
+	}, {
+		"description": "Thank your donors for believing in you",
+		"sceneDestination": "screen_22"
+	}, {
+		"description": "Thank your family and friends for putting up with you while you were being absent, distracted, and self centered for the past year",
+		"sceneDestination": "screen_22"
+	}]
+
+}, {
+	"name": "screen_22",
+	"question": "You\u2019re at Roaring Rapids on a warm spring evening and it\u2019s election night. It\u2019s been one year of hard work and you\u2019re looking forward to the ending, win or lose. Your family, staff, volunteers, friends, and donors are all with you, enjoying pizza and waiting for the election results to come in\u2026.",
+	"current_date": "May 2021", // Date for Month
+	"campaign_month_count": 13, // Counter for Budget
+	"choices": [{
+		"description": "Win",
+		"sceneDestination": "screen_23"
+	}, {
+		"description": "Lose",
+		"sceneDestination": "screen_24"
+	}]
+}, {
+	"name": "screen_23",
+	"question": "Woo-Hoo!! Yes!! You won your race -- doesn\u2019t it feel good?\n\n\t\tCelebrate with everyone gathered and hopefully you can take some time to relax after the race.\n\t\t\n\t\tThis is a great time to recoup and prepare for your upcoming term as Springfield School Board member.",
+	"current_date": "May 2021", // Date for Month
+	"campaign_month_count": 13, // Counter for Budget
+	"choices": [{
+		"description": "Continue",
+		"sceneDestination": "screen_25"
+	}]
+}, {
+	"name": "screen_24",
+	"question": "It\u2019s Wednesday morning at the Washburne and you\u2019re getting ready to see Heather for a cup of coffee before work. You feel that you may have let her down. When Heather gets to the table she gives you a big hug and says, \u201CYou ran such a great campaign! One thing I didn\u2019t tell you because I didn\u2019t want to scare you: I served two terms on the school board, and it was great. But I also ran two times before and lost. Your next campaign will be so much better!\u201D",
+	"current_date": "May 2021", // Date for Month
+	"campaign_month_count": 13, // Counter for Budget
+	"choices": [{
+		"description": "Continue",
+		"sceneDestination": "screen_25"
+	}]
+}, {
+	"name": "screen_25",
+	"question": "Game Over\n\n\t\tWe created this game at Hack For A Cause 2019. The intention of this game is to inspire and help get some new faces in office. We hope you enjoyed playing the game. \n\t\t\n\t\tPlease fill out this form https://forms.gle/DpY782qF8CCdwxrG9 so we can understand ways we can improve the game.\n\t\t\n\t\tThanks!\n\t\t",
+	"current_date": "May 2021", // Date for Month
+	"campaign_month_count": 13, // Counter for Budget
+	"choices": [{
+		"description": "Play Again",
+		"sceneDestination": "start"
+	}]
 }];
 exports.default = Scenes;
 
@@ -1144,71 +1638,60 @@ var Scene = function (_Sprite) {
 		var _this = _possibleConstructorReturn(this, (Scene.__proto__ || Object.getPrototypeOf(Scene)).call(this, game));
 
 		_this.game = game;
-		_this.offset = 75;
+		_this.offset = 110;
 		_this.positionX = 0;
 		_this.positionY = 0;
-		//this.scoreboardImages = null;
-		_this.startY = 375;
+		_this.startY = 500;
 		_this.font = "30px Arial";
 		_this.fontColor = "red";
 		_this.question = options.question;
 		_this.current_date = options.current_date;
 		_this.campaign_month_count = options.campaign_month_count;
-		console.log("options" + JSON.stringify(options));
+
 		// this is for checking if it exists before using
-		_this.imgLoad = "./dist/images/scenes/" + options.name + ".png";
 
-		if (_this.imageExists(_this.imgLoad)) {
-			_this.sceneImage = new Image();
-			_this.sceneImage.src = _this.imgLoad;
-		} else {
-			_this.sceneImage = null;
+		if (options.img != null) {
+			_this.image = "./dist/images/" + options.img;
 		}
-
 		_this.options = options;
-		_this.buildOptions();
+		_this.width = window.innerWidth;
+		_this.height = window.innerHeight;
 		return _this;
 	}
 
 	_createClass(Scene, [{
 		key: "render",
 		value: function render() {
-			//draw the frame
-
-
 			// Draw main image
-			if (this.sceneImage != null) {
+			if (this.image != null) {
+				try {
+					var sceneImage = new Image();
+					sceneImage.src = this.image;
 
-				this.game.ctx.drawImage(this.sceneImage, 0, 0);
+					this.game.ctx.drawImage(sceneImage, 50, 200);
+				} catch (error) {
+					null;
+				}
 			}
 			// Draw choices
-			var startY = this.startY + this.offset;
+			var startY = this.startY;
 			for (var i = 0; i < this.options.choices.length; i++) {
-
 				this.game.ctx.strokecolor = "white";
 				this.game.ctx.fillStyle = "white";
 				this.game.ctx.font = " 24px Arial";
 				this.game.ctx.color = "white";
-				this.game.ctx.fillText(this.options.choices[i].description, 50, startY);
+				this.game.ctx.fillText(this.options.choices[i].description, 500, startY);
 				// Spacing of question
 				startY += 50;
 			}
-			// wrapText(context, text, x, y, line_width, line_height)
+
 			// Lets work on drawing the final questions
 			this.game.ctx.strokecolor = "white";
 			this.game.ctx.fillStyle = "white";
-			this.game.ctx.font = " 14px Arial";
+			this.game.ctx.font = " 20px BlueSky8x8Monospaced";
 			this.game.ctx.color = "white";
-			this.wrapText(this.game.ctx, this.question, 50, 350, 1200, 12);
-
+			this.wrapText(this.game.ctx, this.question, 500, 300, 700, 22);
 			this.game.ctx.drawImage(this.game.Images[2], 0, 0);
-		}
-		// This gets called if its clickable
-
-	}, {
-		key: "buildOptions",
-		value: function buildOptions() {
-			console.log(this.options);
 		}
 	}, {
 		key: "click",
@@ -1245,10 +1728,6 @@ var Scene = function (_Sprite) {
 					this.game.currentScene = new Scene(this.game, this.game.getSceneByName(this.options.choices[0].sceneDestination));
 				}
 			}
-
-			var selection = y;
-			console.log("I was clicked x:" + x + "y:" + y);
-			console.log("options:" + this.options.choices.length);
 		}
 		// Helper
 
@@ -1275,16 +1754,6 @@ var Scene = function (_Sprite) {
 				y += line_height;
 				line = '';
 			}
-		}
-	}, {
-		key: "imageExists",
-		value: function imageExists(image_url) {
-			var http = new XMLHttpRequest();
-
-			http.open('HEAD', image_url, false);
-			http.send();
-
-			return http.status != 404;
 		}
 	}]);
 

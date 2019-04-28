@@ -44,7 +44,7 @@ class Viewport {
 			console.log("Setting viewport to " + screen.width);
 		}
 		else{
-			this.viewport_meta.setAttribute('content',"width=" + screen.width + ",initial-scale=0.75,height=" + screen.height + ",user-scalable=no, minimal-ui");
+			this.viewport_meta.setAttribute('content',"width=" + screen.width + ",initial-scale=1,height=" + screen.height + ",user-scalable=no, minimal-ui");
 		}
 	}
 }
