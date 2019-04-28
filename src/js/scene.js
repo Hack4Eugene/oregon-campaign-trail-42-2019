@@ -9,8 +9,8 @@ export default class Scene extends Sprite{
 		this.positionX = 0;
 		this.positionY = 0;
 		this.startY = 500;
-		this.font = "30px Arial";
-		this.fontColor = "red";
+		// this.font = "30px Arial";
+		// this.fontColor = "red";
 		this.question = options.question;
 		this.current_date = options.current_date;
 		this.campaign_month_count = options.campaign_month_count;
@@ -33,6 +33,7 @@ export default class Scene extends Sprite{
 
 				this.game.ctx.drawImage(sceneImage,50,200);
 			
+
 			}
 			catch(error){
 				null;
@@ -41,21 +42,24 @@ export default class Scene extends Sprite{
 		// Draw choices
 		let startY = this.startY ;
 		for(let i=0; i < this.options.choices.length; i++){
-			this.game.ctx.strokecolor = "white";
-			this.game.ctx.fillStyle = "white";
-			this.game.ctx.font = " 24px Arial";
+
+
+			this.game.ctx.fillStyle = "EBE6DD";
+			this.game.ctx.font = "22px LeagueMono";
 			this.game.ctx.color = "white";
-			this.game.ctx.fillText(this.options.choices[i].description, 500, startY );
+			this.game.ctx.fillText("> "+this.options.choices[i].description, 500, startY );
 			// Spacing of question
 			startY+= 50;
 		}
 		
 		// Lets work on drawing the final questions
-		this.game.ctx.strokecolor = "white";
-		this.game.ctx.fillStyle = "white";
-		this.game.ctx.font = " 20px BlueSky8x8Monospaced";
-		this.game.ctx.color = "white";
-		this.wrapText(this.game.ctx,this.question,500,300, 700, 22);
+
+		this.game.ctx.fillStyle = "EBE6DD";
+		this.game.ctx.font = "22px LeagueMono";
+		this.wrapText(this.game.ctx,this.question,400,200, 700, 22);
+
+		
+
 		this.game.ctx.drawImage(this.game.Images[2],0,0);
 	}
 	click(x,y){
@@ -65,7 +69,7 @@ export default class Scene extends Sprite{
 		opt 3: 450 - 500
 		opt 4: 500 - 550
 		opt 5: 550 - 600*/
-
+			if (x < 300) return; // definitely out of range
 			if(this.options.choices.length >= 5){
 					if((y > 550+this.offset) && (y < 600+this.offset)){
 						this.game.currentScene = new Scene(this.game,this.game.getSceneByName(this.options.choices[4].sceneDestination));

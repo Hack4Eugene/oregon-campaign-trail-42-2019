@@ -4,4 +4,5 @@ export default class Sprite{
 		this.game = game;
 
 	}
+
 }
