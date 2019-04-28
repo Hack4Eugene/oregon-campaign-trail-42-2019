@@ -568,5 +568,311 @@ let Scenes =  [
 		]
 	
 	},
+
+	{ 
+		"name": "screen_17",
+		"question" : `You’re having lunch with your co-workers, and they’re curious about your campaign. Your cube-mate Aaron asks, “How many voters are there in the school district anyway?” and you start to wonder as well. You know that Lane County has a document with the voter totals for the different districts, and decided to figure out just how many registered voters there are in Springfield School District #19.(link page)`,
+		"current_date" : "January 2021", // Date for Month
+		"campaign_month_count" : 9, // Counter for Budget
+		"choices" : [
+				{
+					"description" : "51650",
+					"sceneDestination" : "screen_17_right"
+				},
+				{
+					"description" : "48459",
+					"sceneDestination" : "screen_17_wrong"
+				},
+				{
+					"description" : "40060",
+					"sceneDestination" : "screen_17_wrong"
+				},
+				{
+					"description" : "35680",
+					"sceneDestination" : "screen_17_wrong"
+				},
+		]
+	
+	},
+	{ 
+		"name": "screen_17_right",
+		"question" : `Heather responds with, “Yes! This is exactly what I would suggest!”`,
+		"current_date" : "January 2021", // Date for Month
+		"campaign_month_count" : 9, // Counter for Budget
+		"choices" : [
+				{
+					"description" : "Continue",
+					"sceneDestination" : "screen_18"
+				}
+		]
+	
+	},
+
+	{ 
+		"name": "screen_17_wrong",
+		"question" : `Heather responds with “That isn't what I'd do. But I guess you could try it and see what happens."`,
+		"current_date" : "January 2021", // Date for Month
+		"campaign_month_count" : 9, // Counter for Budget
+		"choices" : [
+				{
+					"description" : "Continue",
+					"sceneDestination" : "screen_18"
+				}
+		]
+	
+	},
+	{ 
+		"name": "screen_18",
+		"question" : `Your top canvasser Dean comes back from a long afternoon of spreading the word. He says that he got a lot of friendly comments, but there were some houses where he had to knock for a while before anyone answered. A few residents never answered their doors, but Dean says he left flyers in their mailboxes. Your volunteer coordinator turns red and takes Dean back into her office to talk about Dos and Don’ts of canvassing. What did Dean do wrong?`,
+		"current_date" : "February 2021", // Date for Month
+		"campaign_month_count" : 10, // Counter for Budget
+		"choices" : [
+				{
+					"description" : "Accepted a glass of water from a resident",
+					"sceneDestination" : "screen_18_wrong"
+				},
+				{
+					"description" : "Left flyers in mailboxes",
+					"sceneDestination" : "screen_18_right"
+				},
+				{
+					"description" : "Knocked too long",
+					"sceneDestination" : "screen_18_wrong"
+				},
+				{
+					"description" : "Didn’t have canvassing permit",
+					"sceneDestination" : "screen_18_wrong"
+				},
+		]
+	
+	},
+	{ 
+		"name": "screen_18_right",
+		"question" : `Heather responds with, “Yes! This is exactly what I would suggest!”`,
+		"current_date" : "February 2021", // Date for Month
+		"campaign_month_count" : 10, // Counter for Budget
+		"choices" : [
+				{
+					"description" : "Continue",
+					"sceneDestination" : "screen_19"
+				}
+		]
+	
+	},
+
+	{ 
+		"name": "screen_18_wrong",
+		"question" : `Heather responds with “That isn't what I'd do. But I guess you could try it and see what happens."`,
+		"current_date" : "February 2021", // Date for Month
+		"campaign_month_count" : 10, // Counter for Budget
+		"choices" : [
+				{
+					"description" : "Continue",
+					"sceneDestination" : "screen_19"
+				}
+		]
+	
+	},
+	{ 
+		"name": "screen_19",
+		"question" : `Election day is nearing, and you really want to take on your opponent in a public forum so that you can show everyone how much better you would be as a member of the school board. You realize you don’t know how to get a debate set up, and decide to look into it. After some searches and talking to your campaign manager, you know that debates are organized by:`,
+		"current_date" : "March 2021", // Date for Month
+		"campaign_month_count" : 11, // Counter for Budget
+		"choices" : [
+				{
+					"description" : "Political parties",
+					"sceneDestination" : "screen_19_wrong"
+				},
+				{
+					"description" : "The superintendent of the school district",
+					"sceneDestination" : "screen_19_wrong"
+				},
+				{
+					"description" : "The county elections clerk",
+					"sceneDestination" : "screen_19_wrong"
+				},
+				{
+					"description" : "Community organizations",
+					"sceneDestination" : "screen_19_right"
+				},
+		]
+	
+	},
+
+	{ 
+		"name": "screen_19_right",
+		"question" : `Heather responds with, “Yes! This is exactly what I would suggest!”`,
+		"current_date" : "March 2021", // Date for Month
+		"campaign_month_count" : 11, // Counter for Budget
+		"choices" : [
+				{
+					"description" : "Continue",
+					"sceneDestination" : "screen_20"
+				}
+		]
+	
+	},
+
+	{ 
+		"name": "screen_19_wrong",
+		"question" : `Heather responds with “That isn't what I'd do. But I guess you could try it and see what happens."`,
+		"current_date" : "March 2021", // Date for Month
+		"campaign_month_count" : 11, // Counter for Budget
+		"choices" : [
+				{
+					"description" : "Continue",
+					"sceneDestination" : "screen_20"
+				}
+		]
+	
+	},
+
+	{ 
+		"name": "screen_20",
+		"question" : `You’re checking out books at the Springfield Library when the librarian asks what sorts of things you’re doing in this final month of the election. You pause for a moment, uncertain. What SHOULD you be doing in the final month of the election?`,
+		"current_date" : "April 2021", // Date for Month
+		"campaign_month_count" : 12, // Counter for Budget
+		"choices" : [
+				{
+					"description" : "Fundraise as much as possible",
+					"sceneDestination" : "screen_20_wrong"
+				},
+				{
+					"description" : "GOTV (Get out the vote)",
+					"sceneDestination" : "screen_20_right"
+				},
+				{
+					"description" : "Recruit more volunteers",
+					"sceneDestination" : "screen_20_wrong"
+				},
+				{
+					"description" : "Issue policy statements",
+					"sceneDestination" : "screen_20_wrong"
+				},
+		]
+	
+	},
+
+	{ 
+		"name": "screen_20_right",
+		"question" : `Heather responds with, “Yes! This is exactly what I would suggest!”`,
+		"current_date" : "April 2021", // Date for Month
+		"campaign_month_count" : 12, // Counter for Budget
+		"choices" : [
+				{
+					"description" : "Continue",
+					"sceneDestination" : "screen_21"
+				}
+		]
+	
+	},
+	
+	{ 
+		"name": "screen_20_wrong",
+		"question" : `Heather responds with “That isn't what I'd do. But I guess you could try it and see what happens."`,
+		"current_date" : "April 2021", // Date for Month
+		"campaign_month_count" : 12, // Counter for Budget
+		"choices" : [
+				{
+					"description" : "Continue",
+					"sceneDestination" : "screen_21"
+				}
+		]
+	
+	},
+
+	{ 
+		"name": "screen_21",
+		"question" : `Election Day is tomorrow morning, and there’s not much more you can do to support your candidacy. In a rare bit of quiet, you realize how much of a toll this campaign has taken on everyone you love and everyone who has helped you. What can you do to start to make amends and repair your relationships?`,
+		"current_date" : "May 2021", // Date for Month
+		"campaign_month_count" : 13, // Counter for Budget
+		"choices" : [
+				{
+					"description" : "Show gratitude to your volunteers by giving them all hugs",
+					"sceneDestination" : "screen_22"
+				},
+				{
+					"description" : "Let your staff know they will get a Win Bonus whether or not you win",
+					"sceneDestination" : "screen_22"
+				},
+				{
+					"description" : "Thank your donors for believing in you",
+					"sceneDestination" : "screen_22"
+				},
+				{
+					"description" : "Thank your family and friends for putting up with you while you were being absent, distracted, and self centered for the past year",
+					"sceneDestination" : "screen_22"
+				}
+		]
+	
+	},
+	
+	{
+		"name": "screen_22",
+		"question" : `You’re at Roaring Rapids on a warm spring evening and it’s election night. It’s been one year of hard work and you’re looking forward to the ending, win or lose. Your family, staff, volunteers, friends, and donors are all with you, enjoying pizza and waiting for the election results to come in….`,
+		"current_date" : "May 2021", // Date for Month
+		"campaign_month_count" : 13, // Counter for Budget
+		"choices" : [
+				{
+					"description" : "Win",
+					"sceneDestination" : "screen_23"
+				},
+				{
+					"description" : "Lose",
+					"sceneDestination" : "screen_24"
+				}
+		]
+	},
+	
+	{
+		"name": "screen_23",
+		"question" : `Woo-Hoo!! Yes!! You won your race -- doesn’t it feel good?
+
+		Celebrate with everyone gathered and hopefully you can take some time to relax after the race.
+		
+		This is a great time to recoup and prepare for your upcoming term as Springfield School Board member.`,
+		"current_date" : "May 2021", // Date for Month
+		"campaign_month_count" : 13, // Counter for Budget
+		"choices" : [
+				{
+					"description" : "Continue",
+					"sceneDestination" : "screen_25"
+				}
+		]
+	},
+	
+	{
+		"name": "screen_24",
+		"question" : `It’s Wednesday morning at the Washburne and you’re getting ready to see Heather for a cup of coffee before work. You feel that you may have let her down. When Heather gets to the table she gives you a big hug and says, “You ran such a great campaign! One thing I didn’t tell you because I didn’t want to scare you: I served two terms on the school board, and it was great. But I also ran two times before and lost. Your next campaign will be so much better!”`,
+		"current_date" : "May 2021", // Date for Month
+		"campaign_month_count" : 13, // Counter for Budget
+		"choices" : [
+				{
+					"description" : "Continue",
+					"sceneDestination" : "screen_25"
+				}
+		]
+	},
+
+	{
+		"name": "screen_25",
+		"question" : `Game Over
+
+		We created this game at Hack For A Cause 2019. The intention of this game is to inspire and help get some new faces in office. We hope you enjoyed playing the game. 
+		
+		Please fill out this form https://forms.gle/DpY782qF8CCdwxrG9 so we can understand ways we can improve the game.
+		
+		Thanks!
+		`,
+		"current_date" : "May 2021", // Date for Month
+		"campaign_month_count" : 13, // Counter for Budget
+		"choices" : [
+				{
+					"description" : "Play Again",
+					"sceneDestination" : "start"
+				}
+		]
+	}
+
 ];
 export default Scenes;
