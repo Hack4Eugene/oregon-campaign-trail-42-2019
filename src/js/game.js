@@ -44,7 +44,7 @@ class Game{
 		this.scenes = Scenes;
 
 		// budget
-		this.budgetMenu = new BudgetMenu(this, MoneyData);
+		this.budgetMenu = new BudgetMenu(this);
 		this.showBudgetMenu = false; // budget menu or menu access button is visible
 		this.money = 10000; // starting budget
 
@@ -69,7 +69,7 @@ class Game{
 		this.firstload = true;
 	
 		this.canvas.addEventListener('click', (e) => {
-			console.log("mousedown @ "+e.clientX+" "+e.clientY);
+			// console.log("mousedown @ "+e.clientX+" "+e.clientY); // debug
 			const pos = {
 				x: e.clientX,
 				y: e.clientY

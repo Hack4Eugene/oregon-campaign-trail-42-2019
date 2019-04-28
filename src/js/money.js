@@ -73,3 +73,4 @@ let MoneyData = {
         }
     ]
 };
+export default MoneyData;

@@ -1,33 +1,34 @@
 import Sprite from './sprite.js';
-// import MoneyData from './money.js';
+import MoneyData from './money.js';
 export default class BudgetMenu extends Sprite {
-	constructor(game, data) {
+	constructor(game) {
 		super(game);
-		this.data = data;
 		this.expanded = false;
 		this.budgetItems = [];
-		let offsetY = 100;
-		for (let i = 0; i < data["BudgetItems"].length; i++) {
-			let c1 = data["BudgetItems"][i]["INITCOST"];
-			let c2 = data["BudgetItems"][i]["MOCOST"];
+		let offsetY = 180;
+		let data = MoneyData["BudgetItems"];
+		for (let i = 0; i < data.length; i++) {
+			let name = data[i]["NAME"]+":";
+			let c1 = -data[i]["INITCOST"];
+			let c2 = -data[i]["MOCOST"];
 			let cost = "";
 			if (c1 < 0) {
 				cost = (c1 > 999 ? "$"+c1/1000+"K" : c1)+" (one time)";
 			} else {
 				cost = (c2 > 999 ? "$"+c2/1000+"K" : c2)+"/month";
 			}
-			this.budgetItems.push(new BudgetItem(100, offsetY, 600, 50, 24, data[i].NAME, cost));
-			offsetY += 80;
+			this.budgetItems.push(new BudgetItem(400, offsetY, 600, 45, 24, name, cost));
+			offsetY += 65;
 		}
 		
 		let img = new Image();
 		img.src = './dist/images/BudgetButton.png';
 		img.height = 23;
-		this.showButton = new Button(400, 600, 147, 50, img);
+		this.showButton = new Button(400, 660, 147, 50, img);
 		img = new Image();
 		img.height = 23;
 		img.src = './dist/images/BudgetUpdateButton.png';
-		this.hideButton = new Button(400, 600, 260, 56, img);
+		this.hideButton = new Button(400, 660, 260, 56, img);
 	}
 	getSelectedIDs() {
 		let ret = [];
@@ -74,16 +75,12 @@ export default class BudgetMenu extends Sprite {
 	renderTitle(ctx) {
 		ctx.fillStyle = "rgb(250, 250, 250)";
 		ctx.font = "40px Arial";
-		ctx.fillText("BUDGET", 650, 60);
+		ctx.fillText("BUDGET", 400, 130);
 	}
 	renderTotals(ctx) {
-		let budge = 1000; // temp
-		for (let i in this.budgetItems) {
-			if (this.budgetItems[i].checked) budge -= 200;
-		}
 		ctx.fillStyle = "rgb(200, 250, 200)";
 		ctx.font = "30px Arial";
-		ctx.fillText("$"+budge, 50, 50);
+		ctx.fillText("$"+this.game.money, 50, 50);
 	}
 }
 class Button {
