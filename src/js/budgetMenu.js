@@ -1,4 +1,5 @@
-// Jeremy King
+// written by Jeremy King
+// github.com/Moarram
 
 import Sprite from './sprite.js';
 import MoneyData from './money.js';
