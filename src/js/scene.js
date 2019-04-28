@@ -5,7 +5,7 @@ export default class Scene extends Sprite{
 
 		super(game);
 		this.game = game;
-		this.offset = -50;
+		this.offset = 110;
 		this.positionX = 0;
 		this.positionY = 0;
 		//this.scoreboardImages = null;
@@ -18,7 +18,9 @@ export default class Scene extends Sprite{
 		console.log("options" + JSON.stringify(options));
 		// this is for checking if it exists before using
 		//this.imgLoad = 
-		this.image = options.img;
+		if(options.img != null){
+			this.image = "./dist/images/" + options.img;
+		}
 		
 		//this.sceneImage = new Image();
 		//this.sceneImage.src = "./dist/images/scenes/" + options.name + ".png";
@@ -32,9 +34,12 @@ export default class Scene extends Sprite{
 
 
 		// Draw main image
-		if(this.sceneImage != null){
+		if(this.image != null){
 				try{
-					this.game.ctx.drawImage(this.sceneImage,0,0);
+					let sceneImage = new Image();
+					sceneImage.src = this.image;
+					//this.game.ctx.drawImage(this.image,0,0);
+					console.log(this.image);
 				}
 				catch(error){
 					null;
@@ -61,12 +66,9 @@ export default class Scene extends Sprite{
 		this.game.ctx.color = "white";
 		this.wrapText(this.game.ctx,this.question,400,300, 700, 22);
 
-		if(this.image != null){
-			let image = new Image();
-				image.src = "./dist/images" + options.name + ".png";
-				this.game.ctx.drawImage(image,300,0);
-		//	t
-		}
+		
+				
+		
 		this.game.ctx.drawImage(this.game.Images[2],0,0);
 		
 
