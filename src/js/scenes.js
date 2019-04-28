@@ -274,7 +274,7 @@ let Scenes =  [
 		"choices" : [
 				{
 					"description" : "Continue",
-					"sceneDestination" : "screen_10"
+					"sceneDestination" : "screen_11"
 				}
 		]
 	
@@ -287,7 +287,7 @@ let Scenes =  [
 		"choices" : [
 				{
 					"description" : "Continue",
-					"sceneDestination" : "screen_10"
+					"sceneDestination" : "screen_11"
 				}
 		]
 	
@@ -498,7 +498,7 @@ let Scenes =  [
 		"choices" : [
 				{
 					"description" : "Continue",
-					"sceneDestination" : "screen_15"
+					"sceneDestination" : "screen_16"
 				}
 		]
 	
@@ -511,7 +511,7 @@ let Scenes =  [
 		"choices" : [
 				{
 					"description" : "Continue",
-					"sceneDestination" : "screen_15"
+					"sceneDestination" : "screen_16"
 				}
 		]
 	
@@ -550,7 +550,7 @@ let Scenes =  [
 		"choices" : [
 				{
 					"description" : "Continue",
-					"sceneDestination" : "screen_16"
+					"sceneDestination" : "screen_17"
 				}
 		]
 	
@@ -563,7 +563,7 @@ let Scenes =  [
 		"choices" : [
 				{
 					"description" : "Continue",
-					"sceneDestination" : "screen_16"
+					"sceneDestination" : "screen_17"
 				}
 		]
 	
