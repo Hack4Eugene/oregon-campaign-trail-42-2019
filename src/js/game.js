@@ -34,7 +34,7 @@ class Game{
 		this.money = 10000; // starting budget
 
 		// Scoring
-		this.polling = 0.3251243124; // TODO calculate this somewhere
+		this.polling = 0.1; // updated when scene is clicked
 		this.month = 0; 
 		this.lastMonth = 0; // updated when calculateBudget() is called
 
@@ -72,22 +72,7 @@ class Game{
 			this.money += MoneyData["BudgetItems"][selectedIDs[i]]["MOCOST"]*months;
 		}
 		this.lastMonth = this.month;
-
-		// for (var i = 0; i < selectedIDs.length; i++){
-		// 	if (budget_ledger["BudgetItems"][i].ID = selectedIDs[i]) {
-		// 		budget_ledger.LedgerItems.push({
-		// 			"EntryName": budget_ledger["BudgetItems"][i]["NAME"], 
-		// 			"Value": (budget_ledger["BudgetItems"][i]["MOCOST"] == 0) ? budget_ledger["BudgetItems"][i]["INITCOST"]:budget_ledger["BudgetItems"][i]["MOCOST"], 
-		// 			"MONTH":month, 
-		// 			"MOD": budget_ledger["BudgetItems"][i]["MOD"] 
-		// 		});
-		// 	}
-		// }
-		// var CashFlow = budget_ledger.LedgerItems;
-		// this.money = 0;
-		
-		// for (i = 0; i < CashFlow.length; i++) {  
-		// this.money += CashFlow[i].Value  } 
+		// if (this.money < 0) win(false);
 	}
 	handleClick(x,y){
 		this.lastClickX = x;
@@ -132,6 +117,13 @@ class Game{
 			this.currentScene.click(x,y);
 			this.month = this.currentScene.campaign_month_count;
 			this.calculateBudget(this.budgetMenu.getSelectedIDs());
+		}
+	}
+	win(bool) {
+		if (bool) { // win
+			// TODO show win page
+		} else {
+			// TODO show lose page
 		}
 	}
 	getSceneByName(name){
@@ -185,13 +177,12 @@ class Game{
 	animateGame(){
 		this.timer = setInterval(() => {
 
-
 			// Clear the Canvas
 			this.clearCanvas();
 			
 			// Render primary elements
 			if(this.currentScene != null){this.currentScene.render()};
-			if (this.budgetMenu !== null){this.budgetMenu.render()};
+			if (this.budgetMenu !== null && this.showBudgetMenu){this.budgetMenu.render()};
 			if (this.currentScene != null){ this.renderDate()};
 			
 
@@ -209,7 +200,7 @@ class Game{
 		if (!this.currentScene || this.currentScene.current_date == null) return;
 		let date = this.currentScene.current_date.split(" "); // [month, year];
 		this.ctx.font = "24px BlueSky";
-		this.ctx.fillStyle = "98D7DB";
+		this.ctx.fillStyle = "#98D7DB";
 		this.ctx.fillText(date[0].toUpperCase(), 80, 100);
 		this.ctx.fillText(date[1], 80, 135);
 	}

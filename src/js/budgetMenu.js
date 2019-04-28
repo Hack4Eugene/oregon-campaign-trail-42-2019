@@ -1,3 +1,6 @@
+// written by Jeremy King
+// github.com/Moarram
+
 import Sprite from './sprite.js';
 import MoneyData from './money.js';
 export default class BudgetMenu extends Sprite {
@@ -80,36 +83,32 @@ export default class BudgetMenu extends Sprite {
 	}
 	// private
 	renderTitle(ctx) {
-		ctx.strokecolor = "white";
 		ctx.font = "24px BlueSky";
-		//ctx.fillStyle = "389DB1";
-		ctx.fillStyle = "white";
+		ctx.fillStyle = "#389DB1";
 		ctx.fillText("BUDGET", this.ax2, 150);
 	}
 	renderCash(ctx) {
-		ctx.strokecolor = "white";
 		ctx.font = "12px BlueSky";
-		ctx.fillStyle = "389DB1";
+		ctx.fillStyle = "#389DB1";
 		ctx.fillText("CASH", this.ax1, 180);
 		ctx.font = "24px BlueSky";
 		ctx.fillText("$"+this.game.money.toLocaleString(), this.ax1, 215);
 	}
 	renderSummary(ctx) {
-		ctx.strokecolor = "white";
 		this.game.renderDate();
 		this.renderCash(ctx);
 		ctx.font = "12px BlueSky";
-		ctx.fillStyle = "389DB1";
+		ctx.fillStyle = "#389DB1";
 		ctx.fillText("MONTHLY NET", this.ax1, 260);
 		ctx.fillText("POLLING", this.ax1, 340);
 		ctx.font = "24px BlueSky";
 		ctx.fillText((this.game.polling*100).toPrecision(3)+"%", this.ax1, 375);
 		let net = this.calculateNet();
 		if (net < 0) { // losing money
-			ctx.fillStyle = "DA5B66";
+			ctx.fillStyle = "#DA5B66";
 			net = "-$"+(-net).toLocaleString();
 		} else { // gaining money
-			ctx.fillStyle = "80DB8E";
+			ctx.fillStyle = "#80DB8E";
 			net = "$"+net.toLocaleString();
 		}
 		ctx.fillText(net, this.ax1, 295);
@@ -175,9 +174,9 @@ class BudgetItem {
 		let img = (this.checked) ? this.imgChecked : this.imgUnchecked;
 		ctx.drawImage(img, this.x, this.y+(this.h-img.height)/2); // checkbox
 		ctx.font = this.font;
-		ctx.fillStyle = "EBE6DD";
+		ctx.fillStyle = "#EBE6DD";
 		ctx.fillText(this.text1, this.x+img.width+20, (this.y+this.h)-(this.h-this.pt)/2-3);
-		ctx.fillStyle = "389DB1";
+		ctx.fillStyle = "#389DB1";
 		ctx.fillText(this.text2, this.x+img.width+20+(this.text1.length+1)*(this.pt/1.7), (this.y+this.h)-(this.h-this.pt)/2-3);
 	}
 }

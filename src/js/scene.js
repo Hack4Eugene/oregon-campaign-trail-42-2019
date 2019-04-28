@@ -71,33 +71,45 @@ export default class Scene extends Sprite{
 		opt 3: 450 - 500
 		opt 4: 500 - 550
 		opt 5: 550 - 600*/
-			if (x < 300) return; // definitely out of range
-			if(this.options.choices.length >= 5){
-					if((y > 550+this.offset) && (y < 600+this.offset)){
-						this.game.currentScene = new Scene(this.game,this.game.getSceneByName(this.options.choices[4].sceneDestination));
-					}
-					
-			}
-			 if(this.options.choices.length >= 4){
-					if((y > 500+this.offset) && (y < 550+this.offset)){
-						this.game.currentScene = new Scene(this.game,this.game.getSceneByName(this.options.choices[3].sceneDestination));
-					}
-			}
-			if(this.options.choices.length >= 3){
-					 if((y > 450+this.offset) && (y < 500+this.offset)){
-						this.game.currentScene = new Scene(this.game,this.game.getSceneByName(this.options.choices[2].sceneDestination));
-					}
-			}
-			if(this.options.choices.length >= 2){
-					 if((y > 400+this.offset) && (y < 450+this.offset)){
-						this.game.currentScene = new Scene(this.game,this.game.getSceneByName(this.options.choices[1].sceneDestination));
-					}
-			}
-			 if(this.options.choices.length >= 1){
-					 if((y > 350+this.offset) && (y < 400+this.offset)){
-						this.game.currentScene = new Scene(this.game,this.game.getSceneByName(this.options.choices[0].sceneDestination));
-					}
-			}			
+
+		let res = "";
+		if (x < 300) return; // definitely out of range
+		if(this.options.choices.length >= 5){
+				if((y > 550+this.offset) && (y < 600+this.offset)){
+					status = this.options.choices[4].sceneDestination.substr(this.options.choices[4].sceneDestination.length-5);
+					this.game.currentScene = new Scene(this.game,this.game.getSceneByName(this.options.choices[4].sceneDestination));
+				}
+				
+		}
+		if(this.options.choices.length >= 4){
+				if((y > 500+this.offset) && (y < 550+this.offset)){
+					status = this.options.choices[3].sceneDestination.substr(this.options.choices[3].sceneDestination.length-5);
+					this.game.currentScene = new Scene(this.game,this.game.getSceneByName(this.options.choices[3].sceneDestination));
+				}
+		}
+		if(this.options.choices.length >= 3){
+					if((y > 450+this.offset) && (y < 500+this.offset)){
+						status = this.options.choices[2].sceneDestination.substr(this.options.choices[2].sceneDestination.length-5);
+					this.game.currentScene = new Scene(this.game,this.game.getSceneByName(this.options.choices[2].sceneDestination));
+				}
+		}
+		if(this.options.choices.length >= 2){
+					if((y > 400+this.offset) && (y < 450+this.offset)){
+						status = this.options.choices[1].sceneDestination.substr(this.options.choices[1].sceneDestination.length-5);
+					this.game.currentScene = new Scene(this.game,this.game.getSceneByName(this.options.choices[1].sceneDestination));
+				}
+		}
+		if(this.options.choices.length >= 1){
+					if((y > 350+this.offset) && (y < 400+this.offset)){
+						status = this.options.choices[0].sceneDestination.substr(this.options.choices[0].sceneDestination.length-5);
+					this.game.currentScene = new Scene(this.game,this.game.getSceneByName(this.options.choices[0].sceneDestination));
+				}
+		}
+		if (status == "right") {
+			this.game.polling += 0.05;
+		} else if (status == "wrong") {
+			this.game.polling -= 0.03;
+		}
 	}
 	// Helper
 	 wrapText(context, text, x, y, line_width, line_height)
