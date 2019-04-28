@@ -22,6 +22,7 @@ let Scenes =  [
 
 		"current_date" : "April 2020", // Date for Month
 		"campaign_month_count" : 0, // Counter for Budget
+		"img" : "Animation_School.gif",
 		"choices" : [
 				{
 					"description" : "Continue",
@@ -39,6 +40,7 @@ let Scenes =  [
 
 		"current_date" : "April 2020", // Date for Month
 		"campaign_month_count" : 0, // Counter for Budget
+		"img": "Animation_Heather_Walking.gif",
 		"choices" : [
 				{
 					"description" : "Continue",
@@ -53,6 +55,7 @@ let Scenes =  [
 		`,
 		"current_date" : "May 2020", // Date for Month
 		"campaign_month_count" : 1, // Counter for Budget
+		"img" : "heather_coffee.gif",
 		"choices" : [
 				{
 					"description" : "Rent an office to run your campaign from",
@@ -93,7 +96,6 @@ let Scenes =  [
 		"name": "screen_6_right",
 		"question" : `Heather responds with, “A campaign manager and someone to design a logo would be my top priority too!”`,
 		"current_date" : "May 2020", // Date for Month
-
 		"campaign_month_count" : 1, // Counter for Budget
 		"choices" : [
 				{
@@ -118,12 +120,8 @@ let Scenes =  [
 	},
 	{ 
 		"name": "screen_8",
-		"question" : `The campaign is getting organized, and you meet up with Heather again in June.
-
-		“Now that we’ve got your budget laid out, we should figure out what your goal is,” Heather says. “Do you know how to calculate your vote win number?”
-		
-		Which is the formula for a “vote win number”?
-		`,
+		"question" : `The campaign is getting organized, and you meet up with Heather again in June. “Now that we’ve got your budget laid out, we should figure out what your goal is,” Heather says. “Do you know how to calculate your vote win number?” Which is the formula for a “vote win number”?`
+		,
 		"current_date" : "June 2020", // Date for Month
 		"campaign_month_count" : 2, // Counter for Budget
 		"choices" : [
@@ -183,23 +181,23 @@ let Scenes =  [
 		"choices" : [
 			{
 				"description" : "Facebook",
-				"sceneDestination" : "screen_8_wrong"
+				"sceneDestination" : "screen_9_wrong"
 			},
 			{
 				"description" : "Door-to-door canvassing",
-				"sceneDestination" : "screen_8_wrong"
+				"sceneDestination" : "screen_9_wrong"
 			},
 			{
 				"description" : "Instagram",
-				"sceneDestination" : "screen_8_right"
+				"sceneDestination" : "screen_9_right"
 			},
 			{
 				"description" : "Phone banks",
-				"sceneDestination" : "screen_8_wrong"
+				"sceneDestination" : "screen_9_wrong"
 			},
 			{
 				"description" : "Radio ads",
-				"sceneDestination" : "screen_8_wrong"
+				"sceneDestination" : "screen_9_wrong"
 			},
 			
 	]
@@ -242,23 +240,23 @@ let Scenes =  [
 		"choices" : [
 			{
 				"description" : "Facebook",
-				"sceneDestination" : "screen_8_wrong"
+				"sceneDestination" : "screen_10_wrong"
 			},
 			{
 				"description" : "Door-to-door canvassing",
-				"sceneDestination" : "screen_8_wrong"
+				"sceneDestination" : "screen_10_wrong"
 			},
 			{
 				"description" : "Phone banks",
-				"sceneDestination" : "screen_8_wrong"
+				"sceneDestination" : "screen_10_wrong"
 			},
 			{
 				"description" : "Instagram",
-				"sceneDestination" : "screen_8_right"
+				"sceneDestination" : "screen_10_right"
 			},
 			{
 				"description" : "Radio ads",
-				"sceneDestination" : "screen_8_wrong"
+				"sceneDestination" : "screen_10_wrong"
 			},
 			
 	]
@@ -290,7 +288,138 @@ let Scenes =  [
 		]
 	
 	},
-
+		
+	{ 
+		"name": "screen_11",
+		"question" : `You’re out at the Public House for dinner one night and see Heather. She asks, “How’s your budget doing? In the second quarter, you’ll probably need to start finding some volunteers. A volunteer coordinator could be a real help finding people and getting them organized!”`,
+		"current_date" : "July 2020", // Date for Month
+		"campaign_month_count" : 3, // Counter for Budget
+		"choices" : [
+				{
+					"description" : "Continue",
+					"sceneDestination" : "screen_12"
+				}
+		]
+	
+	},{ 
+		"name": "screen_12",
+		"question" : `As the summer wears on, your campaign manager decides that it’s time to start recruiting volunteers to help out with the campaign. There are many different benefits that different volunteers could bring, but what is the MOST important quality to look for?`,
+		"current_date" : "August 2020", // Date for Month
+		"campaign_month_count" : 4, // Counter for Budget
+		"choices" : [
+			{
+				"description" : "Skills",
+				"sceneDestination" : "screen_12_wrong"
+			},
+			{
+				"description" : "Alignment of goals",
+				"sceneDestination" : "screen_12_right"
+			},
+			{
+				"description" : "Availability",
+				"sceneDestination" : "screen_12_right"
+			},
+			{
+				"description" : "Dedication to the cause",
+				"sceneDestination" : "screen_12_wrong"
+			},
+			{
+				"description" : "Personality",
+				"sceneDestination" : "screen_12_wrong"
+			},
+			
+		]},
+	{ 
+		"name": "screen_12_wrong",
+		"question" : `Heather responds with “That isn't what I'd do. But I guess you could try it and see what happens."`,
+		"current_date" : "July 2020", // Date for Month
+		"campaign_month_count" : 4, // Counter for Budget
+		"choices" : [
+				{
+					"description" : "Continue",
+					"sceneDestination" : "screen_13"
+				}
+		]
+	
+	},
+	{ 
+		"name": "screen_12_right",
+		"question" : `Heather responds with, “Yes! This is exactly what I would suggest!”`,
+		"current_date" : "July 2020", // Date for Month
+		"campaign_month_count" : 4, // Counter for Budget
+		"choices" : [
+				{
+					"description" : "Continue",
+					"sceneDestination" : "screen_13"
+				}
+		]
+	
+	},
+	{ 
+		"name": "screen_13",
+		"question" : `You check the funds with your team and discover that the money is getting low. You’ve already solicited donations from everyone you know, so you need to find some new sources of funding. How can you refill your coffers?`,
+		"current_date" : "September 2020", // Date for Month
+		"campaign_month_count" : 4, // Counter for Budget
+		"choices" : [
+			{
+				"description" : "Visit the Oregon Secretary of State Finance Page (ORESTAR)",
+				"sceneDestination" : "screen_13_right"
+			},
+			{
+				"description" : "High-interest loan",
+				"sceneDestination" : "screen_13_wrong"
+			},
+			{
+				"description" : "An unpublicized Go Fund Me campaign",
+				"sceneDestination" : "screen_13_wrong"
+			},
+			{
+				"description" : "Cold-calling local businesses",
+				"sceneDestination" : "screen_13_wrong"
+			},
+			
+	]
+	
+	},
+	{ 
+		"name": "screen_13_wrong",
+		"question" : `Heather responds with “That isn't what I'd do. But I guess you could try it and see what happens." Check out ORESTAR for more help: https://sos.oregon.gov/elections/Pages/orestar.aspx`,
+		"current_date" : "May 2020", // Date for Month
+		"campaign_month_count" : 1, // Counter for Budget
+		"choices" : [
+				{
+					"description" : "Continue",
+					"sceneDestination" : "screen_14"
+				}
+		]
+	
+	},
+	{ 
+		"name": "screen_13_right",
+		"question" : `Heather responds with, “Yes! This is exactly what I would suggest!”`,
+		"current_date" : "May 2020", // Date for Month
+		"campaign_month_count" : 1, // Counter for Budget
+		"choices" : [
+				{
+					"description" : "Continue",
+					"sceneDestination" : "screen_14"
+				}
+		]
+	
+	},
+	{ 
+		"name": "screen_14",
+		"question" : ``,
+		"current_date" : "May 2020", // Date for Month
+		"campaign_month_count" : 1, // Counter for Budget
+		"choices" : [
+				{
+					"description" : "Continue",
+					"sceneDestination" : "screen_8"
+				}
+		]
+	
+	},
 
 ];
 export default Scenes;
