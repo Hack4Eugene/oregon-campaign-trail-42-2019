@@ -35,7 +35,7 @@ export default class Scene extends Sprite{
 
 		// Draw main image
 		if(this.image != null){
-			console.log("try and load the image");
+			// console.log("try and load the image");
 				try{
 					let sceneImage = new Image();
 					sceneImage.src = this.image;
@@ -116,7 +116,7 @@ export default class Scene extends Sprite{
 			}			
 
 			let selection = y
-			console.log("I was clicked x:" +x+ "y:" + y);
+			// console.log("I was clicked x:" +x+ "y:" + y);
 		    console.log("options:" + this.options.choices.length);
 	}
 	// Helper
