@@ -835,7 +835,20 @@ let Scenes =  [
 				}
 		]
 	},
-	
+	{
+		"name": "screen_23",
+		"question" : `Woo-Hoo!!Yes You won your race -- doesn't it feel good?
+		Celebrate with everyone gathered and hopefully you can take some time to relax after the race.
+		This is a great time to recoup and prepare for your upcoming term as Springfield School Board`,
+		"current_date" : "May 2021", // Date for Month
+		"campaign_month_count" : 13, // Counter for Budget
+		"choices" : [
+				{
+					"description" : "Continue",
+					"sceneDestination" : "credits"
+				}
+		]
+	},
 	{
 		"name": "screen_24",
 		"question" : `It’s Wednesday morning at the Washburne and you’re getting ready to see Heather for a cup of coffee before work. You feel that you may have let her down. When Heather gets to the table she gives you a big hug and says, “You ran such a great campaign! One thing I didn’t tell you because I didn’t want to scare you: I served two terms on the school board, and it was great. But I also ran two times before and lost. Your next campaign will be so much better!”`,
