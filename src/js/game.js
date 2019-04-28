@@ -80,7 +80,7 @@ class Game{
 		this.lastClickY = y;
 		if(this.playButton){
 			// Play the game button
-			if((x>= 526) & (x <= 850) & (y>= 200) & (y <= 300))  {
+			if((x>= 526) & (x <= 850) & (y>= 200) & (y <= 400))  {
 				// Stop drawing the menu
 				this.firstload = false;
 				this.playButton = false;
