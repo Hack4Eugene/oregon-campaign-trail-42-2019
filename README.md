@@ -4,10 +4,10 @@
 >This was initially created during a 2 1/2 day hackathon in Eugene OR called Hack 4 a cause
 ### Developer Information
 >Setup : in the project folder run npm update to grab all the correct modules - if you have any errors/problems delete the node_modules folder and 
->>run npm update
+>*run npm update*
 >To pack a copy for distribution - this will build a production copy in the ./dist folder - make sure to grab the index.html from the root folder
->> run npm webpack
->To change slides edit the src/scenes.js 
+>* run npm webpack*
+>To change slides edit the *src/scenes.js * then run the *run npm webpack*
 >>~~~~{   
 		"name": "screen_4",
 		"question" : `After the meeting, your friend Heather, a former school board member, says, "Hey, you should run. Have you thought about it?" 
