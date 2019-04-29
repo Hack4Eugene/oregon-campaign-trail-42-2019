@@ -25,7 +25,8 @@
 					"sceneDestination" : "screen_5"
 				}
 		]
-	},~~~~
+	},
+~~~~
 
 >The limit is 5 choices - if you exceed this it will not be clickable
 >The description is the text that will show on the choice, the sceneDestination is which slide to goto next - so a sceneDestination of "start" would send you back to the beginning of the game.
