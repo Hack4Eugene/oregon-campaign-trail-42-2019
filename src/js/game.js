@@ -70,6 +70,7 @@ class Game{
 		let months = this.month - this.lastMonth;
 		for (let i in selectedIDs) {
 			this.money += MoneyData["BudgetItems"][selectedIDs[i]]["MOCOST"]*months;
+			this.money += MoneyData["BudgetItems"][selectedIDs[i]]["MINC"]*months;
 		}
 		this.lastMonth = this.month;
 		// if (this.money < 0) win(false);

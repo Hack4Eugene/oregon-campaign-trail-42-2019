@@ -161,7 +161,7 @@ let Scenes =  [
 	},
 	{ 
 		"name": "screen_8_wrong",
-		"question" : `Heather responds with “That isn't what I'd do. But I guess you could try it and see what happens."`,
+		"question" : `Heather responds with “I don't think that's right. Maybe we should do some research about the vote win number."`,
 		"current_date" : "June 2020", 
 		"campaign_month_count" : 2, 
 		"choices" : [
@@ -174,7 +174,7 @@ let Scenes =  [
 	},
 	{ 
 		"name": "screen_8_right",
-		"question" : `Heather responds with, “Yes! This is exactly what I would suggest!”`,
+		"question" : `Heather responds with, “Yes! That's exactly how it's done!”`,
 		"current_date" : "June 2020", 
 		"campaign_month_count" : 2, 
 		"choices" : [
@@ -330,7 +330,7 @@ let Scenes =  [
 			},
 			{
 				"description" : "Availability",
-				"sceneDestination" : "screen_12_right"
+				"sceneDestination" : "screen_12_wrong"
 			},
 			{
 				"description" : "Dedication to the cause",
@@ -344,7 +344,7 @@ let Scenes =  [
 		]},
 	{ 
 		"name": "screen_12_wrong",
-		"question" : `Heather responds with “That isn't what I'd do. But I guess you could try it and see what happens."`,
+		"question" : `Heather responds with “That wouldn't be my top priority, but I guess you could try it and see what happens."`,
 		"current_date" : "July 2020", 
 		"campaign_month_count" : 4, 
 		"choices" : [
@@ -357,7 +357,7 @@ let Scenes =  [
 	},
 	{ 
 		"name": "screen_12_right",
-		"question" : `Heather responds with, “Yes! This is exactly what I would suggest!”`,
+		"question" : `Heather responds with, “Yes! Alignment of goals is exactly what I would suggest!”`,
 		"current_date" : "July 2020", 
 		"campaign_month_count" : 4, 
 		"choices" : [
@@ -503,7 +503,7 @@ let Scenes =  [
 	},
 	{ 
 		"name": "screen_15_wrong",
-		"question" : `Heather responds with “That isn't what I'd do. But I guess you could try it and see what happens."`,
+		"question" : `Heather responds with “You either need 25 signatures or to pay a $10 fee."`,
 		"current_date" : "November 2020",
 		"campaign_month_count" : 7, 
 		"choices" : [
@@ -535,7 +535,7 @@ let Scenes =  [
 		"choices" : [
 			{
 				"description" : "Contact the TV station that aired the ad",
-				"sceneDestination" : "screen_16_right"
+				"sceneDestination" : "screen_16_wrong"
 			},
 			{
 				"description" : "Call the current school board",
@@ -547,7 +547,7 @@ let Scenes =  [
 			},
 			{
 				"description" : "Check the Oregon Secretary of State ORESTAR page",
-				"sceneDestination" : "screen_16_wrong"
+				"sceneDestination" : "screen_16_right"
 			}
 			
 	]
@@ -582,7 +582,7 @@ let Scenes =  [
 
 	{ 
 		"name": "screen_17",
-		"question" : `You’re having lunch with your co-workers, and they’re curious about your campaign. Your cube-mate Aaron asks, “How many voters are there in the school district anyway?” and you start to wonder as well. You know that Lane County has a document with the voter totals for the different districts, and decided to figure out just how many registered voters there are in Springfield School District #19.(link page)`,
+		"question" : `You’re having lunch with your co-workers, and they’re curious about your campaign. Your cube-mate Aaron asks, “How many voters are there in the school district anyway?” and you start to wonder as well. You know that Lane County has a document with the voter totals for the different districts, and decided to figure out just how many registered voters there are in Springfield School District #19.`,
 		"current_date" : "January 2021",
 		"campaign_month_count" : 9, 
 		"choices" : [
@@ -607,7 +607,7 @@ let Scenes =  [
 	},
 	{ 
 		"name": "screen_17_right",
-		"question" : `Heather responds with, “Yes! This is exactly what I would suggest!”`,
+		"question" : `Heather responds with, “You really know your voters!”`,
 		"current_date" : "January 2021", 
 		"campaign_month_count" : 9, 
 		"choices" : [
@@ -621,7 +621,7 @@ let Scenes =  [
 
 	{ 
 		"name": "screen_17_wrong",
-		"question" : `Heather responds with “That isn't what I'd do. But I guess you could try it and see what happens."`,
+		"question" : `Heather responds with “Maybe we should to do a little more research about our community."`,
 		"current_date" : "January 2021",
 		"campaign_month_count" : 9, 
 		"choices" : [
@@ -659,7 +659,7 @@ let Scenes =  [
 	},
 	{ 
 		"name": "screen_18_right",
-		"question" : `Heather responds with, “Yes! This is exactly what I would suggest!”`,
+		"question" : `Heather responds with, “Yes! This is exactly what Dean did wrong!”`,
 		"current_date" : "February 2021",
 		"campaign_month_count" : 10, 
 		"choices" : [
@@ -673,7 +673,7 @@ let Scenes =  [
 
 	{ 
 		"name": "screen_18_wrong",
-		"question" : `Heather responds with “That isn't what I'd do. But I guess you could try it and see what happens."`,
+		"question" : `Heather responds with “It's important not to tamper with the mail. Only the US Postal Service can leave flyers in mailboxes."`,
 		"current_date" : "February 2021", 
 		"campaign_month_count" : 10,
 		"choices" : [
@@ -726,7 +726,7 @@ let Scenes =  [
 
 	{ 
 		"name": "screen_19_wrong",
-		"question" : `Heather responds with “That isn't what I'd do. But I guess you could try it and see what happens."`,
+		"question" : `Heather responds with “Community organizations are responsible for scheduling and organizing forums and debates."`,
 		"current_date" : "March 2021", 
 		"campaign_month_count" : 11,
 		"choices" : [
@@ -780,7 +780,7 @@ let Scenes =  [
 	
 	{ 
 		"name": "screen_20_wrong",
-		"question" : `Heather responds with “That isn't what I'd do. But I guess you could try it and see what happens."`,
+		"question" : `Heather responds with “It's the final stretch, and our biggest priority is voter turn-out. Get Out The Vote!"`,
 		"current_date" : "April 2021",
 		"campaign_month_count" : 12, 
 		"choices" : [
@@ -836,9 +836,9 @@ let Scenes =  [
 	},
 	{
 		"name": "screen_23",
-		"question" : `Woo-Hoo!!Yes You won your race -- doesn't it feel good?
+		"question" : `Woo-Hoo!! Yes You won your race -- doesn't it feel good?
 		Celebrate with everyone gathered and hopefully you can take some time to relax after the race.
-		This is a great time to recoup and prepare for your upcoming term as Springfield School Board`,
+		This is a great time to recoup and prepare for your upcoming term as a Springfield School Board member`,
 		"current_date" : "May 2021",
 		"campaign_month_count" : 13,
 		"choices" : [
@@ -869,7 +869,7 @@ let Scenes =  [
 		"choices" : [
 				{
 					"description" : "Continue",
-					"sceneDestination" : "start"
+					"sceneDestination" : "screen_25"
 				}
 		]
 	},

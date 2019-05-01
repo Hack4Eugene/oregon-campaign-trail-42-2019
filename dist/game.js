@@ -61,7 +61,7 @@
 /******/ 	
 /******/ 	
 /******/ 	var hotApplyOnUpdate = true;
-/******/ 	var hotCurrentHash = "d34c582325765d8e104b"; // eslint-disable-line no-unused-vars
+/******/ 	var hotCurrentHash = "87989418c59ba9178ea8"; // eslint-disable-line no-unused-vars
 /******/ 	var hotRequestTimeout = 10000;
 /******/ 	var hotCurrentModuleData = {};
 /******/ 	var hotCurrentChildModule; // eslint-disable-line no-unused-vars
@@ -927,6 +927,7 @@ var Game = function () {
 			var months = this.month - this.lastMonth;
 			for (var i in selectedIDs) {
 				this.money += _money2.default["BudgetItems"][selectedIDs[i]]["MOCOST"] * months;
+				this.money += _money2.default["BudgetItems"][selectedIDs[i]]["MINC"] * months;
 			}
 			this.lastMonth = this.month;
 			// if (this.money < 0) win(false);
@@ -1242,7 +1243,7 @@ var Scenes = [{
 
 }, {
 	"name": "screen_8_wrong",
-	"question": "Heather responds with \u201CThat isn't what I'd do. But I guess you could try it and see what happens.\"",
+	"question": "Heather responds with \u201CI don't think that's right. Maybe we should do some research about the vote win number.\"",
 	"current_date": "June 2020",
 	"campaign_month_count": 2,
 	"choices": [{
@@ -1252,7 +1253,7 @@ var Scenes = [{
 
 }, {
 	"name": "screen_8_right",
-	"question": "Heather responds with, \u201CYes! This is exactly what I would suggest!\u201D",
+	"question": "Heather responds with, \u201CYes! That's exactly how it's done!\u201D",
 	"current_date": "June 2020",
 	"campaign_month_count": 2,
 	"choices": [{
@@ -1368,7 +1369,7 @@ var Scenes = [{
 		"sceneDestination": "screen_12_right"
 	}, {
 		"description": "Availability",
-		"sceneDestination": "screen_12_right"
+		"sceneDestination": "screen_12_wrong"
 	}, {
 		"description": "Dedication to the cause",
 		"sceneDestination": "screen_12_wrong"
@@ -1377,7 +1378,7 @@ var Scenes = [{
 		"sceneDestination": "screen_12_wrong"
 	}] }, {
 	"name": "screen_12_wrong",
-	"question": "Heather responds with \u201CThat isn't what I'd do. But I guess you could try it and see what happens.\"",
+	"question": "Heather responds with \u201CThat wouldn't be my top priority, but I guess you could try it and see what happens.\"",
 	"current_date": "July 2020",
 	"campaign_month_count": 4,
 	"choices": [{
@@ -1387,7 +1388,7 @@ var Scenes = [{
 
 }, {
 	"name": "screen_12_right",
-	"question": "Heather responds with, \u201CYes! This is exactly what I would suggest!\u201D",
+	"question": "Heather responds with, \u201CYes! Alignment of goals is exactly what I would suggest!\u201D",
 	"current_date": "July 2020",
 	"campaign_month_count": 4,
 	"choices": [{
@@ -1494,7 +1495,7 @@ var Scenes = [{
 
 }, {
 	"name": "screen_15_wrong",
-	"question": "Heather responds with \u201CThat isn't what I'd do. But I guess you could try it and see what happens.\"",
+	"question": "Heather responds with \u201CYou either need 25 signatures or to pay a $10 fee.\"",
 	"current_date": "November 2020",
 	"campaign_month_count": 7,
 	"choices": [{
@@ -1519,7 +1520,7 @@ var Scenes = [{
 	"campaign_month_count": 7,
 	"choices": [{
 		"description": "Contact the TV station that aired the ad",
-		"sceneDestination": "screen_16_right"
+		"sceneDestination": "screen_16_wrong"
 	}, {
 		"description": "Call the current school board",
 		"sceneDestination": "screen_16_wrong"
@@ -1528,7 +1529,7 @@ var Scenes = [{
 		"sceneDestination": "screen_16_wrong"
 	}, {
 		"description": "Check the Oregon Secretary of State ORESTAR page",
-		"sceneDestination": "screen_16_wrong"
+		"sceneDestination": "screen_16_right"
 	}]
 
 }, {
@@ -1553,7 +1554,7 @@ var Scenes = [{
 
 }, {
 	"name": "screen_17",
-	"question": "You\u2019re having lunch with your co-workers, and they\u2019re curious about your campaign. Your cube-mate Aaron asks, \u201CHow many voters are there in the school district anyway?\u201D and you start to wonder as well. You know that Lane County has a document with the voter totals for the different districts, and decided to figure out just how many registered voters there are in Springfield School District #19.(link page)",
+	"question": "You\u2019re having lunch with your co-workers, and they\u2019re curious about your campaign. Your cube-mate Aaron asks, \u201CHow many voters are there in the school district anyway?\u201D and you start to wonder as well. You know that Lane County has a document with the voter totals for the different districts, and decided to figure out just how many registered voters there are in Springfield School District #19.",
 	"current_date": "January 2021",
 	"campaign_month_count": 9,
 	"choices": [{
@@ -1572,7 +1573,7 @@ var Scenes = [{
 
 }, {
 	"name": "screen_17_right",
-	"question": "Heather responds with, \u201CYes! This is exactly what I would suggest!\u201D",
+	"question": "Heather responds with, \u201CYou really know your voters!\u201D",
 	"current_date": "January 2021",
 	"campaign_month_count": 9,
 	"choices": [{
@@ -1582,7 +1583,7 @@ var Scenes = [{
 
 }, {
 	"name": "screen_17_wrong",
-	"question": "Heather responds with \u201CThat isn't what I'd do. But I guess you could try it and see what happens.\"",
+	"question": "Heather responds with \u201CMaybe we should to do a little more research about our community.\"",
 	"current_date": "January 2021",
 	"campaign_month_count": 9,
 	"choices": [{
@@ -1611,7 +1612,7 @@ var Scenes = [{
 
 }, {
 	"name": "screen_18_right",
-	"question": "Heather responds with, \u201CYes! This is exactly what I would suggest!\u201D",
+	"question": "Heather responds with, \u201CYes! This is exactly what Dean did wrong!\u201D",
 	"current_date": "February 2021",
 	"campaign_month_count": 10,
 	"choices": [{
@@ -1621,7 +1622,7 @@ var Scenes = [{
 
 }, {
 	"name": "screen_18_wrong",
-	"question": "Heather responds with \u201CThat isn't what I'd do. But I guess you could try it and see what happens.\"",
+	"question": "Heather responds with \u201CIt's important not to tamper with the mail. Only the US Postal Service can leave flyers in mailboxes.\"",
 	"current_date": "February 2021",
 	"campaign_month_count": 10,
 	"choices": [{
@@ -1660,7 +1661,7 @@ var Scenes = [{
 
 }, {
 	"name": "screen_19_wrong",
-	"question": "Heather responds with \u201CThat isn't what I'd do. But I guess you could try it and see what happens.\"",
+	"question": "Heather responds with \u201CCommunity organizations are responsible for scheduling and organizing forums and debates.\"",
 	"current_date": "March 2021",
 	"campaign_month_count": 11,
 	"choices": [{
@@ -1699,7 +1700,7 @@ var Scenes = [{
 
 }, {
 	"name": "screen_20_wrong",
-	"question": "Heather responds with \u201CThat isn't what I'd do. But I guess you could try it and see what happens.\"",
+	"question": "Heather responds with \u201CIt's the final stretch, and our biggest priority is voter turn-out. Get Out The Vote!\"",
 	"current_date": "April 2021",
 	"campaign_month_count": 12,
 	"choices": [{
@@ -1740,7 +1741,7 @@ var Scenes = [{
 	}]
 }, {
 	"name": "screen_23",
-	"question": "Woo-Hoo!!Yes You won your race -- doesn't it feel good?\n\t\tCelebrate with everyone gathered and hopefully you can take some time to relax after the race.\n\t\tThis is a great time to recoup and prepare for your upcoming term as Springfield School Board",
+	"question": "Woo-Hoo!! Yes You won your race -- doesn't it feel good?\n\t\tCelebrate with everyone gathered and hopefully you can take some time to relax after the race.\n\t\tThis is a great time to recoup and prepare for your upcoming term as a Springfield School Board member",
 	"current_date": "May 2021",
 	"campaign_month_count": 13,
 	"choices": [{
@@ -1764,7 +1765,7 @@ var Scenes = [{
 	"img": "Credits.png",
 	"choices": [{
 		"description": "Continue",
-		"sceneDestination": "start"
+		"sceneDestination": "screen_25"
 	}]
 }, {
 	"name": "screen_25",
